@@ -180,5 +180,5 @@ M05 implementation and evidence are **VERIFIED** and pushed as commit
 | Graceful BLOCKED status without compatible ptxas | try/except with remedy and exit 3 | PASS |
 | Useful application kernel on GPU | DEFERRED: requires profiling evidence first | DEFERRED |
 
-M06 implementation and evidence are **VERIFIED**; commit/push is the remaining
-workflow action.
+M06 implementation and evidence are **VERIFIED** and pushed as commit
+`1e27e4333411f95b2b68315df21be2adcd325c52`.

@@ -2,7 +2,8 @@
 
 ## Current state
 
-- M00–M06 are VERIFIED. M06 commit/push is the remaining workflow action.
+- M00–M06 are VERIFIED and pushed. M06 commit:
+  `1e27e4333411f95b2b68315df21be2adcd325c52`.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
 - Tests: `pixi run test` → 62 unit tests; integration totals
@@ -36,9 +37,8 @@ src/main.mojo, args.mojo, help.mojo, version.mojo, pixi.toml (wiring)
 
 ## Next exact actions
 
-1. Commit and push M06 as its own milestone.
-2. Re-read the three authoritative documents (required after each milestone).
-3. Next capability: Reciprocal Meta-Discovery proof. Define a `DiscoveryGenome`
+1. Re-read the three authoritative documents (required after each milestone).
+2. Next capability: Reciprocal Meta-Discovery proof. Define a `DiscoveryGenome`
    with one AI choice and one compute/runtime choice; compare fixed,
    independent, sequential, and joint search under a matched budget, measuring
    quality, latency, memory, and experimental cost. Keep the meta-loop evidence
