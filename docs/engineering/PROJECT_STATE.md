@@ -55,5 +55,5 @@ documented synthetic dataset; it makes no general-AutoML or SOTA claim.
 
 Public remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 M02 commit: `18bcfde9ec3b5dc86264b737b738f5237a8d5224`.
-M03 implementation is complete; commit pending at handoff time.
+M03 commit: `faac647d8389acd39231ef754351d0af16fb76fd`.
 GitHub MCP is working (verified with `get_me` and `opencode mcp list`).

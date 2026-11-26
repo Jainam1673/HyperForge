@@ -114,5 +114,5 @@ held-out RMSE was `1.9183755652814585`, while matched random search reached
 fixture; this is reported rather than hidden. No claim is made that reciprocal
 or adaptive search is superior without a broader benchmark.
 
-M03 implementation and evidence are **VERIFIED**; commit/push is the remaining
-workflow action.
+M03 implementation and evidence are **VERIFIED** and pushed as commit
+`faac647d8389acd39231ef754351d0af16fb76fd`.

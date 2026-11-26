@@ -2,7 +2,8 @@
 
 ## Current state
 
-- M00, M01, M02 and M03 are VERIFIED. M03 commit/push is the remaining workflow action.
+- M00, M01, M02 and M03 are VERIFIED and pushed. M03 commit:
+  `faac647d8389acd39231ef754351d0af16fb76fd`.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
 - Tests: `pixi run test` → 42 pass; `test-cli` → 24; `test-experiment` → 17;
@@ -31,9 +32,8 @@ src/main.mojo, args.mojo, help.mojo, version.mojo, pixi.toml (wiring)
 
 ## Next exact actions
 
-1. Commit and push M03 as its own milestone.
-2. Re-read the three authoritative documents (required after each milestone).
-3. Start M04 (master numbering: SciTransformers after SINN). Before that, the
+1. Re-read the three authoritative documents (required after each milestone).
+2. Start M04 (master numbering: SciTransformers after SINN). Before that, the
    three capability anchors require SINN (M03 in master numbering) to be
    complete; reconcile the milestone numbering in `MILESTONES.md` and then
    implement the smallest scientifically meaningful SINN vertical slice:
