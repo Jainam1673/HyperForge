@@ -2,44 +2,44 @@
 
 ## Current state
 
-- M00–M07 are VERIFIED and pushed. M07 commit:
-  `d9d2f91f47d72ec52921b65186811d359fc4d930`.
+- M00–M08 are VERIFIED. M08 commit/push is the remaining workflow action.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
-- Tests: `pixi run test` → 67 unit tests; integration totals
-  24+17+21+14+17+20+17+15 = 145 checks. All pass.
-- Reciprocal coupling did not improve task quality; negative result retained.
+- Tests: `pixi run test` → 72 unit tests; integration totals
+  24+17+21+14+17+20+17+15+13 = 158 checks. All pass.
+- AutoDL adaptive search tied random search at this budget; negative result
+  retained.
 
-## What M07 added
+## What M08 added
 
 ```
-src/hyperforge/discovery/{__init__,genome,reciprocal}.mojo
-src/hyperforge/cli/discover_cmd.mojo
-tests/test_m07.mojo
-tests/integration_m07.sh
-docs/engineering/RECIPROCAL_DISCOVERY.md
-src/hyperforge/gpu/kernels.mojo (runtime block timing helper)
+src/hyperforge/autodl/{__init__,task,model,trainer,search}.mojo
+src/hyperforge/cli/autodl_cmd.mojo
+tests/test_m08.mojo
+tests/integration_m08.sh
+docs/engineering/AUTODL_VALIDATION.md
+src/hyperforge/autodiff/tape.mojo (log, relu)
 src/main.mojo, args.mojo, help.mojo, version.mojo, pixi.toml (wiring)
-evidence/journal.mojo, evidence/record.mojo (discovery record type)
+evidence/journal.mojo, evidence/record.mojo (autodl record type)
 ```
 
 ## Known limitations
 
-- Reciprocal joint search lost to fixed/independent search on this benchmark.
-- Memory is `NOT_TESTED`; no causal graph or posterior meta-model.
-- CPU-only workflows unaffected; GPU commands need `scripts/gpu-env.sh` on sm_61.
-- Adaptive search (M03) lost to random search; linear baseline beat the
-  transformer. Negative results are retained across milestones.
+- Synthetic task only; no convolution, recurrence, normalization, weight decay,
+  multi-fidelity racing, GPU training, or large datasets.
+- `replay` verifies checkpoint restoration, not retraining reproduction.
+- Adaptive search showed no advantage over random at the tested budget.
+- Memory is `NOT_TESTED` in reciprocal discovery; joint coupling lost there.
 - Atomic rename/truncate unavailable; journal recovery rewrites a validated
   prefix with a plain file write.
 
 ## Next exact actions
 
-1. Re-read the three authoritative documents (required after each milestone).
-2. Next: expand AutoAI/SciAI families one at a time (AutoDL, AutoRL,
-   SciML/SciDL/SciRL/SciLLM/SciGenAI), or close the explicit M07 evidence gaps
-   (memory measurement, causal discovery graph) before broader expansion. Do
-   not register a command for a capability that does not exist.
+1. Commit and push M08 as its own milestone.
+2. Re-read the three authoritative documents (required after each milestone).
+3. Next family: AutoRL (small deterministic environment with tabular methods,
+   separate training/evaluation, repeated seeds, random baseline) or close
+   AutoDL gaps (multi-fidelity, harder task). Keep one capability per milestone.
 
 ## Resume commands
 
@@ -47,5 +47,5 @@ evidence/journal.mojo, evidence/record.mojo (discovery record type)
 cd /home/jack/Projects/HyperForge
 pixi run build
 pixi run test
-pixi run test-discover
+pixi run test-autodl
 ```

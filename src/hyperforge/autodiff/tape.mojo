@@ -6,7 +6,7 @@ reverse topological order. This is a straightforward reference implementation:
 no fusion, no FlashAttention, no GPU claims.
 """
 
-from std.math import exp, sqrt, tanh
+from std.math import exp, log, sqrt, tanh
 
 struct Tape:
     var values: List[Float64]
@@ -114,6 +114,33 @@ struct Tape:
         self.parents.append(p^)
         var l = List[Float64]()
         l.append(e)
+        self.locals.append(l^)
+        self.parameter_ids.append(-1)
+        return len(self.values) - 1
+
+    def relu(mut self, node: Int) raises -> Int:
+        var value = self.values[node]
+        var activated = value if value > 0.0 else 0.0
+        self.values.append(activated)
+        self.grads.append(0.0)
+        var p = List[Int]()
+        p.append(node)
+        self.parents.append(p^)
+        var l = List[Float64]()
+        l.append(Float64(1.0) if value > 0.0 else 0.0)
+        self.locals.append(l^)
+        self.parameter_ids.append(-1)
+        return len(self.values) - 1
+
+    def log(mut self, node: Int) raises -> Int:
+        var value = self.values[node]
+        self.values.append(log(value))
+        self.grads.append(0.0)
+        var p = List[Int]()
+        p.append(node)
+        self.parents.append(p^)
+        var l = List[Float64]()
+        l.append(Float64(1.0) / value)
         self.locals.append(l^)
         self.parameter_ids.append(-1)
         return len(self.values) - 1

@@ -199,3 +199,19 @@ M06 implementation and evidence are **VERIFIED** and pushed as commit
 
 M07 implementation and evidence are **VERIFIED** and pushed as commit
 `d9d2f91f47d72ec52921b65186811d359fc4d930`.
+
+## M08 — AutoDL
+
+| Acceptance criterion | Evidence | Result |
+|---|---|---|
+| At least two architectures truly trained | four distinct depth/width shapes in random search | PASS |
+| Test verifies parameters change and loss/metrics update | `test_training_updates_parameters_and_keeps_test_locked` | PASS |
+| Correct validation/holdout separation | selection by validation loss; test fields zero until final | PASS |
+| End-to-end experiment replayable | `autodl replay` restores checkpoint, `REPLAY_READY` | PASS |
+| Runtime/resource limits honored | fixed budget, max epochs, patience, bounded sizes | PASS |
+| Random vs adaptive comparison | both policies run at matched budget | PASS |
+| No claim of adaptive superiority | tie reported | PASS |
+| Clean reproduction | prior suites unchanged; all integration suites pass | PASS |
+
+M08 implementation and evidence are **VERIFIED**; commit/push is the remaining
+workflow action.

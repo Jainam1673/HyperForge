@@ -5,13 +5,13 @@ a command-line application only: no frontend, server, database, or Python
 application logic. MAX is a platform dependency used only where its documented
 interfaces are needed; it is not required for the core CLI.
 
-Current milestone: **M07 — Reciprocal Meta-Discovery proof**.
-M00–M06 (CLI, evidence, regression AutoML, adaptive optimization, SINN,
-SciTransformers, GPU kernel proof) are complete. M07 adds a typed
-DiscoveryGenome and a matched-budget comparison of fixed, single-loop,
-independent, joint, and ablated reciprocal search. Joint search did **not**
-improve task quality in this benchmark; the negative result is reported.
-Further AutoAI/SciAI family expansion remains planned.
+Current milestone: **M08 — AutoDL**.
+M00–M07 (CLI, evidence, regression AutoML, adaptive optimization, SINN,
+SciTransformers, GPU kernel proof, reciprocal discovery proof) are complete.
+M08 adds real MLP architecture search with tape gradients, validation-only early
+stopping and selection, checkpoints, and replay verification. Adaptive search
+tied random search at the tested budget. Further AutoAI/SciAI family expansion
+remains planned.
 
 ## Requirements
 
@@ -24,7 +24,7 @@ Further AutoAI/SciAI family expansion remains planned.
 ```bash
 pixi install
 pixi run build       # produces ./hyperforge
-pixi run test             # 67 unit tests
+pixi run test             # 72 unit tests
 pixi run test-cli         # build + 24 CLI integration checks
 pixi run test-experiment  # 17 experiment/journal checks
 pixi run test-automl      # 21 AutoML integration checks
@@ -33,6 +33,7 @@ pixi run test-sinn        # 17 SINN / PDE checks
 pixi run test-scit        # 20 SciTransformers checks
 pixi run test-gpu         # 17 GPU kernel / benchmark checks
 pixi run test-discover    # 15 reciprocal discovery checks
+pixi run test-autodl      # 13 AutoDL checks
 ```
 
 On pre-Turing NVIDIA devices, source `scripts/gpu-env.sh` before invoking GPU
@@ -67,6 +68,9 @@ commands directly so a compatible `ptxas` is selected. All pixi tasks use
 ./hyperforge hardware probe
 ./hyperforge benchmark kernel
 ./hyperforge discover run [budget] [seed]
+./hyperforge autodl run [budget] [seed]
+./hyperforge autodl show <id>
+./hyperforge autodl replay <id>
 ```
 
 `doctor` reports toolchain pin, MAX CLI, accelerator visibility, workspace

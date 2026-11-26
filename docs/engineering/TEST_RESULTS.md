@@ -138,6 +138,22 @@ element (changed to lower median).
 Integration initially failed because the GPU runtime env was not sourced; fixed
 by sourcing `scripts/gpu-env.sh` in the test script, matching M06.
 
+## M08 results
+
+| Command | Outcome |
+|---|---|
+| `pixi run bash scripts/mojo.sh run -I src tests/test_m08.mojo` | 5 tests pass |
+| `pixi run test-autodl` | `autodl integration: 13 passed, 0 failed` |
+| `autodl run 4 42` | random 1x4 relu val 0.5549 test acc 0.875, 4 distinct architectures; adaptive 3x8 val 0.5634 test acc 0.875 |
+| `autodl show/replay` | checkpoint restored, `REPLAY_READY` |
+
+Two defects were found and fixed in M08: `show`/`replay` parsed the candidate ID
+as an integer in the main dispatcher; and artifacts lacked a policy suffix, so
+replay could not locate checkpoints. Both are covered by integration checks.
+Adding an `artifact_id` field to the `autodl` record changed the record schema;
+records created before that change are intentionally rejected as missing-field
+errors, documented as a within-milestone schema migration.
+
 ## Environment limitation
 
 A fresh `pixi install --frozen` into `/tmp/opencode/cleanhf3` failed with

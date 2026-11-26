@@ -24,6 +24,7 @@ from hyperforge.cli.sinn_cmd import list_problems, solve_problem, show_result
 from hyperforge.cli.scit_cmd import train_scit, show_scit, predict_scit
 from hyperforge.cli.gpu_cmd import hardware_probe, benchmark_kernel
 from hyperforge.cli.discover_cmd import run_discovery
+from hyperforge.cli.autodl_cmd import run_autodl, show_autodl, replay_autodl
 from hyperforge.core.exit_codes import EXIT_OK, EXIT_USAGE, EXIT_INTERNAL
 
 
@@ -136,6 +137,22 @@ def main() raises:
         if len(da) >= 3:
             seed = UInt64(Int(da[2]))
         code = run_discovery(".", budget, seed)
+    elif parsed.command == "autodl":
+        ref aa = parsed.args
+        if aa[0] == "run":
+            var budget = 4
+            var seed: UInt64 = 42
+            if len(aa) >= 2:
+                budget = Int(aa[1])
+            if len(aa) >= 3:
+                seed = UInt64(Int(aa[2]))
+            code = run_autodl(".", budget, seed)
+        elif aa[0] == "show":
+            code = show_autodl(".", aa[1])
+        elif aa[0] == "replay":
+            code = replay_autodl(".", aa[1])
+        else:
+            code = EXIT_USAGE
     else:
         print_help()
 

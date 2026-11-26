@@ -29,6 +29,9 @@ hyperforge sci-transformers predict <id> [sample]
 hyperforge hardware probe
 hyperforge benchmark kernel
 hyperforge discover run [budget] [seed]
+hyperforge autodl run [budget] [seed]
+hyperforge autodl show <id>
+hyperforge autodl replay <id>
 ```
 
 `--help`/`-h` and `--version`/`-V` take precedence over other arguments.
@@ -42,7 +45,7 @@ and require it to be initialized with `hyperforge init`.
 | Command | Behavior | Exit codes |
 |---|---|---|
 | `--help`, `-h` | Print help, including implemented vs planned commands | 0 |
-| `--version`, `-V` | Print `hyperforge 0.1.0 (M07)` | 0 |
+| `--version`, `-V` | Print `hyperforge 0.1.0 (M08)` | 0 |
 | `--gpu` (with `doctor`) | Run the explicit GPU kernel check | 0, 1, 3 |
 | `doctor [--json]` | Print separate capability probes; human or versioned JSON | 0, 3 |
 | `init <path>` | Create `hyperforge.toml`, `experiments/`, `artifacts/`, `logs/` | 0, 1, 2 |
@@ -66,6 +69,9 @@ and require it to be initialized with `hyperforge init`.
 | `hardware probe` | Probe accelerator and run a GPU kernel check | 0, 1, 3 |
 | `benchmark kernel` | Benchmark the GPU vector-add kernel with medians | 0, 1, 3 |
 | `discover run` | Matched-budget reciprocal AI/compute comparison | 0, 1, 2, 3 |
+| `autodl run` | Train and compare MLP architecture searches | 0, 1, 2 |
+| `autodl show` | Inspect an AutoDL result | 0, 1, 2 |
+| `autodl replay` | Verify a restored checkpoint | 0, 1, 2, 3 |
 
 `experiment create` derives three trial seeds from the experiment seed and
 records them. The ID is `exp-` plus a 16-digit FNV-1a fingerprint of

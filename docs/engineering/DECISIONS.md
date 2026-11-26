@@ -34,6 +34,20 @@ explicitly typed `Optional` is used. `len(String)` is replaced by
 logic is implemented in shell. This follows the directive's allowance for
 small build/test automation.
 
+## D027 — AutoDL uses the tape, validation-only selection
+
+Depth/width are real structural genes, and every parameter is a tape node;
+therefore gradients cannot be detached. Test metrics are deliberately zero in
+training results and computed once after validation-based selection. This is
+enforced by a unit test rather than relying on documentation.
+
+## D028 — Replay verifies checkpoint restoration, not re-execution
+
+`autodl replay` restores the persisted checkpoint and reports readiness; it does
+not claim to reproduce the original test measurement by retraining. This keeps
+replay honest under the project's distinction between execution, reproduction,
+and validity.
+
 ## D025 — Reciprocal proof reports a negative result
 
 The joint policy lost to fixed/independent search on task quality at matched

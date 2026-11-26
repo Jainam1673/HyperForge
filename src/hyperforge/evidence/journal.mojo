@@ -20,6 +20,7 @@ from hyperforge.evidence.record import (
     RECORD_SCIENTIFIC,
     RECORD_SCIT,
     RECORD_DISCOVERY,
+    RECORD_AUTOML_DL,
     parse_record,
     serialize_record,
 )
@@ -123,6 +124,24 @@ def required_fields_present(record: JournalRecord) raises -> Bool:
         required.append("evaluations")
         required.append("discoveries")
         required.append("pareto_count")
+        required.append("detail")
+    elif record.kind == RECORD_AUTOML_DL:
+        required.append("artifact_id")
+        required.append("seed")
+        required.append("budget")
+        required.append("policy")
+        required.append("candidate_id")
+        required.append("depth")
+        required.append("width")
+        required.append("activation")
+        required.append("learning_rate")
+        required.append("batch_size")
+        required.append("val_loss")
+        required.append("test_loss")
+        required.append("test_accuracy")
+        required.append("trained")
+        required.append("distinct_architectures")
+        required.append("wall_seconds")
         required.append("detail")
     else:
         return False
