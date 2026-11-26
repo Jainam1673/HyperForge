@@ -70,4 +70,8 @@ MAX/GPU kernel proof: M06, VERIFIED (5 unit tests, 17 integration checks,
 `GPU_BENCHMARK.md`). Five sizes pass with zero error on NVIDIA sm_61 using an
 external ptxas; CPU core remains green. M06 commit:
 `1e27e4333411f95b2b68315df21be2adcd325c52`.
+Reciprocal Meta-Discovery proof: M07, VERIFIED (5 unit tests, 15 integration
+checks, `RECIPROCAL_DISCOVERY.md`). Six matched-budget policies run; joint
+search did not beat fixed/independent and the negative result is recorded.
+M07 commit pending.
 GitHub MCP is working (verified with `get_me` and `opencode mcp list`).

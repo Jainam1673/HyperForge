@@ -80,6 +80,7 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             or token == "sci-transformers"
             or token == "hardware"
             or token == "benchmark"
+            or token == "discover"
         ):
             if result.command != "":
                 result.error = "unexpected command: " + token
@@ -96,6 +97,7 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             or result.command == "sci-transformers"
             or result.command == "hardware"
             or result.command == "benchmark"
+            or result.command == "discover"
         ):
             result.args.append(token)
         elif result.command == "init" and result.target == "":
@@ -172,6 +174,13 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
         len(result.args) != 1 or result.args[0] != "probe"
     ):
         result.error = "usage: hyperforge hardware probe"
+    if result.command == "discover":
+        if len(result.args) == 0:
+            result.error = "discover requires: run"
+        elif result.args[0] != "run":
+            result.error = "unknown discover subcommand: " + result.args[0]
+        elif len(result.args) < 1 or len(result.args) > 3:
+            result.error = "usage: hyperforge discover run [budget] [seed]"
     if result.command == "benchmark" and (
         len(result.args) != 1 or result.args[0] != "kernel"
     ):

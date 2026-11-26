@@ -19,6 +19,7 @@ from hyperforge.evidence.record import (
     RECORD_OPTIMIZER,
     RECORD_SCIENTIFIC,
     RECORD_SCIT,
+    RECORD_DISCOVERY,
     parse_record,
     serialize_record,
 )
@@ -112,6 +113,17 @@ def required_fields_present(record: JournalRecord) raises -> Bool:
         required.append("state")
         required.append("detail")
         required.append("runtime")
+    elif record.kind == RECORD_DISCOVERY:
+        required.append("seed")
+        required.append("budget")
+        required.append("policy")
+        required.append("best_rmse")
+        required.append("best_latency")
+        required.append("wall_seconds")
+        required.append("evaluations")
+        required.append("discoveries")
+        required.append("pareto_count")
+        required.append("detail")
     else:
         return False
     for key in required:

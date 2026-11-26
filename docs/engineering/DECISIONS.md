@@ -34,6 +34,19 @@ explicitly typed `Optional` is used. `len(String)` is replaced by
 logic is implemented in shell. This follows the directive's allowance for
 small build/test automation.
 
+## D025 — Reciprocal proof reports a negative result
+
+The joint policy lost to fixed/independent search on task quality at matched
+budgets for two seeds. The result is published in `RECIPROCAL_DISCOVERY.md`
+instead of tuning the benchmark until joint wins. No causal or novelty claim is
+made; the genome is limited to genes with real execution paths.
+
+## D026 — Memory is NOT_TESTED, not fabricated
+
+No verified Mojo memory-measurement API was established for this release, so
+the discovery report prints `memory: NOT_TESTED` rather than inventing a
+number. This is an explicit evidence gap in M07.
+
 ## D023 — GPU proof stays a separate capability
 
 The vector-add kernel is the only accelerator work in M06. No AutoML, SINN, or

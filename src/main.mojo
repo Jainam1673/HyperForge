@@ -23,6 +23,7 @@ from hyperforge.cli.optimize_cmd import run_optimize
 from hyperforge.cli.sinn_cmd import list_problems, solve_problem, show_result
 from hyperforge.cli.scit_cmd import train_scit, show_scit, predict_scit
 from hyperforge.cli.gpu_cmd import hardware_probe, benchmark_kernel
+from hyperforge.cli.discover_cmd import run_discovery
 from hyperforge.core.exit_codes import EXIT_OK, EXIT_USAGE, EXIT_INTERNAL
 
 
@@ -126,6 +127,15 @@ def main() raises:
         code = hardware_probe()
     elif parsed.command == "benchmark":
         code = benchmark_kernel(".")
+    elif parsed.command == "discover":
+        ref da = parsed.args
+        var budget = 6
+        var seed: UInt64 = 42
+        if len(da) >= 2:
+            budget = Int(da[1])
+        if len(da) >= 3:
+            seed = UInt64(Int(da[2]))
+        code = run_discovery(".", budget, seed)
     else:
         print_help()
 

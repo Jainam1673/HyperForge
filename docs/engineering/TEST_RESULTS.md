@@ -125,6 +125,19 @@ CUDA 12 ptxas selected by wrapper); the Mojo wrapper originally placed the
 target flag before the subcommand; even-length median returned the upper
 element (changed to lower median).
 
+## M07 results
+
+| Command | Outcome |
+|---|---|
+| `pixi run bash scripts/mojo.sh run -I src tests/test_m07.mojo` | 5 tests pass |
+| `pixi run test-discover` | `discover integration: 15 passed, 0 failed` |
+| `discover run 6 42` | six policies, 6 discovery records, joint RMSE 0.0435 vs fixed/independent 8.81e-7 |
+| `discover run 6 43` | same ordering; negative result reproduced |
+| `discover run 1 42` | exit 2 (budget validation) |
+
+Integration initially failed because the GPU runtime env was not sourced; fixed
+by sourcing `scripts/gpu-env.sh` in the test script, matching M06.
+
 ## Environment limitation
 
 A fresh `pixi install --frozen` into `/tmp/opencode/cleanhf3` failed with

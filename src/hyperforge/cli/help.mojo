@@ -17,6 +17,8 @@ def print_help() raises:
         + "  doctor [--json] [--gpu] Report capability status; --gpu runs a kernel\n"
         + "  hardware probe          Probe accelerator and run a GPU kernel check\n"
         + "  benchmark kernel        Benchmark the GPU vector-add kernel\n"
+        + "  discover run [budget] [seed]\n"
+        + "                          Reciprocal AI/compute search comparison\n"
         + "  init <path>             Initialize a versioned local workspace\n"
         + "  experiment create <name> [seed]\n"
         + "                          Create a versioned experiment record\n"

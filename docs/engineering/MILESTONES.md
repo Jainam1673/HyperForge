@@ -182,3 +182,20 @@ M05 implementation and evidence are **VERIFIED** and pushed as commit
 
 M06 implementation and evidence are **VERIFIED** and pushed as commit
 `1e27e4333411f95b2b68315df21be2adcd325c52`.
+
+## M07 — Reciprocal Meta-Discovery proof
+
+| Acceptance criterion | Evidence | Result |
+|---|---|---|
+| DiscoveryGenome with one AI and one compute choice | typed genome, validation, stable hash, mutation tests | PASS |
+| Fixed, AI-only, compute-only, independent, joint, ablation policies | six policies in `discover run` | PASS |
+| Equal budget | every policy receives exactly `budget` evaluations | PASS |
+| Quality, latency, wall-clock, cost measured | report columns and protocol in `RECIPROCAL_DISCOVERY.md` | PASS |
+| Memory measured | reported `NOT_TESTED` (no verified API) | HONEST GAP |
+| Repeated seeds | seeds 42 and 43 executed and recorded | PASS |
+| Negative results published | joint lost to fixed/independent on task quality | PASS |
+| Meta-loop evidence based | adaptive side allocation via shared observations; unit test | PASS |
+| Causal graph / posterior meta-model | DEFERRED; no causal claim from correlations | DEFERRED |
+
+M07 implementation and evidence are **VERIFIED**; commit/push is the remaining
+workflow action.

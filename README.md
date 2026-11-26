@@ -5,14 +5,13 @@ a command-line application only: no frontend, server, database, or Python
 application logic. MAX is a platform dependency used only where its documented
 interfaces are needed; it is not required for the core CLI.
 
-Current milestone: **M06 — MAX accelerator proof**.
-M00–M05 (CLI, evidence substrate, regression AutoML, adaptive optimization,
-SINN, SciTransformers) are complete. M06 adds a MAX/Mojo GPU vector-add kernel
-with a CPU reference, edge-shape checks, and measured warm-up/kernel/end-to-end
-timings. GPU commands report BLOCKED when no compatible compiler is present;
-the CPU core remains fully functional. Negative results (adaptive vs random,
-linear baseline vs transformer) are retained. Reciprocal discovery remains
-planned.
+Current milestone: **M07 — Reciprocal Meta-Discovery proof**.
+M00–M06 (CLI, evidence, regression AutoML, adaptive optimization, SINN,
+SciTransformers, GPU kernel proof) are complete. M07 adds a typed
+DiscoveryGenome and a matched-budget comparison of fixed, single-loop,
+independent, joint, and ablated reciprocal search. Joint search did **not**
+improve task quality in this benchmark; the negative result is reported.
+Further AutoAI/SciAI family expansion remains planned.
 
 ## Requirements
 
@@ -25,7 +24,7 @@ planned.
 ```bash
 pixi install
 pixi run build       # produces ./hyperforge
-pixi run test             # 62 unit tests
+pixi run test             # 67 unit tests
 pixi run test-cli         # build + 24 CLI integration checks
 pixi run test-experiment  # 17 experiment/journal checks
 pixi run test-automl      # 21 AutoML integration checks
@@ -33,6 +32,7 @@ pixi run test-optimize    # 14 adaptive optimization checks
 pixi run test-sinn        # 17 SINN / PDE checks
 pixi run test-scit        # 20 SciTransformers checks
 pixi run test-gpu         # 17 GPU kernel / benchmark checks
+pixi run test-discover    # 15 reciprocal discovery checks
 ```
 
 On pre-Turing NVIDIA devices, source `scripts/gpu-env.sh` before invoking GPU
@@ -66,6 +66,7 @@ commands directly so a compatible `ptxas` is selected. All pixi tasks use
 ./hyperforge sci-transformers predict <experiment-id> [sample]
 ./hyperforge hardware probe
 ./hyperforge benchmark kernel
+./hyperforge discover run [budget] [seed]
 ```
 
 `doctor` reports toolchain pin, MAX CLI, accelerator visibility, workspace

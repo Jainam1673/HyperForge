@@ -35,6 +35,47 @@ def vector_add_kernel[LT: TensorLayout](
         c[index] = a[index] + b[index]
 
 
+def time_vector_add(
+    mut ctx: DeviceContext, block_size: Int, repetitions: Int
+) raises -> Float64:
+    """Median kernel time for a runtime-selected launch configuration."""
+    if block_size < 1:
+        raise Error("block size must be positive")
+    comptime N = 1024
+    comptime layout = row_major[N]()
+    comptime kernel = vector_add_kernel[type_of(layout)]
+    var a_buffer = ctx.enqueue_create_buffer[GPU_DTYPE](N)
+    var b_buffer = ctx.enqueue_create_buffer[GPU_DTYPE](N)
+    var c_buffer = ctx.enqueue_create_buffer[GPU_DTYPE](N)
+    a_buffer.enqueue_fill(1.0)
+    b_buffer.enqueue_fill(2.0)
+
+    # Warm-up launch, then repeated timed launches.
+    ctx.enqueue_function[kernel](
+        TileTensor(a_buffer, layout).as_imm(),
+        TileTensor(b_buffer, layout).as_imm(),
+        TileTensor(c_buffer, layout),
+        Int32(N),
+        grid_dim=ceildiv(N, block_size),
+        block_dim=block_size,
+    )
+    ctx.synchronize()
+    var times = List[Float64]()
+    for _ in range(repetitions):
+        var started = perf_counter()
+        ctx.enqueue_function[kernel](
+            TileTensor(a_buffer, layout).as_imm(),
+            TileTensor(b_buffer, layout).as_imm(),
+            TileTensor(c_buffer, layout),
+            Int32(N),
+            grid_dim=ceildiv(N, block_size),
+            block_dim=block_size,
+        )
+        ctx.synchronize()
+        times.append(perf_counter() - started)
+    return median(times)
+
+
 def cpu_vector_add(left: List[Float32], right: List[Float32]) raises -> List[Float32]:
     if len(left) != len(right):
         raise Error("vector add length mismatch")
