@@ -229,5 +229,5 @@ M08 implementation and evidence are **VERIFIED** and pushed as commit
 | Confidence summary | sample std and normal-approximation CI reported | PASS |
 | No neural policies or real-world actions | tabular only; documented | PASS |
 
-M09 implementation and evidence are **VERIFIED**; commit/push is the remaining
-workflow action.
+M09 implementation and evidence are **VERIFIED** and pushed as commit
+`4fb11369fe12f8e01fab27e8a1d54542b9fbe36e`.

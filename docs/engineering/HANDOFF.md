@@ -2,7 +2,8 @@
 
 ## Current state
 
-- M00–M09 are VERIFIED. M09 commit/push is the remaining workflow action.
+- M00–M09 are VERIFIED and pushed. M09 commit:
+  `4fb11369fe12f8e01fab27e8a1d54542b9fbe36e`.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
 - Tests: `pixi run test` → 77 unit tests; integration totals
@@ -33,9 +34,8 @@ evidence/journal.mojo, evidence/record.mojo (autorl record type)
 
 ## Next exact actions
 
-1. Commit and push M09 as its own milestone.
-2. Re-read the three authoritative documents (required after each milestone).
-3. Next family per master prompt: AutoTransformers (search supported transformer
+1. Re-read the three authoritative documents (required after each milestone).
+2. Next family per master prompt: AutoTransformers (search supported transformer
    configs on verified attention infrastructure) or AutoLLM through a supported
    local MAX boundary. Do not register a command without a real execution path.
 
