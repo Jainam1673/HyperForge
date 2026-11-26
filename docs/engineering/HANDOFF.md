@@ -2,7 +2,8 @@
 
 ## Current state
 
-- M00–M07 are VERIFIED. M07 commit/push is the remaining workflow action.
+- M00–M07 are VERIFIED and pushed. M07 commit:
+  `d9d2f91f47d72ec52921b65186811d359fc4d930`.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
 - Tests: `pixi run test` → 67 unit tests; integration totals
@@ -34,9 +35,8 @@ evidence/journal.mojo, evidence/record.mojo (discovery record type)
 
 ## Next exact actions
 
-1. Commit and push M07 as its own milestone.
-2. Re-read the three authoritative documents (required after each milestone).
-3. Next: expand AutoAI/SciAI families one at a time (AutoDL, AutoRL,
+1. Re-read the three authoritative documents (required after each milestone).
+2. Next: expand AutoAI/SciAI families one at a time (AutoDL, AutoRL,
    SciML/SciDL/SciRL/SciLLM/SciGenAI), or close the explicit M07 evidence gaps
    (memory measurement, causal discovery graph) before broader expansion. Do
    not register a command for a capability that does not exist.

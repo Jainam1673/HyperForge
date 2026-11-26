@@ -73,5 +73,5 @@ external ptxas; CPU core remains green. M06 commit:
 Reciprocal Meta-Discovery proof: M07, VERIFIED (5 unit tests, 15 integration
 checks, `RECIPROCAL_DISCOVERY.md`). Six matched-budget policies run; joint
 search did not beat fixed/independent and the negative result is recorded.
-M07 commit pending.
+M07 commit: `d9d2f91f47d72ec52921b65186811d359fc4d930`.
 GitHub MCP is working (verified with `get_me` and `opencode mcp list`).
