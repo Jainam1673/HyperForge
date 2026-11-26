@@ -144,5 +144,5 @@ One analytic PDE, fixed network width, no adaptive collocation, no
 uncertainty quantification, no GPU execution, no second benchmark. These are
 explicitly not claimed. See `SCIENTIFIC_VALIDATION.md`.
 
-M04 implementation and evidence are **VERIFIED**; commit/push is the remaining
-workflow action.
+M04 implementation and evidence are **VERIFIED** and pushed as commit
+`8694384f87a8251cf64a5d133c51b326bf51d13c`.

@@ -2,8 +2,8 @@
 
 ## Current state
 
-- M00–M03 are VERIFIED and pushed. M04 (SINN) implementation and evidence are
-  VERIFIED; commit/push is the remaining workflow action.
+- M00–M04 are VERIFIED and pushed. M04 commit:
+  `8694384f87a8251cf64a5d133c51b326bf51d13c`.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
 - Tests: `pixi run test` → 49 unit tests; integration totals 24+17+21+14+17 = 93 checks.
@@ -34,9 +34,8 @@ evidence/journal.mojo, evidence/record.mojo (scientific record type)
 
 ## Next exact actions
 
-1. Commit and push M04 as its own milestone.
-2. Re-read the three authoritative documents (required after each milestone).
-3. Start SciTransformers (master prompt M04): a deterministic, locally specified
+1. Re-read the three authoritative documents (required after each milestone).
+2. Start SciTransformers (master prompt M04): a deterministic, locally specified
    scientific sequence/field task with a reference solution, real train/evaluate/
    predict, masked attention with numerical tests, held-out generalization, and
    at least two non-transformer baselines. Do not claim a foundation model or
