@@ -20,6 +20,7 @@ from hyperforge.cli.automl_cmd import (
     compare_experiments,
 )
 from hyperforge.cli.optimize_cmd import run_optimize
+from hyperforge.cli.sinn_cmd import list_problems, solve_problem, show_result
 from hyperforge.core.exit_codes import EXIT_OK, EXIT_USAGE, EXIT_INTERNAL
 
 
@@ -82,6 +83,22 @@ def main() raises:
         if len(oa) >= 5:
             seed = UInt64(Int(oa[4]))
         code = run_optimize(oa[1], oa[2], budget, seed)
+    elif parsed.command == "sinn":
+        ref sa = parsed.args
+        var seed: UInt64 = 42
+        var iterations = 800
+        if len(sa) >= 3:
+            seed = UInt64(Int(sa[2]))
+        if len(sa) >= 4:
+            iterations = Int(sa[3])
+        if sa[0] == "list-problems":
+            code = list_problems()
+        elif sa[0] == "solve":
+            code = solve_problem(".", sa[1], seed, iterations)
+        elif sa[0] == "show":
+            code = show_result(".", sa[1])
+        else:
+            code = EXIT_USAGE
     else:
         print_help()
 

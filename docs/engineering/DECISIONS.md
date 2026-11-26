@@ -34,6 +34,22 @@ explicitly typed `Optional` is used. `len(String)` is replaced by
 logic is implemented in shell. This follows the directive's allowance for
 small build/test automation.
 
+## D019 — Forward-mode higher-order jets for SINN differentiation
+
+The tiny network needs u'' for the PDE residual and ∂u''/∂p for Adam gradients.
+A six-component forward jet (v, vx, vxx, vp, vxp, vxxp) implements this exactly
+and is checked against central differences. Exact boundary enforcement
+`u = x(1-x) N(x)` removes the boundary penalty and its loss-balancing failure
+mode. Finite differences are used only as a check and as the independent
+numerical solver, never inside training.
+
+## D020 — Honest convergence gate and exit codes
+
+A SINN run returns exit 0 only for `CONVERGED`; `POOR_FIT` and `DIVERGED` are
+persisted and return exit 1. The held-out exact/FD errors and residual are
+reported separately, and a small collocation residual is not treated as proof
+of generalization.
+
 ## D017 — TPE-style density ratio, with baseline excluded from the model
 
 M03 uses a small Parzen-density ratio sampler over recorded validation RMSE.

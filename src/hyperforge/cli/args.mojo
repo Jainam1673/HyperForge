@@ -68,7 +68,12 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
                 result.error = "unexpected command: " + token
                 return result^
             result.command = "experiment"
-        elif token == "automl" or token == "report" or token == "optimize":
+        elif (
+            token == "automl"
+            or token == "report"
+            or token == "optimize"
+            or token == "sinn"
+        ):
             if result.command != "":
                 result.error = "unexpected command: " + token
                 return result^
@@ -80,6 +85,7 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             result.command == "automl"
             or result.command == "report"
             or result.command == "optimize"
+            or result.command == "sinn"
         ):
             result.args.append(token)
         elif result.command == "init" and result.target == "":
@@ -151,6 +157,21 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
     if result.json and not machine_ok:
         result.error = "--json is only valid with 'doctor' or 'experiment list|show'"
 
+    if result.command == "sinn":
+        if len(result.args) == 0:
+            result.error = "sinn requires: list-problems|solve|show"
+        elif result.args[0] == "list-problems" and len(result.args) != 1:
+            result.error = "usage: hyperforge sinn list-problems"
+        elif result.args[0] == "solve" and (len(result.args) < 2 or len(result.args) > 4):
+            result.error = "usage: hyperforge sinn solve <problem> [seed] [iterations]"
+        elif result.args[0] == "show" and len(result.args) != 2:
+            result.error = "usage: hyperforge sinn show <experiment-id>"
+        elif (
+            result.args[0] != "list-problems"
+            and result.args[0] != "solve"
+            and result.args[0] != "show"
+        ):
+            result.error = "unknown sinn subcommand: " + result.args[0]
     if result.command == "optimize":
         if len(result.args) == 0:
             result.error = "optimize requires a subcommand: run"

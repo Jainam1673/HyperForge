@@ -20,6 +20,9 @@ hyperforge automl replay <id>
 hyperforge automl compare <id-a> <id-b>
 hyperforge report <id>
 hyperforge optimize run <data.csv> <target> [budget] [seed]
+hyperforge sinn list-problems
+hyperforge sinn solve <problem> [seed] [iterations]
+hyperforge sinn show <id>
 ```
 
 `--help`/`-h` and `--version`/`-V` take precedence over other arguments.
@@ -33,7 +36,7 @@ and require it to be initialized with `hyperforge init`.
 | Command | Behavior | Exit codes |
 |---|---|---|
 | `--help`, `-h` | Print help, including implemented vs planned commands | 0 |
-| `--version`, `-V` | Print `hyperforge 0.1.0 (M03)` | 0 |
+| `--version`, `-V` | Print `hyperforge 0.1.0 (M04)` | 0 |
 | `doctor [--json]` | Print separate capability probes; human or versioned JSON | 0, 3 |
 | `init <path>` | Create `hyperforge.toml`, `experiments/`, `artifacts/`, `logs/` | 0, 1, 2 |
 | `experiment create` | Write config artifact + journal records; print stable ID | 0, 1, 2 |
@@ -47,6 +50,9 @@ and require it to be initialized with `hyperforge init`.
 | `automl compare` | Compare held-out RMSE of two experiments | 0, 1, 2 |
 | `report <id>` | Render the AutoML terminal report | 0, 1, 2 |
 | `optimize run` | Adaptive TPE-style search vs matched random baseline | 0, 1, 2 |
+| `sinn list-problems` | List supported scientific problems | 0 |
+| `sinn solve` | Train a physics-informed network; state reported honestly | 0, 1, 2 |
+| `sinn show` | Inspect a persisted scientific result | 0, 1, 2 |
 
 `experiment create` derives three trial seeds from the experiment seed and
 records them. The ID is `exp-` plus a 16-digit FNV-1a fingerprint of

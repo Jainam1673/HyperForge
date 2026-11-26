@@ -76,6 +76,22 @@ validator required `k == 0` for that kind; the baseline was incorrectly used as
 a TPE parent, producing invalid baseline-with-iterations candidates. Both were
 reproduced with probes and covered by unit tests.
 
+## M04 results
+
+| Command | Outcome |
+|---|---|
+| `pixi run mojo run -I src tests/test_m04.mojo` | 7 tests pass (jet derivatives, network BC, parameter gradient, FD solver, serialization, reproducibility, honest failure) |
+| `pixi run test-sinn` | `sinn integration: 17 passed, 0 failed` |
+| `sinn solve poisson_1d 42 800` | CONVERGED; loss 5.6308 → 0.000838; residual 0.0287; boundary 0.0; exact_l2 0.00200; fd_l2 0.00200 |
+| `sinn solve poisson_1d 43 3` | exit 1, `did not meet the convergence gate` |
+| `sinn solve heat_2d 42 800` | exit 2, unsupported problem |
+
+Defects found and fixed during M04: `w1` and `v` entered the jet graph via
+constant scaling, making their parameter derivatives silently zero; after the
+fix, parameter gradients matched finite differences and final loss improved from
+0.0107 to 0.00084 at 800 iterations. Tuple return syntax required `Tuple[...]`
+and `mut` call-site syntax was rejected.
+
 ## Environment limitation
 
 A fresh `pixi install --frozen` into `/tmp/opencode/cleanhf3` failed with

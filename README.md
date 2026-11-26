@@ -5,11 +5,12 @@ a command-line application only: no frontend, server, database, or Python
 application logic. MAX is a platform dependency used only where its documented
 interfaces are needed; it is not required for the core CLI.
 
-Current milestone: **M03 — adaptive optimization**.
-M00 (CLI shell), M01 (evidence substrate) and M02 (regression AutoML) are
-complete. M03 adds a TPE-style adaptive sampler with matched-budget comparison;
-classification, multi-fidelity search, trees, GPU execution, and discovery
-remain planned.
+Current milestone: **M04 — SINN, the first SciAI capability**.
+M00–M03 (CLI, evidence substrate, regression AutoML, adaptive optimization) are
+complete. M04 adds a differentiable physics-informed network for 1D Poisson
+with exact boundaries, an independent finite-difference reference, and honest
+convergence gating. SciTransformers, classification, multi-fidelity search,
+trees, GPU execution, and discovery remain planned.
 
 ## Requirements
 
@@ -27,6 +28,7 @@ pixi run test-cli         # build + 24 CLI integration checks
 pixi run test-experiment  # 17 experiment/journal checks
 pixi run test-automl      # 21 AutoML integration checks
 pixi run test-optimize    # 14 adaptive optimization checks
+pixi run test-sinn        # 17 SINN / PDE checks
 ```
 
 ## Implemented commands
@@ -47,6 +49,9 @@ pixi run test-optimize    # 14 adaptive optimization checks
 ./hyperforge automl compare <id-a> <id-b>
 ./hyperforge report <id>
 ./hyperforge optimize run <data.csv> <target> [budget] [seed]
+./hyperforge sinn list-problems
+./hyperforge sinn solve poisson_1d [seed] [iterations]
+./hyperforge sinn show <experiment-id>
 ```
 
 `doctor` reports toolchain pin, MAX CLI, accelerator visibility, workspace

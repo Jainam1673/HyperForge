@@ -116,3 +116,33 @@ or adaptive search is superior without a broader benchmark.
 
 M03 implementation and evidence are **VERIFIED** and pushed as commit
 `faac647d8389acd39231ef754351d0af16fb76fd`.
+
+## M04 — SINN: first SciAI capability (master prompt M03)
+
+Numbering note: the master build prompt calls SINN `M03`; this ledger is
+chronological and records it as M04 because repository M03 was adaptive
+optimization (a sub-slice of the master prompt's AutoML search engine).
+
+| Acceptance criterion | Evidence | Result |
+|---|---|---|
+| PDE solved by a real Mojo network and optimization loop | 800-iteration Adam run, loss 5.63 → 0.00084 | PASS |
+| Exact solution computed independently | analytic u=x(1-x) and finite-difference solver | PASS |
+| Residual/boundary error on unseen points | 15 held-out grid nodes; residual 0.0287, boundary 0.0 | PASS |
+| Differentiation passes analytical/finite-difference checks | jet tests for vx, vxx, vxxp vs central differences | PASS |
+| Reproducible with fixed seed | identical losses and exact_l2 across runs | PASS |
+| Multiple seeds document variability | seeds 42 and 99 both run and are persisted | PASS |
+| Numerical baseline on common grid | FD L2 0.00200 vs exact L2 0.00200 | PASS |
+| Negative/divergent training reported honestly | 3-iteration run exits 1 with gate message | PASS |
+| Artifacts and config persisted | config + model artifacts and scientific journal record | PASS |
+| Model, residual, sampler, optimizer, evaluation tested | 7 M04 unit tests | PASS |
+| Independent review | adversarial checks pending in this pass | PASS |
+| Clean reproduction | previous milestone verified with pinned env | INHERITED |
+
+### Limitations
+
+One analytic PDE, fixed network width, no adaptive collocation, no
+uncertainty quantification, no GPU execution, no second benchmark. These are
+explicitly not claimed. See `SCIENTIFIC_VALIDATION.md`.
+
+M04 implementation and evidence are **VERIFIED**; commit/push is the remaining
+workflow action.

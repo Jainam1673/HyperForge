@@ -28,6 +28,9 @@ Status labels: `PLANNED`, `IN_PROGRESS`, `IMPLEMENTED_NOT_VERIFIED`, `PARTIAL`,
 | Invalid and failed trial handling | M03 | VERIFIED | validation rules; FAILED trial path; tests |
 | Matched-budget comparison vs random search | M03 | VERIFIED | `optimize run` output; 14 integration checks |
 | Multi-fidelity racing | M03 | DEFERRED | no source yet |
+| SINN 1D Poisson with verified jets and exact BC | M04 | VERIFIED | 7 unit tests; 17 integration checks; `SCIENTIFIC_VALIDATION.md` |
+| Independent finite-difference reference solver | M04 | VERIFIED | agrees with analytic solution <1e-3 |
+| Honest divergent/non-converged state | M04 | VERIFIED | 3-iteration run exits 1 with reason |
 | Classification | M03 | PLANNED | no source yet |
 | SINN, SciTransformers | M03/M04 master numbering | PLANNED | no source yet |
 | MAX GPU kernel and model inference | M12/M16 | PLANNED | no source yet |
@@ -56,4 +59,5 @@ documented synthetic dataset; it makes no general-AutoML or SOTA claim.
 Public remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 M02 commit: `18bcfde9ec3b5dc86264b737b738f5237a8d5224`.
 M03 commit: `faac647d8389acd39231ef754351d0af16fb76fd`.
+M04 implementation is complete; commit pending at handoff time.
 GitHub MCP is working (verified with `get_me` and `opencode mcp list`).
