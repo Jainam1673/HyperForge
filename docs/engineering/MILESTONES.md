@@ -213,5 +213,5 @@ M07 implementation and evidence are **VERIFIED** and pushed as commit
 | No claim of adaptive superiority | tie reported | PASS |
 | Clean reproduction | prior suites unchanged; all integration suites pass | PASS |
 
-M08 implementation and evidence are **VERIFIED**; commit/push is the remaining
-workflow action.
+M08 implementation and evidence are **VERIFIED** and pushed as commit
+`f0456e7ee978dcdff2c4f181c1712dd3dc4ea71c`.

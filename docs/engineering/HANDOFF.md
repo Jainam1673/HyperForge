@@ -2,7 +2,8 @@
 
 ## Current state
 
-- M00–M08 are VERIFIED. M08 commit/push is the remaining workflow action.
+- M00–M08 are VERIFIED and pushed. M08 commit:
+  `f0456e7ee978dcdff2c4f181c1712dd3dc4ea71c`.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
 - Tests: `pixi run test` → 72 unit tests; integration totals
@@ -35,9 +36,8 @@ evidence/journal.mojo, evidence/record.mojo (autodl record type)
 
 ## Next exact actions
 
-1. Commit and push M08 as its own milestone.
-2. Re-read the three authoritative documents (required after each milestone).
-3. Next family: AutoRL (small deterministic environment with tabular methods,
+1. Re-read the three authoritative documents (required after each milestone).
+2. Next family: AutoRL (small deterministic environment with tabular methods,
    separate training/evaluation, repeated seeds, random baseline) or close
    AutoDL gaps (multi-fidelity, harder task). Keep one capability per milestone.
 

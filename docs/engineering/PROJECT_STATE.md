@@ -77,5 +77,6 @@ M07 commit: `d9d2f91f47d72ec52921b65186811d359fc4d930`.
 AutoDL: M08, VERIFIED (5 unit tests, 13 integration checks,
 `AUTODL_VALIDATION.md`). Real MLPs are trained with tape gradients; four
 structurally distinct architectures were trained in the observed search;
-test is locked until final selection. M08 commit pending.
+test is locked until final selection. M08 commit:
+`f0456e7ee978dcdff2c4f181c1712dd3dc4ea71c`.
 GitHub MCP is working (verified with `get_me` and `opencode mcp list`).
