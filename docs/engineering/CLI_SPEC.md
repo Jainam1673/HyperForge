@@ -13,6 +13,12 @@ hyperforge experiment create <name> [seed]
 hyperforge experiment list [--json]
 hyperforge experiment show <id> [--json]
 hyperforge experiment replay <id>
+hyperforge automl inspect <data.csv> <target>
+hyperforge automl run <data.csv> <target> [budget] [seed]
+hyperforge automl show <id>
+hyperforge automl replay <id>
+hyperforge automl compare <id-a> <id-b>
+hyperforge report <id>
 ```
 
 `--help`/`-h` and `--version`/`-V` take precedence over other arguments.
@@ -26,13 +32,19 @@ and require it to be initialized with `hyperforge init`.
 | Command | Behavior | Exit codes |
 |---|---|---|
 | `--help`, `-h` | Print help, including implemented vs planned commands | 0 |
-| `--version`, `-V` | Print `hyperforge 0.1.0 (M01)` | 0 |
+| `--version`, `-V` | Print `hyperforge 0.1.0 (M02)` | 0 |
 | `doctor [--json]` | Print separate capability probes; human or versioned JSON | 0, 3 |
 | `init <path>` | Create `hyperforge.toml`, `experiments/`, `artifacts/`, `logs/` | 0, 1, 2 |
 | `experiment create` | Write config artifact + journal records; print stable ID | 0, 1, 2 |
 | `experiment list` | List experiments from the journal | 0, 1, 2 |
 | `experiment show` | Show one experiment and its events | 0, 1, 2 |
 | `experiment replay` | Verify config artifact and checksum; no execution | 0, 1, 2, 3 |
+| `automl inspect` | Validate CSV and print schema/fingerprint | 0, 1, 2 |
+| `automl run` | Run bounded deterministic regression search | 0, 1, 2 |
+| `automl show` | List validation and held-out trials | 0, 1, 2 |
+| `automl replay` | Recompute and verify recorded held-out result | 0, 1, 2, 3 |
+| `automl compare` | Compare held-out RMSE of two experiments | 0, 1, 2 |
+| `report <id>` | Render the AutoML terminal report | 0, 1, 2 |
 
 `experiment create` derives three trial seeds from the experiment seed and
 records them. The ID is `exp-` plus a 16-digit FNV-1a fingerprint of

@@ -17,6 +17,7 @@ struct CliArgs:
     var subcommand: String
     var target: String
     var extra: String
+    var args: List[String]
     var json: Bool
     var help: Bool
     var version: Bool
@@ -27,6 +28,7 @@ struct CliArgs:
         self.subcommand = ""
         self.target = ""
         self.extra = ""
+        self.args = List[String]()
         self.json = False
         self.help = False
         self.version = False
@@ -66,9 +68,16 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
                 result.error = "unexpected command: " + token
                 return result^
             result.command = "experiment"
+        elif token == "automl" or token == "report":
+            if result.command != "":
+                result.error = "unexpected command: " + token
+                return result^
+            result.command = token
         elif token.startswith("-"):
             result.error = "unknown option: " + token
             return result^
+        elif result.command == "automl" or result.command == "report":
+            result.args.append(token)
         elif result.command == "init" and result.target == "":
             result.target = token
         elif result.command == "experiment" and result.subcommand == "":
@@ -137,6 +146,31 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
         machine_ok = True
     if result.json and not machine_ok:
         result.error = "--json is only valid with 'doctor' or 'experiment list|show'"
+
+    if result.command == "report" and len(result.args) != 1:
+        result.error = "usage: hyperforge report <experiment-id>"
+    if result.command == "automl":
+        if len(result.args) == 0:
+            result.error = "automl requires: inspect|run|show|replay|compare"
+        elif result.args[0] == "inspect" and len(result.args) != 3:
+            result.error = "usage: hyperforge automl inspect <data.csv> <target>"
+        elif result.args[0] == "run" and (len(result.args) < 3 or len(result.args) > 5):
+            result.error = "usage: hyperforge automl run <data.csv> <target> [budget] [seed]"
+        elif (
+            (result.args[0] == "show" or result.args[0] == "replay")
+            and len(result.args) != 2
+        ):
+            result.error = "usage: hyperforge automl " + result.args[0] + " <experiment-id>"
+        elif result.args[0] == "compare" and len(result.args) != 3:
+            result.error = "usage: hyperforge automl compare <id-a> <id-b>"
+        elif (
+            result.args[0] != "inspect"
+            and result.args[0] != "run"
+            and result.args[0] != "show"
+            and result.args[0] != "replay"
+            and result.args[0] != "compare"
+        ):
+            result.error = "unknown automl subcommand: " + result.args[0]
 
     return result^
 

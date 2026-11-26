@@ -55,3 +55,33 @@ abstractions. They will be introduced with M02 when AutoML trials need them.
 
 M01 implementation and evidence are **VERIFIED** and pushed as commit
 `fe06b843f203d29320b71c06a769146870cd817d`.
+
+## M02 — Native regression AutoML slice
+
+Directive: master build prompt §9/M02; AGENTS.md M02; blueprint §7/M03.
+
+| Acceptance criterion | Evidence | Result |
+|---|---|---|
+| Clean local example dataset produces a real repeatable experiment | `examples/regression_linear.csv`; identical IDs/metrics across two workspaces | PASS |
+| Declared baseline and at least two non-identical real models run | mean baseline, linear GD, ridge GD, kNN; journal trials from one run | PASS |
+| Missing/corrupt data and invalid target fail clearly | unit rejection tests; integration checks | PASS |
+| Data preprocessing is leakage-safe | stats fitted on train only; protocol in `EXPERIMENT_PROTOCOL.md` | PASS |
+| Metric edge cases tested | perfect, constant, empty, length mismatch, NaN | PASS |
+| Search is bounded and deterministic | fixed budget/seed; cross-workspace determinism | PASS |
+| Adaptive feedback proven by regression test | DEFERRED to M03; M02 explicitly uses random search, not adaptive sampling | DEFERRED (justified) |
+| Outputs/artifacts reopened after process restart | `automl show`, `report`, `replay` in separate processes | PASS |
+| Held-out test isolated from selection | test evaluated once after validation selection | PASS |
+| Model selection behaves correctly on a toy dataset | linear model found relation y=2x1-3x2+5; test RMSE ~2.2e-8 | PASS |
+| Credible benchmark with repeated seeds/folds | DEFERRED: single documented synthetic fixture, no repeated-seed benchmark yet | DEFERRED |
+| User docs explain inputs, limits, commands, reproducibility | `EXPERIMENT_PROTOCOL.md`, `CLI_SPEC.md`, README | PASS |
+| Independent verification | determinism, missing-value run, config/dataset tamper refusal, 49 checks | PASS |
+| Clean checkout reproduction | clean source build + all suites pass with pinned env; fresh install blocked by disk quota | PASS with environment limitation |
+
+### Deferred within M02
+
+Adaptive feedback and a repeated-seed benchmark belong to the next milestone;
+implementing an adaptive sampler without validated statistics would violate the
+"no fake science" rule. These items are explicitly not claimed as M02 results.
+
+M02 implementation and evidence are **VERIFIED**; commit/push is the remaining
+workflow action.

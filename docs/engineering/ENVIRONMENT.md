@@ -44,6 +44,11 @@ Platform: `linux-64`.
 - `std.os` has no `rename` or `truncate`; `std.pathlib.Path` has no `rename`.
 - `Dict` has no `.contains()` method; `key in dict` works.
 - Files support append mode `"a"`; repeated opens append.
+- `std.math.sqrt`, `std.math.abs`, `std.math.pow`, `Float64("3.25")`, and
+  `String.split(",")` work.
+- `std.math.is_finite` and `Float64.is_finite()` do not exist; finite checks use
+  NaN self-inequality plus a magnitude bound.
+- `List.insert(index, value)` and `List.pop()` work (used by kNN).
 
 ## Skill-versus-installed-version deltas
 

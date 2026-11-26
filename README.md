@@ -5,9 +5,10 @@ a command-line application only: no frontend, server, database, or Python
 application logic. MAX is a platform dependency used only where its documented
 interfaces are needed; it is not required for the core CLI.
 
-Current milestone: **M01 — core experiment and evidence substrate**.
-M00 (toolchain and CLI shell) is complete. Nothing beyond the commands listed
-below is implemented; experiment execution is not yet implemented.
+Current milestone: **M02 — native regression AutoML slice**.
+M00 (CLI shell) and M01 (experiment/evidence substrate) are complete. The AutoML
+slice runs real CPU regression experiments; classification, adaptive search,
+trees, GPU execution, and discovery remain planned.
 
 ## Requirements
 
@@ -20,9 +21,10 @@ below is implemented; experiment execution is not yet implemented.
 ```bash
 pixi install
 pixi run build       # produces ./hyperforge
-pixi run test             # 26 unit tests
+pixi run test             # 36 unit tests
 pixi run test-cli         # build + 24 CLI integration checks
 pixi run test-experiment  # 17 experiment/journal checks
+pixi run test-automl      # 21 AutoML integration checks
 ```
 
 ## Implemented commands
@@ -36,6 +38,12 @@ pixi run test-experiment  # 17 experiment/journal checks
 ./hyperforge experiment list [--json]
 ./hyperforge experiment show <id> [--json]
 ./hyperforge experiment replay <id>
+./hyperforge automl inspect <data.csv> <target>
+./hyperforge automl run <data.csv> <target> [budget] [seed]
+./hyperforge automl show <id>
+./hyperforge automl replay <id>
+./hyperforge automl compare <id-a> <id-b>
+./hyperforge report <id>
 ```
 
 `doctor` reports toolchain pin, MAX CLI, accelerator visibility, workspace
@@ -50,9 +58,24 @@ inputs; it does not execute an experiment.
 Exit codes and machine-readable output are specified in
 `docs/engineering/CLI_SPEC.md`.
 
+## Example
+
+`examples/regression_linear.csv` is a synthetic fixture with
+`y = 2*x1 - 3*x2 + 5`. From a fresh workspace:
+
+```bash
+./hyperforge init ./workspace
+cd ./workspace
+../hyperforge automl run ../examples/regression_linear.csv y 5 42
+../hyperforge automl show <experiment-id>
+../hyperforge report <experiment-id>
+../hyperforge automl replay <experiment-id>
+```
+
 ## Scope and limitations
 
-- No AutoML, SINN, transformer, benchmark, or discovery command exists yet;
+- AutoML is a regression-only, deterministic random-search slice on numeric
+  CSV. No SINN, transformer, benchmark, or discovery command exists yet;
   `--help` labels them as planned.
 - Journal recovery rewrites a validated prefix with a plain file write because
   installed Mojo 1.2.0 has no atomic rename; FNV-1a is an integrity check, not

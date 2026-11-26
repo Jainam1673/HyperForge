@@ -8,9 +8,10 @@ version = "0.1.0"
 [tasks]
 build = "mojo build -I src src/main.mojo -o hyperforge"
 run = "mojo run -I src src/main.mojo"
-test = "mojo run -I src tests/test_cli.mojo && mojo run -I src tests/test_m01.mojo"
+test = "mojo run -I src tests/test_cli.mojo && mojo run -I src tests/test_m01.mojo && mojo run -I src tests/test_m02.mojo"
 test-cli = "bash tests/integration_cli.sh"
 test-experiment = "bash tests/integration_m01.sh"
+test-automl = "bash tests/integration_m02.sh"
 
 [dependencies]
 mojo = ">=1.2.0,<2"

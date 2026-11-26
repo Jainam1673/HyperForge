@@ -1,123 +1,67 @@
 # Test results — exact commands and observed outcomes
 
-Environment: see `ENVIRONMENT.md`. Date: 2026-11-26.
+Environment: see `ENVIRONMENT.md`. Dates: 2026-11-26.
 
-## Probe commands (before writing code)
+## M00/M01 results (summary)
 
-| Command | Outcome |
-|---|---|
-| `pixi run mojo --version` | `Mojo 1.2.0 (2016d0cd)` |
-| `pixi run max --version` | `MAX 26.7.0` |
-| `pixi run mojo build /tmp/opencode/mojo_probe.mojo -o ...` | ELF x86-64 executable, exit 0 |
-| `pixi run mojo run /tmp/opencode/api_probe.mojo alpha beta` | args, `Path.exists()`, file read/write, `getenv`, `has_accelerator` all work |
-| `pixi run mojo run /tmp/opencode/api_probe3.mojo` | `mkdir`, stderr write, `exit(7)` → status 7 |
-| `pixi run mojo run /tmp/opencode/test_probe.mojo` | `TestSuite` runs 1 test, status 0 |
-| `pixi run mojo test --help` | `error: no such command 'test'` |
+- `pixi run build` → native `hyperforge` ELF.
+- `pixi run test` → M00 13 tests, M01 13 tests, all passed.
+- `pixi run test-cli` → 24 passed, 0 failed.
+- `pixi run test-experiment` → 17 passed, 0 failed.
+- `opencode mcp list` → github connected; `get_me` → `Jainam1673`.
 
-Failed probes that corrected the implementation:
-
-- `from std.sys.info import has_nvidia_gpu_accelerator` → module has no such symbol.
-- `guard case ... else:` → `use of unknown declaration 'guard'`.
-- `getenv("PATH").or_else("")` → `'String' value has no attribute 'or_else'`.
-- `len(String)` → rejected; use `byte_length()`.
-- `return result` for `CliArgs`/`List[Probe]` → ownership error; use `^`.
-
-## Build and test commands
+## M02 probe commands
 
 | Command | Outcome |
 |---|---|
-| `pixi run build` | exit 0; produced `hyperforge` (93K ELF) |
-| `pixi run test` | 13 tests run, 13 passed, 0 failed, 0 skipped |
-| `pixi run test-cli` | `integration: 24 passed, 0 failed` |
+| `pixi run mojo run /tmp/opencode/m02_probe.mojo` | `sqrt`, `abs`, `pow`, `Float64("3.25")`, `str.split` work |
+| import `is_finite` from `std.math` | not available |
+| `Float64.is_finite()` | not available; implemented via NaN self-comparison and magnitude bound |
+| dataset probe on `examples/regression_linear.csv` | 24 rows, 3 cols, fingerprint `286357448ec34b94` |
+| module probe: split → preprocess → linear fit → predict | prediction `2.5000084572741623` for actual `2.5` |
 
-## Manual CLI checks (binary at `/tmp/opencode/hyperforge`)
-
-| Invocation | Status | Observation |
-|---|---:|---|
-| `--help` | 0 | help text on stdout, including planned commands |
-| `--version` | 0 | `hyperforge 0.1.0 (M00)` |
-| `doctor` | 0 | 6 probes; `max_cli` UNAVAILABLE outside pixi env |
-| `doctor` via `pixi run` | 0 | `max_cli` OK at `.pixi/envs/default/bin/max` |
-| `doctor --json` | 0 | valid single-line JSON with `hyperforge-doctor-v1` schema |
-| no arguments | 0 | help text |
-| `badcommand` | 2 | stderr: `unknown command: badcommand` |
-| `--bogus` | 2 | stderr: `unknown option: --bogus` |
-| `init` | 2 | stderr: `init requires a target directory` |
-| `init ../escape` | 2 | stderr: `'..' is not allowed` |
-| `init /tmp/opencode/ws1` | 0 | config + `experiments/`, `artifacts/`, `logs/` created |
-| re-run same `init` | 2 | stderr: `workspace already initialized` |
-| `doctor --json extra` | 2 | stderr: `unexpected argument: extra` |
-
-## Clean-checkout reproduction
-
-Copied the repository to `/tmp/opencode/cleanhf` with `.pixi`, the built binary,
-and `.git` excluded, then ran:
+## M02 build and test commands
 
 | Command | Outcome |
 |---|---|
-| `pixi install --frozen` | environment installed |
 | `pixi run build` | exit 0 |
-| `pixi run test` | 13 tests run, 13 passed |
-| `pixi run test-cli` | `integration: 24 passed, 0 failed` |
-
-An initial attempt failed because the copy command excluded every path named
-`hyperforge`, including `src/hyperforge`; using `--exclude='./hyperforge'`
-fixed the harness. This was a test-procedure defect, not a project defect.
-
-## Independent verification pass
-
-| Check | Outcome |
-|---|---|
-| `node -e JSON.parse(...)` on `doctor --json` | valid JSON, 6 probes, all fields present |
-| `hyperforge automl run` | exit 2; command is not registered |
-| `init` on an existing file | exit 2 with clear stderr message |
-| JSON escaping with a `"` in the executable path | parsed correctly by `node` |
-| `find src tests -name '*.py'` | no application Python source |
-| rebuild with warnings visible | no warnings |
-
-Python files exist only inside installed `.agents/skills` resources; none are
-HyperForge application code.
-
-## M01 test results
-
-| Command | Outcome |
-|---|---|
-| `pixi run test` | 26 tests total (13 CLI + 13 M01), all passed |
+| `pixi run test` | 36 tests total (13 CLI + 13 M01 + 10 M02), all passed |
 | `pixi run test-cli` | `integration: 24 passed, 0 failed` |
 | `pixi run test-experiment` | `experiment integration: 17 passed, 0 failed` |
-| clean copy: `pixi install --frozen` + all three test tasks | all pass |
+| `pixi run test-automl` | `automl integration: 21 passed, 0 failed` |
 
-M01 probes (before implementation):
+## M02 observed experiment
 
-| Probe | Outcome |
-|---|---|
-| `UInt64` max + 1 | `0` (wraps) |
-| `UInt64` max * 3 | `18446744073709551613` (wraps) |
-| module-level `enum Phase:` | `expressions must not appear at file scope` |
-| `f.flush()` | `FileHandle has no attribute 'flush'` |
-| `std.os.rename`, `std.os.truncate`, `Path.rename` | all unavailable |
-| `Dict.contains()` | unavailable; `key in dict` works |
-| append mode `"a"` across two opens | content appended in order |
+Command: `hyperforge automl run examples/regression_linear.csv y 5 42`
 
-Independent verification:
+- experiment ID: `exp-b6fd492fc432a53e`
+- baseline validation RMSE: `4.841229182759271`, R² `-0.7142857142857142`
+- best candidate: `linear_gd`, validation RMSE `3.1452039735002787e-08`
+- held-out test: RMSE `2.2272160351028695e-08`, MAE `1.9664427715800532e-08`, R² `1.0`
+- `automl replay <id>` → `REPLAY_OK` with the same held-out RMSE.
+
+## M02 independent verification
 
 | Check | Outcome |
 |---|---|
-| `node` JSON.parse of `experiment show --json` with name `demo\|a=b\c` | parsed, name preserved exactly |
-| duplicate create with same name/seed | exit 2, clear message |
-| replay after appending to config artifact | exit 3, checksum refusal |
-| corrupt tail line | recovery notice, 2 good records retained |
-| unknown version in non-last record | exit 1, journal unchanged |
-| `experiment list --json` parsed by `node` | valid JSON |
+| same config run in two workspaces | identical ID and identical validation/test metrics |
+| dataset with an empty feature cell | inspect reports 1 missing cell; run succeeds via train-mean imputation |
+| config artifact appended to | replay exit 3: checksum mismatch |
+| recorded dataset file appended to | replay exit 3: dataset fingerprint changed |
+| missing dataset / bad target | exit 1 with `dataset error` on stderr |
+| budget 1 | exit 2 with `budget must be at least 2` |
+| clean source copy (no `.pixi`) with pinned env | build + 36 unit tests + 62 integration checks pass |
 
-Two defects found and fixed during M01: the record parser initially split
-payload `|` as a record delimiter, and `parse_record` rejected a trailing
-newline. Both are covered by unit tests now.
+Two real defects were found and fixed during M02: kNN indexed an empty
+neighbor list (assert crash), and kNN insertion assumed a full list. Both are
+covered by tests now. Two test expectations were also corrected: the train-only
+target mean must be computed from the train subset, and k=1 must be checked on
+a training row (the nearest training point is not necessarily a test target).
 
-## GitHub MCP verification
+## Environment limitation
 
-| Command | Outcome |
-|---|---|
-| direct MCP initialize against `scripts/github-mcp.sh` | JSON-RPC initialize response, `github-mcp-server v2.3.0` |
-| `opencode mcp list` after server restart | `github  connected` (all four servers connected) |
-| `get_me` via GitHub MCP | login `Jainam1673`, id 138559626 |
+A fresh `pixi install --frozen` into `/tmp/opencode/cleanhf3` failed with
+`Quota exceeded (os error 122)`. The clean source tree was therefore built and
+tested with `pixi run --manifest-path /home/jack/Projects/HyperForge/pixi.toml`
+from the clean directory, which uses the already-installed pinned environment.
+This is an environment limitation, not a reproducibility failure of the source.

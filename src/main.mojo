@@ -11,6 +11,14 @@ from hyperforge.cli.experiment_cmd import (
     show_experiment,
     replay_experiment,
 )
+from hyperforge.cli.automl_cmd import (
+    inspect_dataset,
+    run_experiment,
+    show_experiment as automl_show,
+    replay_experiment as automl_replay,
+    report_experiment,
+    compare_experiments,
+)
 from hyperforge.core.exit_codes import EXIT_OK, EXIT_USAGE, EXIT_INTERNAL
 
 
@@ -42,6 +50,28 @@ def main() raises:
             code = replay_experiment(".", parsed.target)
         else:
             code = EXIT_USAGE
+    elif parsed.command == "automl":
+        ref a = parsed.args
+        if a[0] == "inspect":
+            code = inspect_dataset(a[1], a[2])
+        elif a[0] == "run":
+            var budget = 5
+            var seed: UInt64 = 42
+            if len(a) >= 4:
+                budget = Int(a[3])
+            if len(a) >= 5:
+                seed = UInt64(Int(a[4]))
+            code = run_experiment(".", a[1], a[2], budget, seed)
+        elif a[0] == "show":
+            code = automl_show(".", a[1])
+        elif a[0] == "replay":
+            code = automl_replay(".", a[1])
+        elif a[0] == "compare":
+            code = compare_experiments(".", a[1], a[2])
+        else:
+            code = EXIT_USAGE
+    elif parsed.command == "report":
+        code = report_experiment(".", parsed.args[0])
     else:
         print_help()
 

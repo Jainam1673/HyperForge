@@ -34,6 +34,34 @@ explicitly typed `Optional` is used. `len(String)` is replaced by
 logic is implemented in shell. This follows the directive's allowance for
 small build/test automation.
 
+## D013 — M02 uses deterministic random search, not adaptive search
+
+Candidates are pure functions of `(seed, index)`; the baseline is always first.
+An adaptive sampler or multi-fidelity racing would require validated statistics
+and a benchmark, which are M03. Calling a random sampler adaptive would violate
+the no-fake-science rule.
+
+## D014 — Four real but simple regression models
+
+Mean baseline, linear gradient descent, ridge gradient descent, and kNN are
+implemented from scratch in Mojo with train-only standardization. Decision
+trees, forests, and boosted trees are deferred because a correct split search
+and ensemble are larger, separately verifiable capabilities. Quality on the
+documented linear fixture is near-exact; no general AutoML claim is made.
+
+## D015 — Regression-only, numeric-only CSV scope
+
+M02 supports numeric features, empty cells as missing with train-mean
+imputation, and a single numeric target. Categoricals, quoting, and
+classification are rejected rather than guessed. This keeps validation
+deterministic and avoids silent semantic drift.
+
+## D016 — Defined R² edge behavior
+
+Constant targets and single-sample inputs yield R² = 0 instead of NaN or an
+invented score; negative R² is allowed when predictions are worse than the
+mean. This is recorded in `EXPERIMENT_PROTOCOL.md`.
+
 ## D007 — Project-owned HFJ1 journal format
 
 The journal stores one record per line:

@@ -14,6 +14,7 @@ from hyperforge.core.hash import fnv1a64, hex64
 comptime JOURNAL_MAGIC = "HFJ1"
 comptime RECORD_EXPERIMENT = "experiment"
 comptime RECORD_EVENT = "event"
+comptime RECORD_TRIAL = "trial"
 
 
 struct Field:
