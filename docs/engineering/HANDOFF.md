@@ -4,7 +4,9 @@
 
 - Milestone: M00 implementation and evidence are `VERIFIED`. Independent
   verification and clean-checkout reproduction both passed.
-- Working tree: no Git repository has been initialized; there is no remote.
+- Git: `main` tracks `origin/main` at
+  `https://github.com/Jainam1673/HyperForge.git`. M00 commit
+  `ca44ece6d8290b168eeffc72b6cadd1ce5533ad8` is pushed.
 - GitHub MCP is working: `get_me` succeeds; `opencode mcp list` reports github
   connected after the server restart.
 - Tests: `pixi run test` → 13/13 passed; `pixi run test-cli` → 24 passed, 0 failed.
@@ -41,15 +43,15 @@ docs/engineering/HANDOFF.md
 
 ## Blockers / decisions needed
 
-1. A GitHub destination repository must be created or selected before M00 can
-   be pushed. Repository visibility (public/private) needs owner confirmation.
+None for M00. Public repository `Jainam1673/HyperForge` was created with owner
+confirmation and M00 was pushed.
 
 ## Next exact actions
 
-1. Create or select the GitHub repository with owner-confirmed visibility.
-2. Initialize Git, add the remote, and commit M00 as one milestone.
-3. Re-read the three authoritative documents, then start M01 (experiment and
-   evidence substrate) only after M00 is pushed.
+1. Re-read the three authoritative documents (required after each milestone).
+2. Start M01: typed experiment/candidate/trial/metric records, explicit trial
+   state machine, seeded RNG, and first persistence vertical slice.
+3. Commit and push M01 as its own milestone.
 
 ## Resume commands
 

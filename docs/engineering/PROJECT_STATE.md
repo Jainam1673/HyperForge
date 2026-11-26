@@ -29,8 +29,8 @@ candidates, model execution, experiment persistence, or scientific method is
 implemented. `--help` labels these as planned and no such commands are
 registered.
 
-## Current blocker
+## Repository
 
-The workspace is not yet a Git repository and no GitHub remote exists. GitHub
-MCP is working (verified with `get_me`), but a destination repository and its
-visibility must be confirmed before M00 can be pushed.
+Public remote: `https://github.com/Jainam1673/HyperForge.git`.
+M00 commit: `ca44ece6d8290b168eeffc72b6cadd1ce5533ad8`, pushed to `main`.
+GitHub MCP is working (verified with `get_me` and `opencode mcp list`).
