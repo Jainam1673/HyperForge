@@ -57,10 +57,10 @@ check_status 0 "help" "$BIN" --help
 check_output "IMPLEMENTED COMMANDS" "help section"
 
 check_status 0 "version" "$BIN" --version
-check_output "hyperforge 0.1.0 (M00)" "version text"
+check_output "hyperforge 0.1.0 (M01)" "version text"
 
 check_status 0 "doctor" "$BIN" doctor
-check_output "hyperforge doctor (M00)" "doctor header"
+check_output "hyperforge doctor (M01)" "doctor header"
 check_output "toolchain_pin" "doctor probe"
 
 check_status 0 "doctor json" "$BIN" doctor --json

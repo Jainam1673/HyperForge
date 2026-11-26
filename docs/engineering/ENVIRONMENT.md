@@ -36,6 +36,14 @@ Platform: `linux-64`.
   which is expected; it describes the compile target, not the host device.
 - Multi-module packages work with `mojo build -I src` and `__init__.mojo` in
   each package directory.
+- `UInt64` addition and multiplication wrap on overflow (probed), which makes
+  SplitMix64 reproducible in this release.
+- `enum` is not supported at module scope in Mojo 1.2.0; state values are
+  `comptime` string constants.
+- `FileHandle.flush()` does not exist; `close()` flushes.
+- `std.os` has no `rename` or `truncate`; `std.pathlib.Path` has no `rename`.
+- `Dict` has no `.contains()` method; `key in dict` works.
+- Files support append mode `"a"`; repeated opens append.
 
 ## Skill-versus-installed-version deltas
 
@@ -48,6 +56,8 @@ Mojo 1.2.0 differs in these observed ways:
   `std.os.getenv`; an `if case` binding is used instead.
 - `has_nvidia_gpu_accelerator` is not exported by `std.sys.info` in 1.2.0.
 - `len(String)` is rejected; use `byte_length()`.
+- Module-level `enum`, `FileHandle.flush()`, `std.os.rename`, `std.os.truncate`,
+  and `Dict.contains()` are all unavailable in 1.2.0 (see verified behavior above).
 
 Every unfamiliar API is probe-compiled before use; see `TEST_RESULTS.md`.
 

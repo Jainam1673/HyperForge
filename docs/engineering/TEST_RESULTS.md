@@ -78,6 +78,42 @@ fixed the harness. This was a test-procedure defect, not a project defect.
 Python files exist only inside installed `.agents/skills` resources; none are
 HyperForge application code.
 
+## M01 test results
+
+| Command | Outcome |
+|---|---|
+| `pixi run test` | 26 tests total (13 CLI + 13 M01), all passed |
+| `pixi run test-cli` | `integration: 24 passed, 0 failed` |
+| `pixi run test-experiment` | `experiment integration: 17 passed, 0 failed` |
+| clean copy: `pixi install --frozen` + all three test tasks | all pass |
+
+M01 probes (before implementation):
+
+| Probe | Outcome |
+|---|---|
+| `UInt64` max + 1 | `0` (wraps) |
+| `UInt64` max * 3 | `18446744073709551613` (wraps) |
+| module-level `enum Phase:` | `expressions must not appear at file scope` |
+| `f.flush()` | `FileHandle has no attribute 'flush'` |
+| `std.os.rename`, `std.os.truncate`, `Path.rename` | all unavailable |
+| `Dict.contains()` | unavailable; `key in dict` works |
+| append mode `"a"` across two opens | content appended in order |
+
+Independent verification:
+
+| Check | Outcome |
+|---|---|
+| `node` JSON.parse of `experiment show --json` with name `demo\|a=b\c` | parsed, name preserved exactly |
+| duplicate create with same name/seed | exit 2, clear message |
+| replay after appending to config artifact | exit 3, checksum refusal |
+| corrupt tail line | recovery notice, 2 good records retained |
+| unknown version in non-last record | exit 1, journal unchanged |
+| `experiment list --json` parsed by `node` | valid JSON |
+
+Two defects found and fixed during M01: the record parser initially split
+payload `|` as a record delimiter, and `parse_record` rejected a trailing
+newline. Both are covered by unit tests now.
+
 ## GitHub MCP verification
 
 | Command | Outcome |

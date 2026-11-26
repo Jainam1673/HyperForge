@@ -14,7 +14,9 @@ struct CliArgs:
     """Parsed command line. `error` is non-empty for usage failures."""
 
     var command: String
+    var subcommand: String
     var target: String
+    var extra: String
     var json: Bool
     var help: Bool
     var version: Bool
@@ -22,7 +24,9 @@ struct CliArgs:
 
     def __init__(out self):
         self.command = ""
+        self.subcommand = ""
         self.target = ""
+        self.extra = ""
         self.json = False
         self.help = False
         self.version = False
@@ -57,10 +61,43 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
                 result.error = "unexpected command: " + token
                 return result^
             result.command = "init"
+        elif token == "experiment":
+            if result.command != "":
+                result.error = "unexpected command: " + token
+                return result^
+            result.command = "experiment"
         elif token.startswith("-"):
             result.error = "unknown option: " + token
             return result^
         elif result.command == "init" and result.target == "":
+            result.target = token
+        elif result.command == "experiment" and result.subcommand == "":
+            if (
+                token != "create"
+                and token != "list"
+                and token != "show"
+                and token != "replay"
+            ):
+                result.error = "unknown experiment subcommand: " + token
+                return result^
+            result.subcommand = token
+        elif (
+            result.command == "experiment"
+            and result.subcommand == "create"
+            and result.target == ""
+        ):
+            result.target = token
+        elif (
+            result.command == "experiment"
+            and result.subcommand == "create"
+            and result.extra == ""
+        ):
+            result.extra = token
+        elif (
+            result.command == "experiment"
+            and (result.subcommand == "show" or result.subcommand == "replay")
+            and result.target == ""
+        ):
             result.target = token
         elif result.command == "":
             result.error = (
@@ -75,8 +112,31 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
 
     if result.command == "init" and result.target == "":
         result.error = "init requires a target directory\nUsage: hyperforge init <path>"
-    if result.json and result.command != "doctor":
-        result.error = "--json is only valid with 'doctor'"
+    if result.command == "experiment" and result.subcommand == "":
+        result.error = (
+            "experiment requires a subcommand: create|list|show|replay"
+        )
+    if (
+        result.command == "experiment"
+        and result.subcommand == "create"
+        and result.target == ""
+    ):
+        result.error = "experiment create requires a name"
+    if (
+        result.command == "experiment"
+        and (result.subcommand == "show" or result.subcommand == "replay")
+        and result.target == ""
+    ):
+        result.error = "experiment " + result.subcommand + " requires an id"
+
+    var machine_ok = result.command == "doctor"
+    if (
+        result.command == "experiment"
+        and (result.subcommand == "list" or result.subcommand == "show")
+    ):
+        machine_ok = True
+    if result.json and not machine_ok:
+        result.error = "--json is only valid with 'doctor' or 'experiment list|show'"
 
     return result^
 

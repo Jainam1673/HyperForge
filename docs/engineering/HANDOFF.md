@@ -2,56 +2,50 @@
 
 ## Current state
 
-- Milestone: M00 implementation and evidence are `VERIFIED`. Independent
-  verification and clean-checkout reproduction both passed.
-- Git: `main` tracks `origin/main` at
-  `https://github.com/Jainam1673/HyperForge.git`. M00 commit
-  `ca44ece6d8290b168eeffc72b6cadd1ce5533ad8` is pushed.
-- GitHub MCP is working: `get_me` succeeds; `opencode mcp list` reports github
-  connected after the server restart.
-- Tests: `pixi run test` → 13/13 passed; `pixi run test-cli` → 24 passed, 0 failed.
-- Clean checkout: `pixi install --frozen`, `build`, `test`, `test-cli` all pass.
+- M00 is VERIFIED and pushed. M01 implementation and evidence are VERIFIED;
+  commit/push is the remaining workflow action.
+- Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
+- GitHub MCP is working (`get_me`, `opencode mcp list`).
+- Tests: `pixi run test` → 26 tests pass; `pixi run test-cli` → 24 pass;
+  `pixi run test-experiment` → 17 pass. Clean-copy reproduction passes.
 
-## Files added or changed in M00
+## What M01 added
 
 ```
-pixi.toml                       (pinned max dependency + tasks)
-.gitignore                      (ignore built binary and doctor probe)
-src/main.mojo
-src/hyperforge/__init__.mojo
-src/hyperforge/core/__init__.mojo
-src/hyperforge/core/version.mojo
-src/hyperforge/core/exit_codes.mojo
-src/hyperforge/cli/__init__.mojo
-src/hyperforge/cli/args.mojo
+src/hyperforge/core/hash.mojo
+src/hyperforge/core/rng.mojo
+src/hyperforge/core/state_machine.mojo
+src/hyperforge/experiment/__init__.mojo
+src/hyperforge/experiment/spec.mojo
+src/hyperforge/evidence/__init__.mojo
+src/hyperforge/evidence/record.mojo
+src/hyperforge/evidence/journal.mojo
+src/hyperforge/cli/experiment_cmd.mojo
+src/main.mojo                  (experiment dispatch)
+src/hyperforge/cli/args.mojo  (experiment grammar)
 src/hyperforge/cli/help.mojo
-src/hyperforge/doctor.mojo
-src/hyperforge/workspace.mojo
-tests/test_cli.mojo
-tests/integration_cli.sh
-scripts/github-mcp.sh           (GitHub MCP launcher fix)
-README.md
-docs/INDEX.md
-docs/engineering/ENVIRONMENT.md
-docs/engineering/PROJECT_STATE.md
-docs/engineering/CLI_SPEC.md
-docs/engineering/MILESTONES.md
-docs/engineering/DECISIONS.md
-docs/engineering/TEST_RESULTS.md
-docs/engineering/HANDOFF.md
+src/hyperforge/core/version.mojo (M01 label)
+tests/test_m01.mojo
+tests/integration_m01.sh
+pixi.toml                     (test tasks)
+docs/engineering/*            (M01 evidence)
 ```
 
-## Blockers / decisions needed
+## Known limitations
 
-None for M00. Public repository `Jainam1673/HyperForge` was created with owner
-confirmation and M00 was pushed.
+- No `rename`/`truncate` in installed Mojo 1.2.0: journal recovery rewrites the
+  validated prefix with a plain full-file write, not an atomic replacement.
+- FNV-1a is an integrity check, not a security hash.
+- `experiment replay` verifies inputs only; execution is M02.
+- Candidate/metric/budget/acceptance structs are deferred until M02 needs them.
 
 ## Next exact actions
 
-1. Re-read the three authoritative documents (required after each milestone).
-2. Start M01: typed experiment/candidate/trial/metric records, explicit trial
-   state machine, seeded RNG, and first persistence vertical slice.
-3. Commit and push M01 as its own milestone.
+1. Commit and push M01 as its own milestone.
+2. Re-read the three authoritative documents (required after each milestone).
+3. Start M02: CSV loading, leakage-safe split, baseline plus at least two real
+   regression models, metrics from predictions, durable trial records, and a
+   report. Introduce candidate/metric/budget types when trials need them.
 
 ## Resume commands
 
@@ -60,4 +54,5 @@ cd /home/jack/Projects/HyperForge
 pixi run build
 pixi run test
 pixi run test-cli
+pixi run test-experiment
 ```

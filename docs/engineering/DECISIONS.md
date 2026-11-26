@@ -34,7 +34,42 @@ explicitly typed `Optional` is used. `len(String)` is replaced by
 logic is implemented in shell. This follows the directive's allowance for
 small build/test automation.
 
-## D006 — GitHub MCP launcher reads the token from `gh`
+## D007 — Project-owned HFJ1 journal format
+
+The journal stores one record per line:
+`HFJ1|<seq>|<type>|<checksum>|<payload>\n`. Payload is `key=value` fields with
+escaping for `\`, `|`, `=`, and newline. The checksum is FNV-1a 64 over
+`seq|type|payload`. JSON was rejected for the journal because the installed
+stdlib has no JSON parser and a second serializer would add complexity; the CLI
+JSON renderers are separate and versioned.
+
+## D008 — FNV-1a is an integrity check, not a security hash
+
+FNV-1a detects accidental corruption and truncation, which is the requirement
+for local experiment records. It is not collision-resistant and must not be
+used for authenticity. This is stated in the source and in `PROJECT_STATE.md`.
+
+## D009 — Tail-only recovery, no atomic rename
+
+An invalid last record (bad checksum, unknown version, bad sequence, duplicate
+ID, or missing newline) is dropped and the validated prefix is rewritten. An
+invalid record in the middle is a hard error and the file is untouched.
+Installed Mojo 1.2.0 has no `rename` or `truncate`, so recovery is a plain
+full-file write; this limitation is explicit rather than claimed as atomic.
+
+## D010 — SplitMix64 and deterministic seed derivation
+
+SplitMix64 with wrapping `UInt64` arithmetic provides reproducible streams.
+`derive_seed(base, namespace, index)` is a pure FNV-1a hash of a canonical key,
+so recorded seeds can reproduce derived streams without storing all of them.
+
+## D011 — Defer candidate/metric/budget structs to M02
+
+M01 implements the types needed by real behavior. Candidate, metric, budget,
+and acceptance structs would have no execution path until AutoML trials exist;
+they are deliberately deferred, not forgotten.
+
+## D012 — GitHub MCP launcher reads the token from `gh`
 
 `scripts/github-mcp.sh` launches the cached
 `ghcr.io/github/github-mcp-server:latest` Docker image and passes
