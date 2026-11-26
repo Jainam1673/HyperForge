@@ -43,4 +43,5 @@ application, or external queue exists.
 ## Repository and workflow
 
 Public remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
+M01 commit: `fe06b843f203d29320b71c06a769146870cd817d`.
 GitHub MCP is working (verified with `get_me` and `opencode mcp list`).

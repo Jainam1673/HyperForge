@@ -53,5 +53,5 @@ Candidate, metric, budget, and acceptance structs are not created yet because
 no execution path uses them; the directive says not to build speculative
 abstractions. They will be introduced with M02 when AutoML trials need them.
 
-M01 implementation and evidence are **VERIFIED**; commit/push is the remaining
-workflow action.
+M01 implementation and evidence are **VERIFIED** and pushed as commit
+`fe06b843f203d29320b71c06a769146870cd817d`.

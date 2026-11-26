@@ -2,8 +2,8 @@
 
 ## Current state
 
-- M00 is VERIFIED and pushed. M01 implementation and evidence are VERIFIED;
-  commit/push is the remaining workflow action.
+- M00 and M01 are VERIFIED and pushed. M01 commit:
+  `fe06b843f203d29320b71c06a769146870cd817d`.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
 - Tests: `pixi run test` → 26 tests pass; `pixi run test-cli` → 24 pass;
@@ -41,9 +41,8 @@ docs/engineering/*            (M01 evidence)
 
 ## Next exact actions
 
-1. Commit and push M01 as its own milestone.
-2. Re-read the three authoritative documents (required after each milestone).
-3. Start M02: CSV loading, leakage-safe split, baseline plus at least two real
+1. Re-read the three authoritative documents (required after each milestone).
+2. Start M02: CSV loading, leakage-safe split, baseline plus at least two real
    regression models, metrics from predictions, durable trial records, and a
    report. Introduce candidate/metric/budget types when trials need them.
 
