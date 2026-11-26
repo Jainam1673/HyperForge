@@ -16,6 +16,7 @@ from hyperforge.evidence.record import (
     RECORD_EXPERIMENT,
     RECORD_EVENT,
     RECORD_TRIAL,
+    RECORD_OPTIMIZER,
     parse_record,
     serialize_record,
 )
@@ -70,6 +71,16 @@ def required_fields_present(record: JournalRecord) raises -> Bool:
         required.append("r2")
         required.append("state")
         required.append("detail")
+    elif record.kind == RECORD_OPTIMIZER:
+        required.append("exp_id")
+        required.append("observed")
+        required.append("succeeded")
+        required.append("failed")
+        required.append("invalid")
+        required.append("best_rmse")
+        required.append("best_candidate")
+        required.append("policy")
+        required.append("search_seconds")
     else:
         return False
     for key in required:

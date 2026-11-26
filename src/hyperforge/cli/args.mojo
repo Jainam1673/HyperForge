@@ -68,7 +68,7 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
                 result.error = "unexpected command: " + token
                 return result^
             result.command = "experiment"
-        elif token == "automl" or token == "report":
+        elif token == "automl" or token == "report" or token == "optimize":
             if result.command != "":
                 result.error = "unexpected command: " + token
                 return result^
@@ -76,7 +76,11 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
         elif token.startswith("-"):
             result.error = "unknown option: " + token
             return result^
-        elif result.command == "automl" or result.command == "report":
+        elif (
+            result.command == "automl"
+            or result.command == "report"
+            or result.command == "optimize"
+        ):
             result.args.append(token)
         elif result.command == "init" and result.target == "":
             result.target = token
@@ -147,6 +151,13 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
     if result.json and not machine_ok:
         result.error = "--json is only valid with 'doctor' or 'experiment list|show'"
 
+    if result.command == "optimize":
+        if len(result.args) == 0:
+            result.error = "optimize requires a subcommand: run"
+        elif result.args[0] != "run":
+            result.error = "unknown optimize subcommand: " + result.args[0]
+        elif len(result.args) < 3 or len(result.args) > 5:
+            result.error = "usage: hyperforge optimize run <data.csv> <target> [budget] [seed]"
     if result.command == "report" and len(result.args) != 1:
         result.error = "usage: hyperforge report <experiment-id>"
     if result.command == "automl":

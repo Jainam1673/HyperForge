@@ -41,11 +41,17 @@ mean.
 
 ## Search and reproducibility
 
-- Search is deterministic random search: baseline first, then `budget-1`
+- M02 search is deterministic random search: baseline first, then `budget-1`
   candidates generated as pure functions of `(seed, index)`. It is **not**
   adaptive and is not called Bayesian or TPE.
+- M03 adds a TPE-style density-ratio sampler (`tpe_density_ratio_v1`). It splits
+  recorded trials by validation RMSE into good/bad groups, samples candidates
+  near the good group with a 20% prior draw, and keeps the highest good/bad
+  kernel-density ratio. The baseline is recorded as a control but excluded from
+  the density model. Feedback is proven by a regression test that fails if
+  observations are ignored.
 - Fixed budget and seed produce identical experiment IDs and trial metrics
-  across processes and workspaces (verified).
+  across processes and workspaces (verified for both policies).
 - Every candidate's validation trial, plus the single final test trial, is
   appended to the local `HFJ1` journal with its metrics and status.
 - `automl replay` re-runs the recorded pipeline from the config artifact and
@@ -58,8 +64,8 @@ mean.
 count, and the best held-out result. It explicitly notes that selection used
 validation only. No causal explanation is inferred from correlations.
 
-## Out of scope for M02
+## Out of scope for M02/M03
 
-Classification, multiclass, cross-validation, multi-fidelity racing, adaptive
-samplers, decision trees, ensembles, neural models, GPU execution, and any
+Classification, multiclass, cross-validation, multi-fidelity racing (successive
+halving), decision trees, ensembles, neural models, GPU execution, and any
 claim of state-of-the-art quality. These are separate milestones.

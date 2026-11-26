@@ -5,10 +5,11 @@ a command-line application only: no frontend, server, database, or Python
 application logic. MAX is a platform dependency used only where its documented
 interfaces are needed; it is not required for the core CLI.
 
-Current milestone: **M02 — native regression AutoML slice**.
-M00 (CLI shell) and M01 (experiment/evidence substrate) are complete. The AutoML
-slice runs real CPU regression experiments; classification, adaptive search,
-trees, GPU execution, and discovery remain planned.
+Current milestone: **M03 — adaptive optimization**.
+M00 (CLI shell), M01 (evidence substrate) and M02 (regression AutoML) are
+complete. M03 adds a TPE-style adaptive sampler with matched-budget comparison;
+classification, multi-fidelity search, trees, GPU execution, and discovery
+remain planned.
 
 ## Requirements
 
@@ -25,6 +26,7 @@ pixi run test             # 36 unit tests
 pixi run test-cli         # build + 24 CLI integration checks
 pixi run test-experiment  # 17 experiment/journal checks
 pixi run test-automl      # 21 AutoML integration checks
+pixi run test-optimize    # 14 adaptive optimization checks
 ```
 
 ## Implemented commands
@@ -44,6 +46,7 @@ pixi run test-automl      # 21 AutoML integration checks
 ./hyperforge automl replay <id>
 ./hyperforge automl compare <id-a> <id-b>
 ./hyperforge report <id>
+./hyperforge optimize run <data.csv> <target> [budget] [seed]
 ```
 
 `doctor` reports toolchain pin, MAX CLI, accelerator visibility, workspace

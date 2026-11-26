@@ -85,3 +85,34 @@ implementing an adaptive sampler without validated statistics would violate the
 
 M02 implementation and evidence are **VERIFIED** and pushed as commit
 `18bcfde9ec3b5dc86264b737b738f5237a8d5224`.
+
+## M03 — Adaptive optimization
+
+Directive: AGENTS.md M03; blueprint §7/M04; master build prompt search-engine
+requirements.
+
+| Acceptance criterion | Evidence | Result |
+|---|---|---|
+| Propose, run, measure, persist, feed back, propose next | journal alternates trial and optimizer records; observed=1..budget | PASS |
+| Regression test fails if feedback disconnected | `test_feedback_is_connected` compares guided vs unguided proposals | PASS |
+| Invalid candidates handled explicitly | typed space validation rejects inconsistent conditional params | PASS |
+| Failed trials handled explicitly | FAILED trial records with reason; exception path in loop | PASS |
+| Comparison with random/fixed baseline at matched budget | `optimize run` reports both policies, same seed/split/budget | PASS |
+| Typed search space with conditional parameters | `space.mojo` validation and prior sampler | PASS |
+| Track optimizer state and cost | optimizer records include counts, best RMSE, elapsed seconds | PASS |
+| Held-out test evaluated once after selection | single test trial per adaptive run | PASS |
+| Clean reproduction | identical ID and metrics across two workspaces | PASS |
+| Multi-fidelity racing | DEFERRED; no fidelity ordering validated yet | DEFERRED |
+| Classification | DEFERRED to a later AutoML expansion | DEFERRED |
+| Independent verification | 42 unit + 76 integration checks; negative result reported honestly | PASS |
+
+### Negative result
+
+On the synthetic linear fixture at budget 6, seed 42, the adaptive policy's
+held-out RMSE was `1.9183755652814585`, while matched random search reached
+`2.2272160351028695e-08`. The adaptive policy did **not** win on this small
+fixture; this is reported rather than hidden. No claim is made that reciprocal
+or adaptive search is superior without a broader benchmark.
+
+M03 implementation and evidence are **VERIFIED**; commit/push is the remaining
+workflow action.

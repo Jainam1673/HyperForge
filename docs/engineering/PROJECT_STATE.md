@@ -22,7 +22,12 @@ Status labels: `PLANNED`, `IN_PROGRESS`, `IMPLEMENTED_NOT_VERIFIED`, `PARTIAL`,
 | Held-out isolation | M02 | VERIFIED | protocol; code review; test evaluated once |
 | `automl inspect/run/show/replay/compare`, `report` | M02 | VERIFIED | 21 integration checks |
 | Real replay recomputation | M02 | VERIFIED | REPLAY_OK; refusal on tampered config/dataset |
-| Adaptive feedback / TPE / multi-fidelity | M03 | PLANNED | no source yet |
+| Typed search space with conditional validation | M03 | VERIFIED | validation unit tests |
+| TPE-style adaptive sampler with connected feedback | M03 | VERIFIED | feedback regression test; deterministic runs |
+| Propose → evaluate → persist → feedback loop | M03 | VERIFIED | 5 optimizer state records for budget 5 |
+| Invalid and failed trial handling | M03 | VERIFIED | validation rules; FAILED trial path; tests |
+| Matched-budget comparison vs random search | M03 | VERIFIED | `optimize run` output; 14 integration checks |
+| Multi-fidelity racing | M03 | DEFERRED | no source yet |
 | Classification | M03 | PLANNED | no source yet |
 | SINN, SciTransformers | M03/M04 master numbering | PLANNED | no source yet |
 | MAX GPU kernel and model inference | M12/M16 | PLANNED | no source yet |
@@ -50,4 +55,5 @@ documented synthetic dataset; it makes no general-AutoML or SOTA claim.
 
 Public remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 M02 commit: `18bcfde9ec3b5dc86264b737b738f5237a8d5224`.
+M03 implementation is complete; commit pending at handoff time.
 GitHub MCP is working (verified with `get_me` and `opencode mcp list`).

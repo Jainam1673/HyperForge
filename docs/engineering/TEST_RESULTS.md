@@ -58,6 +58,24 @@ covered by tests now. Two test expectations were also corrected: the train-only
 target mean must be computed from the train subset, and k=1 must be checked on
 a training row (the nearest training point is not necessarily a test target).
 
+## M03 results
+
+| Command | Outcome |
+|---|---|
+| `pixi run test` | 42 unit tests total (13+13+10+6), all passed |
+| `pixi run test-cli` | 24 passed, 0 failed |
+| `pixi run test-experiment` | 17 passed, 0 failed |
+| `pixi run test-automl` | 21 passed, 0 failed |
+| `pixi run test-optimize` | 14 passed, 0 failed |
+| `optimize run examples/regression_linear.csv y 6 42` | adaptive test RMSE `1.9183755652814585`; random baseline `2.2272160351028695e-08`; adaptive did not win |
+| two workspaces, same config | identical ID and adaptive validation/test metrics |
+| optimizer state records | observed counts 1,2,3,4,5 for budget 5 |
+
+Defects found and fixed during M03: kNN candidates were rejected because the
+validator required `k == 0` for that kind; the baseline was incorrectly used as
+a TPE parent, producing invalid baseline-with-iterations candidates. Both were
+reproduced with probes and covered by unit tests.
+
 ## Environment limitation
 
 A fresh `pixi install --frozen` into `/tmp/opencode/cleanhf3` failed with

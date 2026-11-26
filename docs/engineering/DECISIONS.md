@@ -34,6 +34,20 @@ explicitly typed `Optional` is used. `len(String)` is replaced by
 logic is implemented in shell. This follows the directive's allowance for
 small build/test automation.
 
+## D017 — TPE-style density ratio, with baseline excluded from the model
+
+M03 uses a small Parzen-density ratio sampler over recorded validation RMSE.
+The mean baseline is recorded as a control but excluded from the good/bad
+density model, because it has no tunable search dimensions and using it as a
+parent produced invalid candidates. This keeps the sampler's categorical model
+over the three searchable model kinds only.
+
+## D018 — Honest negative result
+
+At budget 6 on the synthetic fixture, adaptive search lost to random search.
+The milestone reports this rather than tuning the fixture to favor the new
+policy. No superiority claim is made until a broader matched-budget benchmark.
+
 ## D013 — M02 uses deterministic random search, not adaptive search
 
 Candidates are pure functions of `(seed, index)`; the baseline is always first.

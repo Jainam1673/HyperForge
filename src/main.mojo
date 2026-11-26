@@ -19,6 +19,7 @@ from hyperforge.cli.automl_cmd import (
     report_experiment,
     compare_experiments,
 )
+from hyperforge.cli.optimize_cmd import run_optimize
 from hyperforge.core.exit_codes import EXIT_OK, EXIT_USAGE, EXIT_INTERNAL
 
 
@@ -72,6 +73,15 @@ def main() raises:
             code = EXIT_USAGE
     elif parsed.command == "report":
         code = report_experiment(".", parsed.args[0])
+    elif parsed.command == "optimize":
+        ref oa = parsed.args
+        var budget = 5
+        var seed: UInt64 = 42
+        if len(oa) >= 4:
+            budget = Int(oa[3])
+        if len(oa) >= 5:
+            seed = UInt64(Int(oa[4]))
+        code = run_optimize(oa[1], oa[2], budget, seed)
     else:
         print_help()
 

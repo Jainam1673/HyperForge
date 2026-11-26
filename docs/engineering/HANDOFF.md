@@ -2,46 +2,43 @@
 
 ## Current state
 
-- M00, M01 and M02 are VERIFIED and pushed. M02 commit:
-  `18bcfde9ec3b5dc86264b737b738f5237a8d5224`.
+- M00, M01, M02 and M03 are VERIFIED. M03 commit/push is the remaining workflow action.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
-- Tests: `pixi run test` → 36 pass; `pixi run test-cli` → 24 pass;
-  `pixi run test-experiment` → 17 pass; `pixi run test-automl` → 21 pass.
-- Clean source reproduction passed using the installed pinned environment; a
-  fresh `pixi install` in a new directory was blocked by disk quota.
+- Tests: `pixi run test` → 42 pass; `test-cli` → 24; `test-experiment` → 17;
+  `test-automl` → 21; `test-optimize` → 14.
+- Adaptive and random policies are deterministic across workspaces.
 
-## What M02 added
+## What M03 added
 
 ```
-examples/regression_linear.csv
-src/hyperforge/core/numeric.mojo
-src/hyperforge/automl/{__init__,dataset,split,preprocess,metrics,models,search}.mojo
-src/hyperforge/cli/automl_cmd.mojo
-src/hyperforge/experiment/trial.mojo
-docs/engineering/EXPERIMENT_PROTOCOL.md
-tests/test_m02.mojo
-tests/integration_m02.sh
+src/hyperforge/optimization/{__init__,space,tpe,loop}.mojo
+src/hyperforge/cli/optimize_cmd.mojo
+tests/test_m03.mojo
+tests/integration_m03.sh
+docs/engineering/EXPERIMENT_PROTOCOL.md (adaptive section)
 src/main.mojo, args.mojo, help.mojo, version.mojo, pixi.toml (wiring)
 ```
 
 ## Known limitations
 
-- Regression only; numeric CSV only; no classification, CV, trees, ensembles,
-  adaptive search, or GPU execution.
-- No repeated-seed benchmark yet (deferred to M03).
+- Adaptive search lost to random search on the small synthetic fixture; the
+  negative result is recorded in `MILESTONES.md`.
+- No multi-fidelity racing, classification, CV, trees, ensembles, neural
+  models, or GPU execution.
 - Atomic rename/truncate unavailable; journal recovery rewrites a validated
-  prefix with a plain file write.
-- FNV-1a is integrity, not authenticity.
+  prefix with a plain file write. FNV-1a is integrity, not authenticity.
 
 ## Next exact actions
 
-1. Re-read the three authoritative documents (required after each milestone).
-2. Start M03: adaptive feedback (candidate → evaluate → persist → feed back →
-   propose next), a regression test that fails when feedback is disconnected,
-   explicit invalid-candidate and failed-trial handling, and a fixed-budget
-   comparison against the M02 random-search baseline. Add classification and
-   repeated-seed benchmarking only if the adaptive gate is sound.
+1. Commit and push M03 as its own milestone.
+2. Re-read the three authoritative documents (required after each milestone).
+3. Start M04 (master numbering: SciTransformers after SINN). Before that, the
+   three capability anchors require SINN (M03 in master numbering) to be
+   complete; reconcile the milestone numbering in `MILESTONES.md` and then
+   implement the smallest scientifically meaningful SINN vertical slice:
+   typed PDE spec, real Mojo network, verified differentiation, reference
+   solver, held-out residual/boundary evaluation, and honest failure states.
 
 ## Resume commands
 
@@ -52,4 +49,5 @@ pixi run test
 pixi run test-cli
 pixi run test-experiment
 pixi run test-automl
+pixi run test-optimize
 ```
