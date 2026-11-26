@@ -2,44 +2,42 @@
 
 ## Current state
 
-- M00–M08 are VERIFIED and pushed. M08 commit:
-  `f0456e7ee978dcdff2c4f181c1712dd3dc4ea71c`.
+- M00–M09 are VERIFIED. M09 commit/push is the remaining workflow action.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
-- Tests: `pixi run test` → 72 unit tests; integration totals
-  24+17+21+14+17+20+17+15+13 = 158 checks. All pass.
-- AutoDL adaptive search tied random search at this budget; negative result
-  retained.
+- Tests: `pixi run test` → 77 unit tests; integration totals
+  24+17+21+14+17+20+17+15+13+17 = 175 checks. All pass.
+- AutoRL learned policy matches the DP optimum and beats the random baseline.
 
-## What M08 added
+## What M09 added
 
 ```
-src/hyperforge/autodl/{__init__,task,model,trainer,search}.mojo
-src/hyperforge/cli/autodl_cmd.mojo
-tests/test_m08.mojo
-tests/integration_m08.sh
-docs/engineering/AUTODL_VALIDATION.md
-src/hyperforge/autodiff/tape.mojo (log, relu)
+src/hyperforge/autorl/{__init__,environment,tabular,experiment}.mojo
+src/hyperforge/cli/autorl_cmd.mojo
+tests/test_m09.mojo
+tests/integration_m09.sh
+docs/engineering/AUTORL_VALIDATION.md
 src/main.mojo, args.mojo, help.mojo, version.mojo, pixi.toml (wiring)
-evidence/journal.mojo, evidence/record.mojo (autodl record type)
+evidence/journal.mojo, evidence/record.mojo (autorl record type)
 ```
 
 ## Known limitations
 
-- Synthetic task only; no convolution, recurrence, normalization, weight decay,
-  multi-fidelity racing, GPU training, or large datasets.
-- `replay` verifies checkpoint restoration, not retraining reproduction.
-- Adaptive search showed no advantage over random at the tested budget.
-- Memory is `NOT_TESTED` in reciprocal discovery; joint coupling lost there.
+- Tabular RL only; no neural policies, stochastic environments, continuous
+  control, or rigorous small-sample confidence intervals.
+- AutoDL adaptive search tied random; joint reciprocal search lost to
+  independent; both negative results retained.
+- Memory is `NOT_TESTED` in reciprocal discovery.
 - Atomic rename/truncate unavailable; journal recovery rewrites a validated
   prefix with a plain file write.
 
 ## Next exact actions
 
-1. Re-read the three authoritative documents (required after each milestone).
-2. Next family: AutoRL (small deterministic environment with tabular methods,
-   separate training/evaluation, repeated seeds, random baseline) or close
-   AutoDL gaps (multi-fidelity, harder task). Keep one capability per milestone.
+1. Commit and push M09 as its own milestone.
+2. Re-read the three authoritative documents (required after each milestone).
+3. Next family per master prompt: AutoTransformers (search supported transformer
+   configs on verified attention infrastructure) or AutoLLM through a supported
+   local MAX boundary. Do not register a command without a real execution path.
 
 ## Resume commands
 
@@ -47,5 +45,5 @@ evidence/journal.mojo, evidence/record.mojo (autodl record type)
 cd /home/jack/Projects/HyperForge
 pixi run build
 pixi run test
-pixi run test-autodl
+pixi run test-autorl
 ```

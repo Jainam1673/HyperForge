@@ -215,3 +215,19 @@ M07 implementation and evidence are **VERIFIED** and pushed as commit
 
 M08 implementation and evidence are **VERIFIED** and pushed as commit
 `f0456e7ee978dcdff2c4f181c1712dd3dc4ea71c`.
+
+## M09 — AutoRL
+
+| Acceptance criterion | Evidence | Result |
+|---|---|---|
+| Deterministic environment API with contracts | contract tests for actions, termination, truncation, walls | PASS |
+| Fully tested tabular methods | value iteration optimum 5.0; Q-learning matches optimum | PASS |
+| Policy improves over random across repeated seeds | +24.46 over random on five unseen seeds | PASS |
+| Evaluation separate from training | greedy, no updates; unit test asserts Q unchanged | PASS |
+| Learning curves and returns persisted | per-episode CSV artifact and journal record | PASS |
+| Failure/termination correctly represented | invalid step after terminal rejected; truncation tested | PASS |
+| Confidence summary | sample std and normal-approximation CI reported | PASS |
+| No neural policies or real-world actions | tabular only; documented | PASS |
+
+M09 implementation and evidence are **VERIFIED**; commit/push is the remaining
+workflow action.

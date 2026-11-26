@@ -21,6 +21,7 @@ from hyperforge.evidence.record import (
     RECORD_SCIT,
     RECORD_DISCOVERY,
     RECORD_AUTOML_DL,
+    RECORD_AUTORL,
     parse_record,
     serialize_record,
 )
@@ -143,6 +144,19 @@ def required_fields_present(record: JournalRecord) raises -> Bool:
         required.append("distinct_architectures")
         required.append("wall_seconds")
         required.append("detail")
+    elif record.kind == RECORD_AUTORL:
+        required.append("env")
+        required.append("episodes")
+        required.append("selected")
+        required.append("test_mean")
+        required.append("test_std")
+        required.append("ci95")
+        required.append("random_mean")
+        required.append("optimal_mean")
+        required.append("improvement")
+        required.append("seeds")
+        required.append("state")
+        required.append("config_checksum")
     else:
         return False
     for key in required:

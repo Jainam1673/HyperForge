@@ -79,4 +79,8 @@ AutoDL: M08, VERIFIED (5 unit tests, 13 integration checks,
 structurally distinct architectures were trained in the observed search;
 test is locked until final selection. M08 commit:
 `f0456e7ee978dcdff2c4f181c1712dd3dc4ea71c`.
+AutoRL: M09, VERIFIED (5 unit tests, 17 integration checks,
+`AUTORL_VALIDATION.md`). Q-learning reaches the DP optimum and beats the random
+baseline on unseen seeds; learning curves and config checksums persist.
+M09 commit pending.
 GitHub MCP is working (verified with `get_me` and `opencode mcp list`).

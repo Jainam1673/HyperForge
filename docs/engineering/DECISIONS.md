@@ -34,6 +34,14 @@ explicitly typed `Optional` is used. `len(String)` is replaced by
 logic is implemented in shell. This follows the directive's allowance for
 small build/test automation.
 
+## D029 — AutoRL stays tabular with separated phases
+
+Value iteration provides an exact DP reference; Q-learning uses epsilon-greedy
+training and a strictly greedy, no-update evaluation. Config selection uses
+seeds 1–3 and reporting uses unseen seeds 101–105. No neural policy is
+introduced because the tabular benchmark already tests the acceptance claims
+and avoids conflating RL quality with function approximation.
+
 ## D027 — AutoDL uses the tape, validation-only selection
 
 Depth/width are real structural genes, and every parameter is a tape node;

@@ -25,6 +25,12 @@ from hyperforge.cli.scit_cmd import train_scit, show_scit, predict_scit
 from hyperforge.cli.gpu_cmd import hardware_probe, benchmark_kernel
 from hyperforge.cli.discover_cmd import run_discovery
 from hyperforge.cli.autodl_cmd import run_autodl, show_autodl, replay_autodl
+from hyperforge.cli.autorl_cmd import (
+    list_environments,
+    run_autorl,
+    show_autorl,
+    replay_autorl,
+)
 from hyperforge.core.exit_codes import EXIT_OK, EXIT_USAGE, EXIT_INTERNAL
 
 
@@ -151,6 +157,24 @@ def main() raises:
             code = show_autodl(".", aa[1])
         elif aa[0] == "replay":
             code = replay_autodl(".", aa[1])
+        else:
+            code = EXIT_USAGE
+    elif parsed.command == "autorl":
+        ref ra = parsed.args
+        if ra[0] == "list-envs":
+            code = list_environments()
+        elif ra[0] == "run":
+            var episodes = 60
+            var evaluation_episodes = 20
+            if len(ra) >= 2:
+                episodes = Int(ra[1])
+            if len(ra) >= 3:
+                evaluation_episodes = Int(ra[2])
+            code = run_autorl(".", episodes, evaluation_episodes)
+        elif ra[0] == "show":
+            code = show_autorl(".", ra[1])
+        elif ra[0] == "replay":
+            code = replay_autorl(".", ra[1])
         else:
             code = EXIT_USAGE
     else:

@@ -20,6 +20,7 @@ comptime RECORD_SCIENTIFIC = "scientific"
 comptime RECORD_SCIT = "scit"
 comptime RECORD_DISCOVERY = "discovery"
 comptime RECORD_AUTOML_DL = "autodl"
+comptime RECORD_AUTORL = "autorl"
 
 
 struct Field:

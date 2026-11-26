@@ -154,6 +154,20 @@ Adding an `artifact_id` field to the `autodl` record changed the record schema;
 records created before that change are intentionally rejected as missing-field
 errors, documented as a within-milestone schema migration.
 
+## M09 results
+
+| Command | Outcome |
+|---|---|
+| `pixi run bash scripts/mojo.sh run -I src tests/test_m09.mojo` | 5 tests pass |
+| `pixi run test-autorl` | `autorl integration: 17 passed, 0 failed` |
+| `autorl run 60 20` | Q-learning held-out return 5.0, random -19.46, DP optimum 5.0, improvement 24.46, five seeds |
+| `autorl show/replay` | config verified, `REPLAY_READY` |
+| learning curve artifact | 60 per-episode mean returns, -24.0 → 5.0 |
+
+The first implementation called `step` on the goal state inside Q derivation;
+fixed by assigning zero Q-values for terminal states. Seed arrays were comptime
+and could not materialize at runtime; converted to runtime lists.
+
 ## Environment limitation
 
 A fresh `pixi install --frozen` into `/tmp/opencode/cleanhf3` failed with
