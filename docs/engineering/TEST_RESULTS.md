@@ -109,6 +109,22 @@ redesigned to 128 parameters with explicit `HEAD_DIM=2` projections. Training
 tests initially used a workload too large for debug-mode `mojo run`; the test
 uses a declared smaller spec (8 train, 4 test, 4 epochs) with the same assertions.
 
+## M06 results
+
+| Command | Outcome |
+|---|---|
+| `pixi run bash scripts/mojo.sh run -I src tests/test_m06.mojo` | 5 tests pass |
+| `pixi run test-gpu` | `gpu integration: 17 passed, 0 failed` |
+| all six prior integration suites | unchanged, all pass |
+| `source scripts/gpu-env.sh && ./hyperforge benchmark kernel` | five PASS rows, max error 0.0 |
+| `./hyperforge benchmark kernel` without env | exit 3 with BLOCKED and remedy |
+
+Defects fixed during M06: kernel scalar argument `Int` is not `DevicePassable`
+in Mojo 1.2.0 (changed to `Int32`); `ptxas` from CUDA 13 rejects `sm_61` (external
+CUDA 12 ptxas selected by wrapper); the Mojo wrapper originally placed the
+target flag before the subcommand; even-length median returned the upper
+element (changed to lower median).
+
 ## Environment limitation
 
 A fresh `pixi install --frozen` into `/tmp/opencode/cleanhf3` failed with

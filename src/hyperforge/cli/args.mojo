@@ -19,6 +19,7 @@ struct CliArgs:
     var extra: String
     var args: List[String]
     var json: Bool
+    var gpu: Bool
     var help: Bool
     var version: Bool
     var error: String
@@ -30,6 +31,7 @@ struct CliArgs:
         self.extra = ""
         self.args = List[String]()
         self.json = False
+        self.gpu = False
         self.help = False
         self.version = False
         self.error = ""
@@ -53,6 +55,8 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             result.version = True
         elif token == "--json":
             result.json = True
+        elif token == "--gpu":
+            result.gpu = True
         elif token == "doctor":
             if result.command != "":
                 result.error = "unexpected command: " + token
@@ -74,6 +78,8 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             or token == "optimize"
             or token == "sinn"
             or token == "sci-transformers"
+            or token == "hardware"
+            or token == "benchmark"
         ):
             if result.command != "":
                 result.error = "unexpected command: " + token
@@ -88,6 +94,8 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             or result.command == "optimize"
             or result.command == "sinn"
             or result.command == "sci-transformers"
+            or result.command == "hardware"
+            or result.command == "benchmark"
         ):
             result.args.append(token)
         elif result.command == "init" and result.target == "":
@@ -156,6 +164,18 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
         and (result.subcommand == "list" or result.subcommand == "show")
     ):
         machine_ok = True
+    if result.gpu and not (
+        result.command == "doctor" or result.command == "hardware"
+    ):
+        result.error = "--gpu is only valid with 'doctor' or 'hardware probe'"
+    if result.command == "hardware" and (
+        len(result.args) != 1 or result.args[0] != "probe"
+    ):
+        result.error = "usage: hyperforge hardware probe"
+    if result.command == "benchmark" and (
+        len(result.args) != 1 or result.args[0] != "kernel"
+    ):
+        result.error = "usage: hyperforge benchmark kernel"
     if result.json and not machine_ok:
         result.error = "--json is only valid with 'doctor' or 'experiment list|show'"
 

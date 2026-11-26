@@ -5,13 +5,14 @@ a command-line application only: no frontend, server, database, or Python
 application logic. MAX is a platform dependency used only where its documented
 interfaces are needed; it is not required for the core CLI.
 
-Current milestone: **M05 — SciTransformers, the second SciAI capability**.
-M00–M04 (CLI, evidence substrate, regression AutoML, adaptive optimization,
-SINN) are complete. M05 adds a tiny masked two-head scientific transformer with
-a reverse-mode tape, three baselines, rollout evaluation, and checkpointing.
-The linear baseline is stronger on the synthetic task; this is reported
-honestly. Classification, multi-fidelity search, trees, GPU execution, and
-discovery remain planned.
+Current milestone: **M06 — MAX accelerator proof**.
+M00–M05 (CLI, evidence substrate, regression AutoML, adaptive optimization,
+SINN, SciTransformers) are complete. M06 adds a MAX/Mojo GPU vector-add kernel
+with a CPU reference, edge-shape checks, and measured warm-up/kernel/end-to-end
+timings. GPU commands report BLOCKED when no compatible compiler is present;
+the CPU core remains fully functional. Negative results (adaptive vs random,
+linear baseline vs transformer) are retained. Reciprocal discovery remains
+planned.
 
 ## Requirements
 
@@ -24,14 +25,20 @@ discovery remain planned.
 ```bash
 pixi install
 pixi run build       # produces ./hyperforge
-pixi run test             # 36 unit tests
+pixi run test             # 62 unit tests
 pixi run test-cli         # build + 24 CLI integration checks
 pixi run test-experiment  # 17 experiment/journal checks
 pixi run test-automl      # 21 AutoML integration checks
 pixi run test-optimize    # 14 adaptive optimization checks
 pixi run test-sinn        # 17 SINN / PDE checks
 pixi run test-scit        # 20 SciTransformers checks
+pixi run test-gpu         # 17 GPU kernel / benchmark checks
 ```
+
+On pre-Turing NVIDIA devices, source `scripts/gpu-env.sh` before invoking GPU
+commands directly so a compatible `ptxas` is selected. All pixi tasks use
+`scripts/mojo.sh`, which does this automatically. See
+`docs/engineering/GPU_BENCHMARK.md` for the measured protocol and limitations.
 
 ## Implemented commands
 
@@ -57,6 +64,8 @@ pixi run test-scit        # 20 SciTransformers checks
 ./hyperforge sci-transformers train [seed] [epochs]
 ./hyperforge sci-transformers show <experiment-id>
 ./hyperforge sci-transformers predict <experiment-id> [sample]
+./hyperforge hardware probe
+./hyperforge benchmark kernel
 ```
 
 `doctor` reports toolchain pin, MAX CLI, accelerator visibility, workspace

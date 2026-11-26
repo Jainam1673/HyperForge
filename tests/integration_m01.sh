@@ -50,7 +50,7 @@ check_stderr() {
   fi
 }
 
-mojo build -I "$ROOT/src" "$ROOT/src/main.mojo" -o "$BIN"
+bash "$ROOT/scripts/mojo.sh" build -I "$ROOT/src" "$ROOT/src/main.mojo" -o "$BIN"
 "$BIN" init "$TMPD/workspace" >/dev/null
 
 ID=$("$BIN" init "$TMPD/workspace" >/dev/null 2>&1 || true; cd "$TMPD/workspace" && "$BIN" experiment create integration 42)

@@ -22,6 +22,7 @@ from hyperforge.cli.automl_cmd import (
 from hyperforge.cli.optimize_cmd import run_optimize
 from hyperforge.cli.sinn_cmd import list_problems, solve_problem, show_result
 from hyperforge.cli.scit_cmd import train_scit, show_scit, predict_scit
+from hyperforge.cli.gpu_cmd import hardware_probe, benchmark_kernel
 from hyperforge.core.exit_codes import EXIT_OK, EXIT_USAGE, EXIT_INTERNAL
 
 
@@ -40,6 +41,8 @@ def main() raises:
     elif parsed.command == "doctor":
         var args = argv()
         code = run_doctor(String(args[0]), parsed.json)
+        if code == EXIT_OK and parsed.gpu:
+            code = hardware_probe()
     elif parsed.command == "init":
         code = init_workspace(parsed.target)
     elif parsed.command == "experiment":
@@ -119,6 +122,10 @@ def main() raises:
             code = predict_scit(".", ca[1], sample_index)
         else:
             code = EXIT_USAGE
+    elif parsed.command == "hardware":
+        code = hardware_probe()
+    elif parsed.command == "benchmark":
+        code = benchmark_kernel(".")
     else:
         print_help()
 

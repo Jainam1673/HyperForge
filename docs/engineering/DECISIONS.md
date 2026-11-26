@@ -34,6 +34,20 @@ explicitly typed `Optional` is used. `len(String)` is replaced by
 logic is implemented in shell. This follows the directive's allowance for
 small build/test automation.
 
+## D023 — GPU proof stays a separate capability
+
+The vector-add kernel is the only accelerator work in M06. No AutoML, SINN, or
+SciTransformers computation was moved to the GPU without profiling evidence.
+MAX model serving remains optional and untested. Devices that MAX cannot
+support report `BLOCKED` with a remedy and exit 3; the CPU core is unaffected.
+
+## D024 — Build wrapper for pre-Turing devices
+
+`scripts/gpu-env.sh` selects a cached CUDA 12 `ptxas` for `sm_52/sm_60/sm_61`,
+and `scripts/mojo.sh` passes the detected `--target-accelerator`. This is
+build/platform tooling (shell), not application logic. Without a compatible
+compiler, the build targets a modern arch and GPU commands report BLOCKED.
+
 ## D021 — Reference attention and an honest linear-baseline result
 
 SciTransformers v1 uses a reverse-mode scalar tape and plain two-head

@@ -39,7 +39,7 @@ check_output() {
   fi
 }
 
-mojo build -I "$ROOT/src" "$ROOT/src/main.mojo" -o "$BIN"
+bash "$ROOT/scripts/mojo.sh" build -I "$ROOT/src" "$ROOT/src/main.mojo" -o "$BIN"
 "$BIN" init "$TMPD/workspace" >/dev/null
 
 check_status 0 "list problems" "$BIN" sinn list-problems

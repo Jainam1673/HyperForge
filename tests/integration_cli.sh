@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# M05 CLI integration checks: build, help/version, doctor, init, exit codes.
+# M06 CLI integration checks: build, help/version, doctor, init, exit codes.
 # Run with: pixi run test-cli
 set -euo pipefail
 
@@ -51,16 +51,16 @@ check_stderr() {
 }
 
 echo "Building hyperforge..."
-mojo build -I "$ROOT/src" "$ROOT/src/main.mojo" -o "$BIN"
+bash "$ROOT/scripts/mojo.sh" build -I "$ROOT/src" "$ROOT/src/main.mojo" -o "$BIN"
 
 check_status 0 "help" "$BIN" --help
 check_output "IMPLEMENTED COMMANDS" "help section"
 
 check_status 0 "version" "$BIN" --version
-check_output "hyperforge 0.1.0 (M05)" "version text"
+check_output "hyperforge 0.1.0 (M06)" "version text"
 
 check_status 0 "doctor" "$BIN" doctor
-check_output "hyperforge doctor (M05)" "doctor header"
+check_output "hyperforge doctor (M06)" "doctor header"
 check_output "toolchain_pin" "doctor probe"
 
 check_status 0 "doctor json" "$BIN" doctor --json

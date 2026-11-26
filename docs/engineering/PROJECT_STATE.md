@@ -66,4 +66,7 @@ tape and masked attention are numerically verified. Three non-transformer
 baselines and rollout drift are reported; the linear baseline is stronger on
 this exact-linear task (honest negative result). M05 commit:
 `cc95061b4ea1171a27691d86540d45ae240b6510`.
+MAX/GPU kernel proof: M06, VERIFIED (5 unit tests, 17 integration checks,
+`GPU_BENCHMARK.md`). Five sizes pass with zero error on NVIDIA sm_61 using an
+external ptxas; CPU core remains green. M06 commit pending.
 GitHub MCP is working (verified with `get_me` and `opencode mcp list`).

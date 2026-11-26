@@ -165,3 +165,20 @@ M04 implementation and evidence are **VERIFIED** and pushed as commit
 
 M05 implementation and evidence are **VERIFIED** and pushed as commit
 `cc95061b4ea1171a27691d86540d45ae240b6510`.
+
+## M06 — MAX accelerator proof
+
+| Acceptance criterion | Evidence | Result |
+|---|---|---|
+| Supported device actually detected | `nvidia-smi` 6.1; `has_accelerator()` True | PASS |
+| Real kernel compiles and executes on hardware | `hardware probe` PASS; five benchmark sizes PASS | PASS |
+| Output agrees with reference within tolerance | max_abs_error 0.0 at 7, 255, 256, 1024, 4097 | PASS |
+| Edge shapes and bounds | tiny and non-multiple block sizes; guarded `index < size` | PASS |
+| No performance claim without warm-up/repetition/environment | protocol in `GPU_BENCHMARK.md` | PASS |
+| No claim that all MAX models/devices are supported | explicit scope limits | PASS |
+| CPU core unaffected | all six prior integration suites pass | PASS |
+| Graceful BLOCKED status without compatible ptxas | try/except with remedy and exit 3 | PASS |
+| Useful application kernel on GPU | DEFERRED: requires profiling evidence first | DEFERRED |
+
+M06 implementation and evidence are **VERIFIED**; commit/push is the remaining
+workflow action.

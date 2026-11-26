@@ -6,15 +6,16 @@ platforms = ['linux-64']
 version = "0.1.0"
 
 [tasks]
-build = "mojo build -I src src/main.mojo -o hyperforge"
-run = "mojo run -I src src/main.mojo"
-test = "mojo run -I src tests/test_cli.mojo && mojo run -I src tests/test_m01.mojo && mojo run -I src tests/test_m02.mojo && mojo run -I src tests/test_m03.mojo && mojo run -I src tests/test_m04.mojo && mojo run -I src tests/test_m05.mojo"
+build = "bash scripts/mojo.sh build -I src src/main.mojo -o hyperforge"
+run = "bash scripts/mojo.sh run -I src src/main.mojo"
+test = "bash scripts/mojo.sh run -I src tests/test_cli.mojo && bash scripts/mojo.sh run -I src tests/test_m01.mojo && bash scripts/mojo.sh run -I src tests/test_m02.mojo && bash scripts/mojo.sh run -I src tests/test_m03.mojo && bash scripts/mojo.sh run -I src tests/test_m04.mojo && bash scripts/mojo.sh run -I src tests/test_m05.mojo && bash scripts/mojo.sh run -I src tests/test_m06.mojo"
 test-cli = "bash tests/integration_cli.sh"
 test-experiment = "bash tests/integration_m01.sh"
 test-automl = "bash tests/integration_m02.sh"
 test-optimize = "bash tests/integration_m03.sh"
 test-sinn = "bash tests/integration_m04.sh"
 test-scit = "bash tests/integration_m05.sh"
+test-gpu = "bash tests/integration_m06.sh"
 
 [dependencies]
 mojo = ">=1.2.0,<2"

@@ -26,6 +26,8 @@ hyperforge sinn show <id>
 hyperforge sci-transformers train [seed] [epochs]
 hyperforge sci-transformers show <id>
 hyperforge sci-transformers predict <id> [sample]
+hyperforge hardware probe
+hyperforge benchmark kernel
 ```
 
 `--help`/`-h` and `--version`/`-V` take precedence over other arguments.
@@ -39,7 +41,8 @@ and require it to be initialized with `hyperforge init`.
 | Command | Behavior | Exit codes |
 |---|---|---|
 | `--help`, `-h` | Print help, including implemented vs planned commands | 0 |
-| `--version`, `-V` | Print `hyperforge 0.1.0 (M05)` | 0 |
+| `--version`, `-V` | Print `hyperforge 0.1.0 (M06)` | 0 |
+| `--gpu` (with `doctor`) | Run the explicit GPU kernel check | 0, 1, 3 |
 | `doctor [--json]` | Print separate capability probes; human or versioned JSON | 0, 3 |
 | `init <path>` | Create `hyperforge.toml`, `experiments/`, `artifacts/`, `logs/` | 0, 1, 2 |
 | `experiment create` | Write config artifact + journal records; print stable ID | 0, 1, 2 |
@@ -59,6 +62,8 @@ and require it to be initialized with `hyperforge init`.
 | `sci-transformers train` | Train the scientific sequence transformer | 0, 1, 2 |
 | `sci-transformers show` | Inspect a persisted transformer result | 0, 1, 2 |
 | `sci-transformers predict` | Predict a held-out frame from a checkpoint | 0, 1, 2, 3 |
+| `hardware probe` | Probe accelerator and run a GPU kernel check | 0, 1, 3 |
+| `benchmark kernel` | Benchmark the GPU vector-add kernel with medians | 0, 1, 3 |
 
 `experiment create` derives three trial seeds from the experiment seed and
 records them. The ID is `exp-` plus a 16-digit FNV-1a fingerprint of
