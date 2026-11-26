@@ -1,0 +1,16 @@
+# pixi environments
+.pixi/*
+!.pixi/config.toml
+
+# compiled native CLI (root only; do not ignore src/hyperforge)
+/hyperforge
+
+# doctor temporary probe
+.hyperforge-doctor.tmp
+
+# installed third-party agent skills (environment tooling, not project source)
+.agents/
+.claude/
+.hermes/
+skills/
+skills-lock.json
