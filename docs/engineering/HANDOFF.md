@@ -2,7 +2,8 @@
 
 ## Current state
 
-- M00–M05 are VERIFIED. M05 commit/push is the remaining workflow action.
+- M00–M05 are VERIFIED and pushed. M05 commit:
+  `cc95061b4ea1171a27691d86540d45ae240b6510`.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
 - Tests: `pixi run test` → 57 unit tests; integration totals
@@ -36,9 +37,8 @@ evidence/journal.mojo, evidence/record.mojo (scit record type)
 
 ## Next exact actions
 
-1. Commit and push M05 as its own milestone.
-2. Re-read the three authoritative documents (required after each milestone).
-3. Next capability per master prompt M05: MAX accelerator proof. Compile and
+1. Re-read the three authoritative documents (required after each milestone).
+2. Next capability per master prompt M05: MAX accelerator proof. Compile and
    run one official-example-derived Mojo GPU kernel on the detected NVIDIA
    device, compare against a trusted CPU reference, test edge shapes, and
    measure warm-up/launch/transfer/kernel time separately. Keep MAX serving

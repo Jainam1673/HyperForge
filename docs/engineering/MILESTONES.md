@@ -163,5 +163,5 @@ M04 implementation and evidence are **VERIFIED** and pushed as commit
 | Honest limitation | linear baseline is essentially exact and beats transformer | RECORDED |
 | No SOTA / foundation-model / FlashAttention claim | explicit in `SCIENTIFIC_VALIDATION.md` | PASS |
 
-M05 implementation and evidence are **VERIFIED**; commit/push is the remaining
-workflow action.
+M05 implementation and evidence are **VERIFIED** and pushed as commit
+`cc95061b4ea1171a27691d86540d45ae240b6510`.

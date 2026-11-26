@@ -64,5 +64,6 @@ SciTransformers 1D sequence task with two-head attention: M05, VERIFIED
 (8 unit tests, 20 integration checks, `SCIENTIFIC_VALIDATION.md`). Reverse-mode
 tape and masked attention are numerically verified. Three non-transformer
 baselines and rollout drift are reported; the linear baseline is stronger on
-this exact-linear task (honest negative result). M05 commit pending.
+this exact-linear task (honest negative result). M05 commit:
+`cc95061b4ea1171a27691d86540d45ae240b6510`.
 GitHub MCP is working (verified with `get_me` and `opencode mcp list`).
