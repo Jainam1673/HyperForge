@@ -2,7 +2,8 @@
 
 ## Current state
 
-- M00, M01 and M02 are VERIFIED. M02 commit/push is the remaining workflow action.
+- M00, M01 and M02 are VERIFIED and pushed. M02 commit:
+  `18bcfde9ec3b5dc86264b737b738f5237a8d5224`.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
 - Tests: `pixi run test` → 36 pass; `pixi run test-cli` → 24 pass;
@@ -35,9 +36,8 @@ src/main.mojo, args.mojo, help.mojo, version.mojo, pixi.toml (wiring)
 
 ## Next exact actions
 
-1. Commit and push M02 as its own milestone.
-2. Re-read the three authoritative documents (required after each milestone).
-3. Start M03: adaptive feedback (candidate → evaluate → persist → feed back →
+1. Re-read the three authoritative documents (required after each milestone).
+2. Start M03: adaptive feedback (candidate → evaluate → persist → feed back →
    propose next), a regression test that fails when feedback is disconnected,
    explicit invalid-candidate and failed-trial handling, and a fixed-budget
    comparison against the M02 random-search baseline. Add classification and

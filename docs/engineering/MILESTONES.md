@@ -83,5 +83,5 @@ Adaptive feedback and a repeated-seed benchmark belong to the next milestone;
 implementing an adaptive sampler without validated statistics would violate the
 "no fake science" rule. These items are explicitly not claimed as M02 results.
 
-M02 implementation and evidence are **VERIFIED**; commit/push is the remaining
-workflow action.
+M02 implementation and evidence are **VERIFIED** and pushed as commit
+`18bcfde9ec3b5dc86264b737b738f5237a8d5224`.
