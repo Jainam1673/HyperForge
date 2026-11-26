@@ -146,3 +146,22 @@ explicitly not claimed. See `SCIENTIFIC_VALIDATION.md`.
 
 M04 implementation and evidence are **VERIFIED** and pushed as commit
 `8694384f87a8251cf64a5d133c51b326bf51d13c`.
+
+## M05 — SciTransformers (master prompt M04)
+
+| Acceptance criterion | Evidence | Result |
+|---|---|---|
+| Complete train/evaluate/predict path | `sci-transformers train/show/predict` all pass | PASS |
+| Shape/mask/positional tests | shape error test, mask semantics, coordinate encoding determinism | PASS |
+| Attention and normalization numerical tests | tape attention vs independent numeric attention; softmax stability | PASS |
+| Training loss decreases and reproduces | 0.0435 → 0.000353; identical metrics across workspaces | PASS |
+| Held-out evaluation genuinely held out | test phases distinct from train phases | PASS |
+| Two non-transformer baselines | persistence, mean, and least-squares linear | PASS |
+| Longer rollout assessed | 5-step iterative rollout drift 0.00179 | PASS |
+| Model/checkpoint/config persisted and restored | config + model artifacts; deserialize round-trip test | PASS |
+| Independent verification | 8 unit + 20 integration checks | PASS |
+| Honest limitation | linear baseline is essentially exact and beats transformer | RECORDED |
+| No SOTA / foundation-model / FlashAttention claim | explicit in `SCIENTIFIC_VALIDATION.md` | PASS |
+
+M05 implementation and evidence are **VERIFIED**; commit/push is the remaining
+workflow action.

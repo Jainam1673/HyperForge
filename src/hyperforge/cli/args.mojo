@@ -73,6 +73,7 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             or token == "report"
             or token == "optimize"
             or token == "sinn"
+            or token == "sci-transformers"
         ):
             if result.command != "":
                 result.error = "unexpected command: " + token
@@ -86,6 +87,7 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             or result.command == "report"
             or result.command == "optimize"
             or result.command == "sinn"
+            or result.command == "sci-transformers"
         ):
             result.args.append(token)
         elif result.command == "init" and result.target == "":
@@ -157,6 +159,21 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
     if result.json and not machine_ok:
         result.error = "--json is only valid with 'doctor' or 'experiment list|show'"
 
+    if result.command == "sci-transformers":
+        if len(result.args) == 0:
+            result.error = "sci-transformers requires: train|show|predict"
+        elif result.args[0] == "train" and (len(result.args) < 1 or len(result.args) > 3):
+            result.error = "usage: hyperforge sci-transformers train [seed] [epochs]"
+        elif result.args[0] == "show" and len(result.args) != 2:
+            result.error = "usage: hyperforge sci-transformers show <experiment-id>"
+        elif result.args[0] == "predict" and (len(result.args) < 2 or len(result.args) > 3):
+            result.error = "usage: hyperforge sci-transformers predict <id> [sample]"
+        elif (
+            result.args[0] != "train"
+            and result.args[0] != "show"
+            and result.args[0] != "predict"
+        ):
+            result.error = "unknown sci-transformers subcommand: " + result.args[0]
     if result.command == "sinn":
         if len(result.args) == 0:
             result.error = "sinn requires: list-problems|solve|show"

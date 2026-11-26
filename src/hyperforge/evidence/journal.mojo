@@ -18,6 +18,7 @@ from hyperforge.evidence.record import (
     RECORD_TRIAL,
     RECORD_OPTIMIZER,
     RECORD_SCIENTIFIC,
+    RECORD_SCIT,
     parse_record,
     serialize_record,
 )
@@ -93,6 +94,21 @@ def required_fields_present(record: JournalRecord) raises -> Bool:
         required.append("boundary")
         required.append("exact_l2")
         required.append("fd_l2")
+        required.append("state")
+        required.append("detail")
+        required.append("runtime")
+    elif record.kind == RECORD_SCIT:
+        required.append("exp_id")
+        required.append("task")
+        required.append("seed")
+        required.append("epochs")
+        required.append("initial_loss")
+        required.append("final_loss")
+        required.append("model_mse")
+        required.append("persistence_mse")
+        required.append("mean_mse")
+        required.append("linear_mse")
+        required.append("drift")
         required.append("state")
         required.append("detail")
         required.append("runtime")

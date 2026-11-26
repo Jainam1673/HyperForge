@@ -17,6 +17,7 @@ comptime RECORD_EVENT = "event"
 comptime RECORD_TRIAL = "trial"
 comptime RECORD_OPTIMIZER = "optimizer"
 comptime RECORD_SCIENTIFIC = "scientific"
+comptime RECORD_SCIT = "scit"
 
 
 struct Field:

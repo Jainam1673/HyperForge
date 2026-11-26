@@ -21,6 +21,7 @@ from hyperforge.cli.automl_cmd import (
 )
 from hyperforge.cli.optimize_cmd import run_optimize
 from hyperforge.cli.sinn_cmd import list_problems, solve_problem, show_result
+from hyperforge.cli.scit_cmd import train_scit, show_scit, predict_scit
 from hyperforge.core.exit_codes import EXIT_OK, EXIT_USAGE, EXIT_INTERNAL
 
 
@@ -97,6 +98,25 @@ def main() raises:
             code = solve_problem(".", sa[1], seed, iterations)
         elif sa[0] == "show":
             code = show_result(".", sa[1])
+        else:
+            code = EXIT_USAGE
+    elif parsed.command == "sci-transformers":
+        ref ca = parsed.args
+        if ca[0] == "train":
+            var seed: UInt64 = 42
+            var epochs = 5
+            if len(ca) >= 2:
+                seed = UInt64(Int(ca[1]))
+            if len(ca) >= 3:
+                epochs = Int(ca[2])
+            code = train_scit(".", seed, epochs)
+        elif ca[0] == "show":
+            code = show_scit(".", ca[1])
+        elif ca[0] == "predict":
+            var sample_index = 0
+            if len(ca) >= 3:
+                sample_index = Int(ca[2])
+            code = predict_scit(".", ca[1], sample_index)
         else:
             code = EXIT_USAGE
     else:

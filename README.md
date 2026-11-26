@@ -5,12 +5,13 @@ a command-line application only: no frontend, server, database, or Python
 application logic. MAX is a platform dependency used only where its documented
 interfaces are needed; it is not required for the core CLI.
 
-Current milestone: **M04 — SINN, the first SciAI capability**.
-M00–M03 (CLI, evidence substrate, regression AutoML, adaptive optimization) are
-complete. M04 adds a differentiable physics-informed network for 1D Poisson
-with exact boundaries, an independent finite-difference reference, and honest
-convergence gating. SciTransformers, classification, multi-fidelity search,
-trees, GPU execution, and discovery remain planned.
+Current milestone: **M05 — SciTransformers, the second SciAI capability**.
+M00–M04 (CLI, evidence substrate, regression AutoML, adaptive optimization,
+SINN) are complete. M05 adds a tiny masked two-head scientific transformer with
+a reverse-mode tape, three baselines, rollout evaluation, and checkpointing.
+The linear baseline is stronger on the synthetic task; this is reported
+honestly. Classification, multi-fidelity search, trees, GPU execution, and
+discovery remain planned.
 
 ## Requirements
 
@@ -29,6 +30,7 @@ pixi run test-experiment  # 17 experiment/journal checks
 pixi run test-automl      # 21 AutoML integration checks
 pixi run test-optimize    # 14 adaptive optimization checks
 pixi run test-sinn        # 17 SINN / PDE checks
+pixi run test-scit        # 20 SciTransformers checks
 ```
 
 ## Implemented commands
@@ -52,6 +54,9 @@ pixi run test-sinn        # 17 SINN / PDE checks
 ./hyperforge sinn list-problems
 ./hyperforge sinn solve poisson_1d [seed] [iterations]
 ./hyperforge sinn show <experiment-id>
+./hyperforge sci-transformers train [seed] [epochs]
+./hyperforge sci-transformers show <experiment-id>
+./hyperforge sci-transformers predict <experiment-id> [sample]
 ```
 
 `doctor` reports toolchain pin, MAX CLI, accelerator visibility, workspace

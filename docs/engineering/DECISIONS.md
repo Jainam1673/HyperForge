@@ -34,6 +34,22 @@ explicitly typed `Optional` is used. `len(String)` is replaced by
 logic is implemented in shell. This follows the directive's allowance for
 small build/test automation.
 
+## D021 — Reference attention and an honest linear-baseline result
+
+SciTransformers v1 uses a reverse-mode scalar tape and plain two-head
+attention; no FlashAttention or GPU claim. The synthetic task is exactly linear
+in the previous frame, so the fitted linear baseline is nearly perfect and
+outperforms the transformer. This is reported as a negative result instead of
+changing the task to favor the new model; a harder multi-mode task is needed to
+test any transformer advantage.
+
+## D022 — Explicit mask and numerical parity tests
+
+Attention masks are represented as `List[Bool]`, masked softmax weights are
+exactly zero, and the tape kernel output is compared to an independent numeric
+implementation. These tests guard the semantics that a fusion-style rewrite
+could silently break.
+
 ## D019 — Forward-mode higher-order jets for SINN differentiation
 
 The tiny network needs u'' for the PDE residual and ∂u''/∂p for Adam gradients.

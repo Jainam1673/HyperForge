@@ -60,4 +60,9 @@ Public remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 M02 commit: `18bcfde9ec3b5dc86264b737b738f5237a8d5224`.
 M03 commit: `faac647d8389acd39231ef754351d0af16fb76fd`.
 M04 commit: `8694384f87a8251cf64a5d133c51b326bf51d13c`.
+SciTransformers 1D sequence task with two-head attention: M05, VERIFIED
+(8 unit tests, 20 integration checks, `SCIENTIFIC_VALIDATION.md`). Reverse-mode
+tape and masked attention are numerically verified. Three non-transformer
+baselines and rollout drift are reported; the linear baseline is stronger on
+this exact-linear task (honest negative result). M05 commit pending.
 GitHub MCP is working (verified with `get_me` and `opencode mcp list`).

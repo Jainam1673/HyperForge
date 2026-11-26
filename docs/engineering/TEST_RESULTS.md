@@ -92,6 +92,23 @@ fix, parameter gradients matched finite differences and final loss improved from
 0.0107 to 0.00084 at 800 iterations. Tuple return syntax required `Tuple[...]`
 and `mut` call-site syntax was rejected.
 
+## M05 results
+
+| Command | Outcome |
+|---|---|
+| `pixi run mojo run -I src tests/test_m05.mojo` | 8 tests pass (tape, softmax, attention, masks, task, serialization, training) |
+| `pixi run test-scit` | `scit integration: 20 passed, 0 failed` |
+| `sci-transformers train 42 10` | CONVERGED; loss 0.0435 → 0.000353; model MSE 0.000266; persistence 0.02165; mean 0.13300; linear 8.19e-33; drift 0.00179 |
+| two workspaces, same seed | identical reported metrics |
+| `sci-transformers train 42 0` | exit 2 (usage validation) |
+| `sci-transformers predict <id> 0` | prediction and actual held-out frame printed |
+
+Defect found and fixed during M05: per-head query/key/value projections used
+inconsistent dimensions, producing a dot-product length mismatch; offsets were
+redesigned to 128 parameters with explicit `HEAD_DIM=2` projections. Training
+tests initially used a workload too large for debug-mode `mojo run`; the test
+uses a declared smaller spec (8 train, 4 test, 4 epochs) with the same assertions.
+
 ## Environment limitation
 
 A fresh `pixi install --frozen` into `/tmp/opencode/cleanhf3` failed with
