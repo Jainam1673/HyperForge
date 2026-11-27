@@ -34,6 +34,13 @@ explicitly typed `Optional` is used. `len(String)` is replaced by
 logic is implemented in shell. This follows the directive's allowance for
 small build/test automation.
 
+## D030 — AutoTransformers measures, not assumes, config efficiency
+
+Configuration search uses validation MSE and measured inference latency from
+real executions. In the observed run the more accurate config had ~6x the
+parameters and latency, so no claim is made that smaller configurations are
+faster. Cache and precision genes are not registered without execution paths.
+
 ## D029 — AutoRL stays tabular with separated phases
 
 Value iteration provides an exact DP reference; Q-learning uses epsilon-greedy

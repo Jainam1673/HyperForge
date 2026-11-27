@@ -5,12 +5,12 @@ a command-line application only: no frontend, server, database, or Python
 application logic. MAX is a platform dependency used only where its documented
 interfaces are needed; it is not required for the core CLI.
 
-Current milestone: **M09 — AutoRL**.
-M00–M08 (CLI, evidence, regression AutoML, adaptive optimization, SINN,
-SciTransformers, GPU proof, reciprocal discovery, AutoDL) are complete. M09 adds
-a deterministic grid-world with value iteration and Q-learning, held-out
-evaluation, return statistics, learning curves, and replay verification.
-Further AutoAI/SciAI family expansion remains planned.
+Current milestone: **M10 — AutoTransformers**.
+M00–M09 (CLI, evidence, regression AutoML, adaptive optimization, SINN,
+SciTransformers, GPU proof, reciprocal discovery, AutoDL, AutoRL) are complete.
+M10 adds transformer configuration search with measured validation/test quality
+and inference latency, plus config/checkpoint persistence. No MAX inference or
+serving capability is claimed. Further family expansion remains planned.
 
 ## Requirements
 
@@ -23,7 +23,7 @@ Further AutoAI/SciAI family expansion remains planned.
 ```bash
 pixi install
 pixi run build       # produces ./hyperforge
-pixi run test             # 77 unit tests
+pixi run test             # 81 unit tests
 pixi run test-cli         # build + 24 CLI integration checks
 pixi run test-experiment  # 17 experiment/journal checks
 pixi run test-automl      # 21 AutoML integration checks
@@ -34,6 +34,7 @@ pixi run test-gpu         # 17 GPU kernel / benchmark checks
 pixi run test-discover    # 15 reciprocal discovery checks
 pixi run test-autodl      # 13 AutoDL checks
 pixi run test-autorl      # 17 AutoRL checks
+pixi run test-autotrans   # 14 AutoTransformers checks
 ```
 
 On pre-Turing NVIDIA devices, source `scripts/gpu-env.sh` before invoking GPU
@@ -75,6 +76,9 @@ commands directly so a compatible `ptxas` is selected. All pixi tasks use
 ./hyperforge autorl run [episodes] [eval-episodes]
 ./hyperforge autorl show <id>
 ./hyperforge autorl replay <id>
+./hyperforge autotransformers run [budget] [seed]
+./hyperforge autotransformers show <policy>
+./hyperforge autotransformers replay <policy>
 ```
 
 `doctor` reports toolchain pin, MAX CLI, accelerator visibility, workspace

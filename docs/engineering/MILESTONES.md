@@ -231,3 +231,18 @@ M08 implementation and evidence are **VERIFIED** and pushed as commit
 
 M09 implementation and evidence are **VERIFIED** and pushed as commit
 `4fb11369fe12f8e01fab27e8a1d54542b9fbe36e`.
+
+## M10 — AutoTransformers
+
+| Acceptance criterion | Evidence | Result |
+|---|---|---|
+| Candidates differ in actual config/behavior | 133-param default vs 857-param random 8x2/ff8/L2 | PASS |
+| Quality and latency from executions | validation/test MSE and median latency per policy | PASS |
+| Fixed-budget comparison with default and search baselines | default/random/adaptive at budget 3 | PASS |
+| No inference-implies-training claim | explicit scope statement and report line | PASS |
+| Config validation and conditional constraints | `valid_config` tests | PASS |
+| Checkpoint/config persistence and replay | artifacts + checksum verification | PASS |
+| Benchmark-based selection, not size assumptions | random config more accurate but ~6x slower | PASS |
+
+M10 implementation and evidence are **VERIFIED**; commit/push is the remaining
+workflow action.

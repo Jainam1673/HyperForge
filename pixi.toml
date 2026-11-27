@@ -8,7 +8,7 @@ version = "0.1.0"
 [tasks]
 build = "bash scripts/mojo.sh build -I src src/main.mojo -o hyperforge"
 run = "bash scripts/mojo.sh run -I src src/main.mojo"
-test = "bash scripts/mojo.sh run -I src tests/test_cli.mojo && bash scripts/mojo.sh run -I src tests/test_m01.mojo && bash scripts/mojo.sh run -I src tests/test_m02.mojo && bash scripts/mojo.sh run -I src tests/test_m03.mojo && bash scripts/mojo.sh run -I src tests/test_m04.mojo && bash scripts/mojo.sh run -I src tests/test_m05.mojo && bash scripts/mojo.sh run -I src tests/test_m06.mojo && bash scripts/mojo.sh run -I src tests/test_m07.mojo && bash scripts/mojo.sh run -I src tests/test_m08.mojo && bash scripts/mojo.sh run -I src tests/test_m09.mojo"
+test = "bash scripts/mojo.sh run -I src tests/test_cli.mojo && bash scripts/mojo.sh run -I src tests/test_m01.mojo && bash scripts/mojo.sh run -I src tests/test_m02.mojo && bash scripts/mojo.sh run -I src tests/test_m03.mojo && bash scripts/mojo.sh run -I src tests/test_m04.mojo && bash scripts/mojo.sh run -I src tests/test_m05.mojo && bash scripts/mojo.sh run -I src tests/test_m06.mojo && bash scripts/mojo.sh run -I src tests/test_m07.mojo && bash scripts/mojo.sh run -I src tests/test_m08.mojo && bash scripts/mojo.sh run -I src tests/test_m09.mojo && bash scripts/mojo.sh run -I src tests/test_m10.mojo"
 test-cli = "bash tests/integration_cli.sh"
 test-experiment = "bash tests/integration_m01.sh"
 test-automl = "bash tests/integration_m02.sh"
@@ -19,6 +19,7 @@ test-gpu = "bash tests/integration_m06.sh"
 test-discover = "bash tests/integration_m07.sh"
 test-autodl = "bash tests/integration_m08.sh"
 test-autorl = "bash tests/integration_m09.sh"
+test-autotrans = "bash tests/integration_m10.sh"
 
 [dependencies]
 mojo = ">=1.2.0,<2"

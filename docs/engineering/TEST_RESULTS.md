@@ -168,6 +168,19 @@ The first implementation called `step` on the goal state inside Q derivation;
 fixed by assigning zero Q-values for terminal states. Seed arrays were comptime
 and could not materialize at runtime; converted to runtime lists.
 
+## M10 results
+
+| Command | Outcome |
+|---|---|
+| `pixi run bash scripts/mojo.sh run -I src tests/test_m10.mojo` | 4 tests pass |
+| `pixi run test-autotrans` | `autotrans integration: 14 passed, 0 failed` |
+| `autotransformers run 3 42` | default 133 params 0.01605 test MSE 0.00064s; random 857 params 0.00216 MSE 0.00406s; adaptive default-like |
+
+Defects found and fixed during M10: embedding, QKV, FFN, and output-head weights
+were initially allocated per token instead of once per layer, causing parameter
+index overflows; history gene was overridden by the task contract; task index
+sets were derived from TaskSpec counts rather than nonexistent split fields.
+
 ## Environment limitation
 
 A fresh `pixi install --frozen` into `/tmp/opencode/cleanhf3` failed with

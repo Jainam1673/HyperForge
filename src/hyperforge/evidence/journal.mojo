@@ -22,6 +22,7 @@ from hyperforge.evidence.record import (
     RECORD_DISCOVERY,
     RECORD_AUTOML_DL,
     RECORD_AUTORL,
+    RECORD_AUTOTRANS,
     parse_record,
     serialize_record,
 )
@@ -156,6 +157,18 @@ def required_fields_present(record: JournalRecord) raises -> Bool:
         required.append("improvement")
         required.append("seeds")
         required.append("state")
+        required.append("config_checksum")
+    elif record.kind == RECORD_AUTOTRANS:
+        required.append("policy")
+        required.append("budget")
+        required.append("d_model")
+        required.append("heads")
+        required.append("ff_hidden")
+        required.append("layers")
+        required.append("parameters")
+        required.append("validation_mse")
+        required.append("test_mse")
+        required.append("latency")
         required.append("config_checksum")
     else:
         return False

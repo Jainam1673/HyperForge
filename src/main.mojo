@@ -31,6 +31,11 @@ from hyperforge.cli.autorl_cmd import (
     show_autorl,
     replay_autorl,
 )
+from hyperforge.cli.autotrans_cmd import (
+    run_autotrans,
+    show_autotrans,
+    replay_autotrans,
+)
 from hyperforge.core.exit_codes import EXIT_OK, EXIT_USAGE, EXIT_INTERNAL
 
 
@@ -175,6 +180,22 @@ def main() raises:
             code = show_autorl(".", ra[1])
         elif ra[0] == "replay":
             code = replay_autorl(".", ra[1])
+        else:
+            code = EXIT_USAGE
+    elif parsed.command == "autotransformers":
+        ref ta = parsed.args
+        if ta[0] == "run":
+            var budget = 3
+            var seed: UInt64 = 42
+            if len(ta) >= 2:
+                budget = Int(ta[1])
+            if len(ta) >= 3:
+                seed = UInt64(Int(ta[2]))
+            code = run_autotrans(".", budget, seed)
+        elif ta[0] == "show":
+            code = show_autotrans(".", ta[1])
+        elif ta[0] == "replay":
+            code = replay_autotrans(".", ta[1])
         else:
             code = EXIT_USAGE
     else:

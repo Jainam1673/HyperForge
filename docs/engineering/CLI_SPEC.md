@@ -36,6 +36,9 @@ hyperforge autorl list-envs
 hyperforge autorl run [episodes] [eval-episodes]
 hyperforge autorl show <id>
 hyperforge autorl replay <id>
+hyperforge autotransformers run [budget] [seed]
+hyperforge autotransformers show <policy>
+hyperforge autotransformers replay <policy>
 ```
 
 `--help`/`-h` and `--version`/`-V` take precedence over other arguments.
@@ -49,7 +52,7 @@ and require it to be initialized with `hyperforge init`.
 | Command | Behavior | Exit codes |
 |---|---|---|
 | `--help`, `-h` | Print help, including implemented vs planned commands | 0 |
-| `--version`, `-V` | Print `hyperforge 0.1.0 (M09)` | 0 |
+| `--version`, `-V` | Print `hyperforge 0.1.0 (M10)` | 0 |
 | `--gpu` (with `doctor`) | Run the explicit GPU kernel check | 0, 1, 3 |
 | `doctor [--json]` | Print separate capability probes; human or versioned JSON | 0, 3 |
 | `init <path>` | Create `hyperforge.toml`, `experiments/`, `artifacts/`, `logs/` | 0, 1, 2 |
@@ -80,6 +83,9 @@ and require it to be initialized with `hyperforge init`.
 | `autorl run` | Train tabular policies with held-out evaluation | 0, 1, 2 |
 | `autorl show` | Inspect an AutoRL result | 0, 1, 2 |
 | `autorl replay` | Verify a recorded RL config | 0, 1, 2, 3 |
+| `autotransformers run` | Search transformer configs with measured metrics | 0, 1, 2 |
+| `autotransformers show` | Inspect a configuration result | 0, 1, 2 |
+| `autotransformers replay` | Verify a config checksum | 0, 1, 2, 3 |
 
 `experiment create` derives three trial seeds from the experiment seed and
 records them. The ID is `exp-` plus a 16-digit FNV-1a fingerprint of

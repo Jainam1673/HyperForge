@@ -83,6 +83,7 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             or token == "discover"
             or token == "autodl"
             or token == "autorl"
+            or token == "autotransformers"
         ):
             if result.command != "":
                 result.error = "unexpected command: " + token
@@ -102,6 +103,7 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             or result.command == "discover"
             or result.command == "autodl"
             or result.command == "autorl"
+            or result.command == "autotransformers"
         ):
             result.args.append(token)
         elif result.command == "init" and result.target == "":
@@ -178,6 +180,22 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
         len(result.args) != 1 or result.args[0] != "probe"
     ):
         result.error = "usage: hyperforge hardware probe"
+    if result.command == "autotransformers":
+        if len(result.args) == 0:
+            result.error = "autotransformers requires: run|show|replay"
+        elif result.args[0] == "run" and (len(result.args) < 1 or len(result.args) > 3):
+            result.error = "usage: hyperforge autotransformers run [budget] [seed]"
+        elif (
+            (result.args[0] == "show" or result.args[0] == "replay")
+            and len(result.args) != 2
+        ):
+            result.error = "usage: hyperforge autotransformers " + result.args[0] + " <policy>"
+        elif (
+            result.args[0] != "run"
+            and result.args[0] != "show"
+            and result.args[0] != "replay"
+        ):
+            result.error = "unknown autotransformers subcommand: " + result.args[0]
     if result.command == "autorl":
         if len(result.args) == 0:
             result.error = "autorl requires: list-envs|run|show|replay"
