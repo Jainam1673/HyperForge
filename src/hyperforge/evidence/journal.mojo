@@ -26,6 +26,7 @@ from hyperforge.evidence.record import (
     RECORD_AUTOLLM,
     RECORD_SCIML,
     RECORD_SCIDL,
+    RECORD_SCIRL,
     parse_record,
     serialize_record,
 )
@@ -191,6 +192,13 @@ def required_fields_present(record: JournalRecord) raises -> Bool:
         required.append("learned_rmse")
         required.append("linear_rmse")
         required.append("fd_rmse")
+        required.append("state")
+    elif record.kind == RECORD_SCIRL:
+        required.append("episodes")
+        required.append("learned_mean")
+        required.append("random_mean")
+        required.append("heuristic_mean")
+        required.append("improvement_random")
         required.append("state")
     else:
         return False

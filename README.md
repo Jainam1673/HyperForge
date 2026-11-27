@@ -5,12 +5,12 @@ a command-line application only: no frontend, server, database, or Python
 application logic. MAX is a platform dependency used only where its documented
 interfaces are needed; it is not required for the core CLI.
 
-Current milestone: **M13 — SciDL**.
-M00–M12 (CLI, evidence, regression AutoML, adaptive optimization, SINN,
+Current milestone: **M14 — SciRL**.
+M00–M13 (CLI, evidence, regression AutoML, adaptive optimization, SINN,
 SciTransformers, GPU proof, reciprocal discovery, AutoDL, AutoRL,
-AutoTransformers, AutoLLM substrate, SciML) are complete. M13 adds supervised
-scientific field regression with held-out parameter ranges and honest comparison
-against linear and finite-difference baselines. Local MAX inference remains
+AutoTransformers, AutoLLM substrate, SciML, SciDL) are complete. M14 adds
+scientific solver-selection decisions in a validated Poisson simulator with
+held-out conditions and repeated seeds. Local MAX inference remains
 `BLOCKED_BY_MAX_INTERFACE` rather than faked.
 
 ## Requirements
@@ -24,7 +24,7 @@ against linear and finite-difference baselines. Local MAX inference remains
 ```bash
 pixi install
 pixi run build       # produces ./hyperforge
-pixi run test             # 93 unit tests
+pixi run test             # 97 unit tests
 pixi run test-cli         # build + 24 CLI integration checks
 pixi run test-experiment  # 17 experiment/journal checks
 pixi run test-automl      # 21 AutoML integration checks
@@ -39,6 +39,7 @@ pixi run test-autotrans   # 14 AutoTransformers checks
 pixi run test-autollm     # 16 AutoLLM substrate checks
 pixi run test-sciml       # 16 SciML checks
 pixi run test-scidl       # 9 SciDL checks
+pixi run test-scirl       # 12 SciRL checks
 ```
 
 On pre-Turing NVIDIA devices, source `scripts/gpu-env.sh` before invoking GPU
@@ -91,6 +92,8 @@ commands directly so a compatible `ptxas` is selected. All pixi tasks use
 ./hyperforge sciml show <id>
 ./hyperforge scidl run [seed]
 ./hyperforge scidl show <id>
+./hyperforge scirl run [episodes] [eval-episodes]
+./hyperforge scirl show <id>
 ```
 
 `doctor` reports toolchain pin, MAX CLI, accelerator visibility, workspace

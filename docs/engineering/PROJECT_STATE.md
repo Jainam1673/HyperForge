@@ -98,4 +98,7 @@ SciDL: M13, VERIFIED (4 unit tests, 9 integration checks,
 `SCIDL_VALIDATION.md`). Supervised field MLP trained on lower PDE parameters and
 evaluated on unseen higher parameters; linear and FD baselines outperform it.
 M13 commit: `83b9f320f935db6a008e941f42365c6da8385fd8`.
+SciRL: M14, VERIFIED (4 unit tests, 12 integration checks,
+`SCIRL_VALIDATION.md`). Learned solver-selection policy beats random and
+finest-mesh heuristic on held-out conditions. M14 commit pending.
 GitHub MCP is working (verified with `get_me` and `opencode mcp list`).

@@ -292,3 +292,18 @@ M12 implementation and evidence are **VERIFIED** and pushed as commit
 
 M13 implementation and evidence are **VERIFIED** and pushed as commit
 `83b9f320f935db6a008e941f42365c6da8385fd8`.
+
+## M14 — SciRL
+
+| Acceptance criterion | Evidence | Result |
+|---|---|---|
+| Bounded reproducible scientific simulator | analytic Poisson field, safe actions, termination tests | PASS |
+| Explicit reward and safe action constraints | cost+error reward; invalid action rejected | PASS |
+| Held-out environment conditions | offset k grid with both frequency bands | PASS |
+| Random and domain-heuristic baselines | both evaluated on unseen seeds | PASS |
+| Repeated seeds and variability | 5 seeds, mean/std/CI | PASS |
+| Evaluation separate from training | greedy, no updates; test asserts fixed policy | PASS |
+| Learned policy improves over baselines | +0.00812 random, +0.00693 heuristic | PASS |
+
+M14 implementation and evidence are **VERIFIED**; commit/push is the remaining
+workflow action.

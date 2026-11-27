@@ -25,6 +25,7 @@ comptime RECORD_AUTOTRANS = "autotrans"
 comptime RECORD_AUTOLLM = "autollm"
 comptime RECORD_SCIML = "sciml"
 comptime RECORD_SCIDL = "scidl"
+comptime RECORD_SCIRL = "scirl"
 
 
 struct Field:

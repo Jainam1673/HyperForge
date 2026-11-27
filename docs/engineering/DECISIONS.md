@@ -34,6 +34,14 @@ explicitly typed `Optional` is used. `len(String)` is replaced by
 logic is implemented in shell. This follows the directive's allowance for
 small build/test automation.
 
+## D034 — SciRL validates the simulator before learning
+
+The Poisson decision simulator is checked against the analytic solution, and
+forcing frequencies are chosen to avoid mesh aliasing that could fabricate zero
+error. Training and held-out condition sets both cover every observable state
+(frequency band) while using disjoint parameter values, preventing untrained
+states from dominating evaluation.
+
 ## D033 — SciDL reports underperformance honestly
 
 The supervised MLP was evaluated on a harder held-out parameter range and

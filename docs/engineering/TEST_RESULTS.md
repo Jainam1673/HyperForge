@@ -224,6 +224,20 @@ edit was also found by the full suite and fixed. Full suite: 89 unit tests and
 A test assumed `u(0.5;1)=0.25`; the analytic value is `1/pi^2`, and the test was
 corrected. Full suite: 93 unit tests and 230 integration checks pass.
 
+## M14 results
+
+| Command | Outcome |
+|---|---|
+| `pixi run bash scripts/mojo.sh run -I src tests/test_m14.mojo` | 4 tests pass |
+| `pixi run test-scirl` | `scirl integration: 12 passed, 0 failed` |
+| `scirl run 40 10` | learned -0.01421, random -0.02233, heuristic -0.02114 |
+
+Two simulator defects were found: `m=6` aliased to zero forcing on the `n=2`
+mesh, and training originally covered only the smooth frequency band while
+held-out conditions covered only the high band, leaving one set of Q-states
+untrained. Both were fixed and are covered by tests. Full suite: 97 unit tests
+and 242 integration checks pass.
+
 ## Environment limitation
 
 A fresh `pixi install --frozen` into `/tmp/opencode/cleanhf3` failed with

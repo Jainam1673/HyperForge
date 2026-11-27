@@ -47,6 +47,7 @@ from hyperforge.cli.sciml_cmd import (
     show_result as sciml_show,
 )
 from hyperforge.cli.scidl_cmd import run_scidl, show_scidl
+from hyperforge.cli.scirl_cmd import run_scirl, show_scirl
 from hyperforge.core.exit_codes import EXIT_OK, EXIT_USAGE, EXIT_INTERNAL
 
 
@@ -244,6 +245,20 @@ def main() raises:
             code = run_scidl(".", seed)
         elif sd[0] == "show":
             code = show_scidl(".", sd[1])
+        else:
+            code = EXIT_USAGE
+    elif parsed.command == "scirl":
+        ref rl = parsed.args
+        if rl[0] == "run":
+            var episodes = 40
+            var evaluation_episodes = 10
+            if len(rl) >= 2:
+                episodes = Int(rl[1])
+            if len(rl) >= 3:
+                evaluation_episodes = Int(rl[2])
+            code = run_scirl(".", episodes, evaluation_episodes)
+        elif rl[0] == "show":
+            code = show_scirl(".", rl[1])
         else:
             code = EXIT_USAGE
     else:
