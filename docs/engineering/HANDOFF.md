@@ -2,7 +2,8 @@
 
 ## Current state
 
-- M00–M14 are VERIFIED. M14 commit/push is the remaining workflow action.
+- M00–M14 are VERIFIED and pushed. M14 commit:
+  `254a587bfad159b4bfd5defce9dc12b18c820554`.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
 - Tests: `pixi run test` → 97 unit tests; integration totals
@@ -33,9 +34,8 @@ evidence/journal.mojo, evidence/record.mojo (scirl record type)
 
 ## Next exact actions
 
-1. Commit and push M14 as its own milestone.
-2. Re-read the three authoritative documents (required after each milestone).
-3. Next: SciLLM/SciGenAI remain blocked by MAX inference; viable options are
+1. Re-read the three authoritative documents (required after each milestone).
+2. Next: SciLLM/SciGenAI remain blocked by MAX inference; viable options are
    SciML extensions/operator learning, controlled agentic improvement, or
    system hardening. Do not register a command without a real execution path.
 

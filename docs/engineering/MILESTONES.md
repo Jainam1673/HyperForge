@@ -305,5 +305,5 @@ M13 implementation and evidence are **VERIFIED** and pushed as commit
 | Evaluation separate from training | greedy, no updates; test asserts fixed policy | PASS |
 | Learned policy improves over baselines | +0.00812 random, +0.00693 heuristic | PASS |
 
-M14 implementation and evidence are **VERIFIED**; commit/push is the remaining
-workflow action.
+M14 implementation and evidence are **VERIFIED** and pushed as commit
+`254a587bfad159b4bfd5defce9dc12b18c820554`.

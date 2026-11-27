@@ -100,5 +100,5 @@ evaluated on unseen higher parameters; linear and FD baselines outperform it.
 M13 commit: `83b9f320f935db6a008e941f42365c6da8385fd8`.
 SciRL: M14, VERIFIED (4 unit tests, 12 integration checks,
 `SCIRL_VALIDATION.md`). Learned solver-selection policy beats random and
-finest-mesh heuristic on held-out conditions. M14 commit pending.
+finest-mesh heuristic on held-out conditions. M14 commit: `254a587bfad159b4bfd5defce9dc12b18c820554`.
 GitHub MCP is working (verified with `get_me` and `opencode mcp list`).
