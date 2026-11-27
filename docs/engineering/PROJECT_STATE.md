@@ -115,5 +115,5 @@ checks, `META_ECONOMY.md`). Matched-budget allocation policies and labeled
 causal evidence ledger; coupling remains hypothesized. M18 commit: `8b2b6089591dff85364c73b67b366d657dc93b51`.
 Joint AI×compute benchmark: M19, VERIFIED (5 unit tests, 21 integration
 checks, `JOINT_BENCHMARK.md`). Nine matched-budget strategies over real RMSE and
-GPU latency; joint led mean discoveries on a small fixture. M19 commit pending."
+GPU latency; joint led mean discoveries on a small fixture. M19 commit: `2b912a94c4b88b7c970b4326e9bdd34d8fc8f513`."
 GitHub MCP is working (verified with `get_me` and `opencode mcp list`).

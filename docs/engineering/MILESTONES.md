@@ -385,5 +385,5 @@ M18 implementation and evidence are **VERIFIED** and pushed as commit
 | No duplicate-config discoveries | `contains_id` gate; fixed ≤2 discoveries | PASS |
 | Causal claim from small fixture | explicitly rejected in report | PASS |
 
-M19 implementation and evidence are **VERIFIED**; commit/push is the remaining
-workflow action."
+M19 implementation and evidence are **VERIFIED** and pushed as commit
+`2b912a94c4b88b7c970b4326e9bdd34d8fc8f513`."
