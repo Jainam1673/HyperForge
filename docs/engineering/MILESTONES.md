@@ -404,5 +404,5 @@ M19 implementation and evidence are **VERIFIED** and pushed as commit
 | Resource ceilings | trial/depth/wall/byte ceilings tested | PASS |
 | Unbounded self-modification | explicitly absent; evaluator unreachable | PASS |
 
-M20 implementation and evidence are **VERIFIED**; commit/push is the remaining
-workflow action.""
+M20 implementation and evidence are **VERIFIED** and pushed as commit
+`c6933eb00f0d7b8362b665b3f08f629886bab628`.""

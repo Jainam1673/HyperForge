@@ -2,7 +2,8 @@
 
 ## Current state
 
-- M00–M20 are VERIFIED. M20 commit/push is the remaining workflow action.
+- M00–M20 are VERIFIED and pushed. M20 commit:
+  `c6933eb00f0d7b8362b665b3f08f629886bab628`.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
 - Tests: `pixi run test` → 120 unit tests; integration totals
@@ -35,9 +36,8 @@ evidence/journal.mojo, evidence/record.mojo (rsi_baseline, rsi_protocol, rsi_dec
 
 ## Next exact actions
 
-1. Commit and push M20 as its own milestone.
-2. Re-read the three authoritative documents (required after each milestone).
-3. Next: M21 system-wide hardening, documentation, release packaging, and
+1. Re-read the three authoritative documents (required after each milestone).
+2. Next: M21 system-wide hardening, documentation, release packaging, and
    comprehensive verification.
 
 ## Resume commands
