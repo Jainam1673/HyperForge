@@ -420,6 +420,7 @@ M20 implementation and evidence are **VERIFIED** and pushed as commit
 | Honest limits (atomic writes, Ctrl-C, MAX inference) | `RELEASE.md` | PASS |
 | Full comprehensive verification | 123 unit + 348 integration checks | PASS |
 
-M21 implementation and evidence are **VERIFIED**; commit/push is the remaining
-workflow action. This closes the roadmap milestone sequence; further work is
-incremental expansion from the documented capability matrix."""
+M21 implementation and evidence are **VERIFIED** and pushed as commit
+`2614b54234204a379fc8eba9fdee5f4f52c3eecf`. This closes the roadmap milestone
+sequence; further work is incremental expansion from the documented capability
+matrix."""

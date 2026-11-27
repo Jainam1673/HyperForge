@@ -2,7 +2,8 @@
 
 ## Current state
 
-- M00–M21 are VERIFIED. M21 commit/push is the remaining workflow action.
+- M00–M21 are VERIFIED and pushed. M21 commit:
+  `2614b54234204a379fc8eba9fdee5f4f52c3eecf`.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
 - Final verification: `pixi run test` → 123 unit tests; 22 integration suites →
@@ -34,9 +35,8 @@ src/hyperforge/core/version.mojo, pixi.toml, README.md (version/tasks)
 
 ## Next exact actions
 
-1. Commit and push M21 as its own milestone.
-2. Re-read the three authoritative documents (required after each milestone).
-3. Work from `CAPABILITY_MATRIX.md`: only expand a PARTIAL/BLOCKED item after its
+1. Re-read the three authoritative documents (required after each milestone).
+2. Work from `CAPABILITY_MATRIX.md`: only expand a PARTIAL/BLOCKED item after its
    prerequisite is verified (notably local MAX inference before SciLLM/SciGenAI).
 
 ## Resume commands
