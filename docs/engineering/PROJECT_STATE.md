@@ -89,5 +89,5 @@ measured by execution; random found a more accurate but slower config. No MAX
 inference claim. M10 commit: `20c0454ccf1d56bb93730aeeb2470d0059199e43`.
 AutoLLM substrate: M11, VERIFIED offline core (4 unit tests, 16 integration
 checks, `AUTOLLM_VALIDATION.md`). Local MAX inference is BLOCKED_BY_MAX_INTERFACE
-with no fabricated responses; no training implied. M11 commit pending.
+with no fabricated responses; no training implied. M11 commit: `ecbc58104e43ee1cd3243917a2ca4a544cbb8081`.
 GitHub MCP is working (verified with `get_me` and `opencode mcp list`).

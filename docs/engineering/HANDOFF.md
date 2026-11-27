@@ -2,8 +2,8 @@
 
 ## Current state
 
-- M00–M10 are VERIFIED; M11 offline core is VERIFIED. M11 commit/push is the
-  remaining workflow action.
+- M00–M10 and M11 offline core are VERIFIED and pushed. M11 commit:
+  `ecbc58104e43ee1cd3243917a2ca4a544cbb8081`.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
 - Tests: `pixi run test` → 85 unit tests; integration totals
@@ -36,9 +36,8 @@ evidence/journal.mojo, evidence/record.mojo (autollm record type)
 
 ## Next exact actions
 
-1. Commit and push M11 as its own milestone.
-2. Re-read the three authoritative documents (required after each milestone).
-3. Next: either establish and validate a documented native Mojo/MAX inference
+1. Re-read the three authoritative documents (required after each milestone).
+2. Next: either establish and validate a documented native Mojo/MAX inference
    boundary to unblock AutoLLM/AutoGenAI, or move to SciML/SciDL/SciRL, which
    do not require model serving. Do not claim AutoLLM inference until the
    blocker is removed.

@@ -260,6 +260,6 @@ M10 implementation and evidence are **VERIFIED** and pushed as commit
 | Local MAX inference validated for a user model | no native Mojo boundary and no compatible artifact | BLOCKED_BY_MAX_INTERFACE |
 | Latency/throughput capture | requires a backend | BLOCKED |
 
-M11 offline core is **VERIFIED**; the inference acceptance criterion remains
-**BLOCKED_BY_MAX_INTERFACE** and is documented rather than faked. Commit/push
-is the remaining workflow action.
+M11 offline core is **VERIFIED** and pushed as commit
+`ecbc58104e43ee1cd3243917a2ca4a544cbb8081`; the inference acceptance criterion
+remains **BLOCKED_BY_MAX_INTERFACE** and is documented rather than faked.
