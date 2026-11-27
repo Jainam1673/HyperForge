@@ -93,5 +93,5 @@ with no fabricated responses; no training implied. M11 commit: `ecbc58104e43ee1c
 SciML: M12, VERIFIED (4 unit tests, 16 integration checks,
 `SCIML_VALIDATION.md`). Forward FD solver, inverse parameter identification,
 hybrid correction, and data-only baseline evaluated on held-out points.
-M12 commit pending.
+M12 commit: `9122944002c24f7a657b5875c3f9398587760fb3`.
 GitHub MCP is working (verified with `get_me` and `opencode mcp list`).

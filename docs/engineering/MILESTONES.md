@@ -276,5 +276,5 @@ remains **BLOCKED_BY_MAX_INTERFACE** and is documented rather than faked.
 | Variability reported | parameter std 0.03698 across noise seeds | PASS |
 | Broader inverse methods / operator learning | DEFERRED | DEFERRED |
 
-M12 implementation and evidence are **VERIFIED**; commit/push is the remaining
-workflow action.
+M12 implementation and evidence are **VERIFIED** and pushed as commit
+`9122944002c24f7a657b5875c3f9398587760fb3`.

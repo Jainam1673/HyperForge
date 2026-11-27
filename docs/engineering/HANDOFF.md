@@ -2,7 +2,8 @@
 
 ## Current state
 
-- M00–M12 are VERIFIED. M12 commit/push is the remaining workflow action.
+- M00–M12 are VERIFIED and pushed. M12 commit:
+  `9122944002c24f7a657b5875c3f9398587760fb3`.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
 - Tests: `pixi run test` → 89 unit tests; integration totals
@@ -33,9 +34,8 @@ evidence/journal.mojo, evidence/record.mojo (sciml record type)
 
 ## Next exact actions
 
-1. Commit and push M12 as its own milestone.
-2. Re-read the three authoritative documents (required after each milestone).
-3. Next family: SciDL or SciRL (both avoid model serving), or close AutoLLM's
+1. Re-read the three authoritative documents (required after each milestone).
+2. Next family: SciDL or SciRL (both avoid model serving), or close AutoLLM's
    MAX-inference blocker if a validated native boundary becomes available.
 
 ## Resume commands
