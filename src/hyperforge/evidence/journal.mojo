@@ -33,6 +33,9 @@ from hyperforge.evidence.record import (
     RECORD_META_ECONOMY,
     RECORD_CAUSAL_EDGE,
     RECORD_JOINT_OUTCOME,
+    RECORD_RSI_BASELINE,
+    RECORD_RSI_PROTOCOL,
+    RECORD_RSI_DECISION,
     parse_record,
     serialize_record,
 )
@@ -251,6 +254,36 @@ def required_fields_present(record: JournalRecord) raises -> Bool:
         required.append("ai_evaluations")
         required.append("compute_evaluations")
         required.append("discoveries")
+    elif record.kind == RECORD_RSI_BASELINE:
+        required.append("schema")
+        required.append("canonical")
+        required.append("model_kind")
+        required.append("iterations")
+        required.append("regularization")
+        required.append("k")
+        required.append("checksum")
+    elif record.kind == RECORD_RSI_PROTOCOL:
+        required.append("schema")
+        required.append("canonical")
+        required.append("checksum")
+        required.append("min_relative_rmse_gain")
+        required.append("max_test_rmse_regression")
+        required.append("max_trials")
+        required.append("max_wall_seconds")
+        required.append("max_recursion_depth")
+        required.append("max_candidate_bytes")
+    elif record.kind == RECORD_RSI_DECISION:
+        required.append("candidate_id")
+        required.append("decision")
+        required.append("candidate_config")
+        required.append("validation_rmse")
+        required.append("test_rmse")
+        required.append("baseline_validation_rmse")
+        required.append("baseline_test_rmse")
+        required.append("reason")
+        required.append("authorized")
+        required.append("baseline_checksum")
+        required.append("protocol_checksum")
     else:
         return False
     for key in required:

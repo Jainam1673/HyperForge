@@ -59,6 +59,9 @@ hyperforge meta run [budget] [seed]
 hyperforge meta graph
 hyperforge joint run [budget] [seed...]
 hyperforge joint show
+hyperforge rsi run [trials] [--apply]
+hyperforge rsi show
+hyperforge rsi rollback [--apply]
 ```
 
 `--help`/`-h` and `--version`/`-V` take precedence over other arguments.
@@ -72,8 +75,9 @@ and require it to be initialized with `hyperforge init`.
 | Command | Behavior | Exit codes |
 |---|---|---|
 | `--help`, `-h` | Print help, including implemented vs planned commands | 0 |
-| `--version`, `-V` | Print `hyperforge 0.1.0 (M19)` | 0 |
+| `--version`, `-V` | Print `hyperforge 0.1.0 (M20)` | 0 |
 | `--gpu` (with `doctor`) | Run the explicit GPU kernel check | 0, 1, 3 |
+| `--apply` (with `rsi`) | Authorize acceptance or rollback | 0, 1, 2 |
 | `doctor [--json]` | Print separate capability probes; human or versioned JSON | 0, 3 |
 | `init <path>` | Create `hyperforge.toml`, `experiments/`, `artifacts/`, `logs/` | 0, 1, 2 |
 | `experiment create` | Write config artifact + journal records; print stable ID | 0, 1, 2 |
@@ -102,6 +106,9 @@ and require it to be initialized with `hyperforge init`.
 | `meta graph` | List causal evidence edges | 0, 1, 2 |
 | `joint run` | Compare joint AI×compute search with ablations | 0, 1, 2, 3 |
 | `joint show` | List recorded joint outcomes | 0, 1, 2 |
+| `rsi run` | Bounded config-only RSI loop | 0, 1, 2 |
+| `rsi show` | Inspect protected records and decisions | 0, 1, 2 |
+| `rsi rollback` | Restore the protected baseline config | 0, 1, 2 |
 | `benchmark kernel` | Benchmark the GPU vector-add kernel with medians | 0, 1, 3 |
 | `discover run` | Matched-budget reciprocal AI/compute comparison | 0, 1, 2, 3 |
 | `autodl run` | Train and compare MLP architecture searches | 0, 1, 2 |

@@ -20,6 +20,7 @@ struct CliArgs:
     var args: List[String]
     var json: Bool
     var gpu: Bool
+    var apply: Bool
     var help: Bool
     var version: Bool
     var error: String
@@ -32,6 +33,7 @@ struct CliArgs:
         self.args = List[String]()
         self.json = False
         self.gpu = False
+        self.apply = False
         self.help = False
         self.version = False
         self.error = ""
@@ -57,6 +59,8 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             result.json = True
         elif token == "--gpu":
             result.gpu = True
+        elif token == "--apply":
+            result.apply = True
         elif token == "doctor":
             if result.command != "":
                 result.error = "unexpected command: " + token
@@ -92,6 +96,7 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             or token == "systems"
             or token == "meta"
             or token == "joint"
+            or token == "rsi"
         ):
             result.command = token
         elif token.startswith("-"):
@@ -117,6 +122,7 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             or result.command == "systems"
             or result.command == "meta"
             or result.command == "joint"
+            or result.command == "rsi"
         ):
             result.args.append(token)
         elif result.command == "init" and result.target == "":
@@ -200,6 +206,28 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
         or result.args[0] != "kernel"
     ):
         result.error = "usage: hyperforge benchmark kernel [name] [size] [repetitions]"
+    if result.apply and result.command != "rsi":
+        result.error = "--apply is only valid with 'rsi run|rollback'"
+    if result.command == "rsi":
+        if len(result.args) == 0:
+            result.error = "rsi requires: run|show|rollback"
+        elif result.args[0] == "run" or result.args[0] == "rollback":
+            if len(result.args) > 2:
+                result.error = "usage: hyperforge rsi run [trials] [--apply]"
+            elif len(result.args) == 2:
+                try:
+                    _ = Int(result.args[1])
+                except e:
+                    _ = e
+                    result.error = "rsi trials must be an integer"
+        elif result.args[0] == "show" and len(result.args) != 1:
+            result.error = "usage: hyperforge rsi show"
+        elif (
+            result.args[0] != "run"
+            and result.args[0] != "show"
+            and result.args[0] != "rollback"
+        ):
+            result.error = "unknown rsi subcommand: " + result.args[0]
     if result.command == "joint":
         if len(result.args) == 0:
             result.error = "joint requires: run|show"

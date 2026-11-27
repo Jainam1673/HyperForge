@@ -56,6 +56,7 @@ from hyperforge.cli.looper_cmd import run_looper, show_looper
 from hyperforge.cli.systems_cmd import run_systems, show_systems
 from hyperforge.cli.meta_cmd import run_meta, show_graph
 from hyperforge.cli.joint_cmd import run_joint_benchmark, show_joint
+from hyperforge.cli.rsi_cmd import run_rsi_cmd, show_rsi, rollback_rsi, DEFAULT_TRIALS
 from hyperforge.core.exit_codes import EXIT_OK, EXIT_USAGE, EXIT_INTERNAL
 
 
@@ -337,6 +338,19 @@ def main() raises:
             code = run_joint_benchmark(".", budget, seeds)
         elif jo[0] == "show":
             code = show_joint(".")
+        else:
+            code = EXIT_USAGE
+    elif parsed.command == "rsi":
+        ref rs = parsed.args
+        var trials = DEFAULT_TRIALS
+        if len(rs) >= 2:
+            trials = Int(rs[1])
+        if rs[0] == "run":
+            code = run_rsi_cmd(".", trials, parsed.apply)
+        elif rs[0] == "show":
+            code = show_rsi(".")
+        elif rs[0] == "rollback":
+            code = rollback_rsi(".", parsed.apply)
         else:
             code = EXIT_USAGE
     else:

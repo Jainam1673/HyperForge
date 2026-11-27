@@ -34,6 +34,14 @@ explicitly typed `Optional` is used. `len(String)` is replaced by
 logic is implemented in shell. This follows the directive's allowance for
 small build/test automation.
 
+## D040 — RSI candidates are config-only and gated by --apply
+
+The RSI loop proposes hyperparameter values, never code. The baseline and
+evaluator protocol are write-once checksummed records with no candidate-facing
+mutation path. A protected holdout and an independent verifier gate acceptance;
+without `--apply` all passing candidates are deferred. This implements the
+control structure of RSI without claiming autonomous code rewriting.
+
 ## D039 — Joint benchmark normalizes incommensurable objectives
 
 RMSE and latency gains are normalized by each side's own first observation

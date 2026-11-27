@@ -8,7 +8,7 @@ version = "0.1.0"
 [tasks]
 build = "bash scripts/mojo.sh build -I src src/main.mojo -o hyperforge"
 run = "bash scripts/mojo.sh run -I src src/main.mojo"
-test = "bash scripts/mojo.sh run -I src tests/test_cli.mojo && bash scripts/mojo.sh run -I src tests/test_m01.mojo && bash scripts/mojo.sh run -I src tests/test_m02.mojo && bash scripts/mojo.sh run -I src tests/test_m03.mojo && bash scripts/mojo.sh run -I src tests/test_m04.mojo && bash scripts/mojo.sh run -I src tests/test_m05.mojo && bash scripts/mojo.sh run -I src tests/test_m06.mojo && bash scripts/mojo.sh run -I src tests/test_m07.mojo && bash scripts/mojo.sh run -I src tests/test_m08.mojo && bash scripts/mojo.sh run -I src tests/test_m09.mojo && bash scripts/mojo.sh run -I src tests/test_m10.mojo && bash scripts/mojo.sh run -I src tests/test_m11.mojo && bash scripts/mojo.sh run -I src tests/test_m12.mojo && bash scripts/mojo.sh run -I src tests/test_m13.mojo && bash scripts/mojo.sh run -I src tests/test_m14.mojo && bash scripts/mojo.sh run -I src tests/test_m15.mojo && bash scripts/mojo.sh run -I src tests/test_m16.mojo && bash scripts/mojo.sh run -I src tests/test_m17.mojo && bash scripts/mojo.sh run -I src tests/test_m18.mojo && bash scripts/mojo.sh run -I src tests/test_m19.mojo"
+test = "bash scripts/mojo.sh run -I src tests/test_cli.mojo && bash scripts/mojo.sh run -I src tests/test_m01.mojo && bash scripts/mojo.sh run -I src tests/test_m02.mojo && bash scripts/mojo.sh run -I src tests/test_m03.mojo && bash scripts/mojo.sh run -I src tests/test_m04.mojo && bash scripts/mojo.sh run -I src tests/test_m05.mojo && bash scripts/mojo.sh run -I src tests/test_m06.mojo && bash scripts/mojo.sh run -I src tests/test_m07.mojo && bash scripts/mojo.sh run -I src tests/test_m08.mojo && bash scripts/mojo.sh run -I src tests/test_m09.mojo && bash scripts/mojo.sh run -I src tests/test_m10.mojo && bash scripts/mojo.sh run -I src tests/test_m11.mojo && bash scripts/mojo.sh run -I src tests/test_m12.mojo && bash scripts/mojo.sh run -I src tests/test_m13.mojo && bash scripts/mojo.sh run -I src tests/test_m14.mojo && bash scripts/mojo.sh run -I src tests/test_m15.mojo && bash scripts/mojo.sh run -I src tests/test_m16.mojo && bash scripts/mojo.sh run -I src tests/test_m17.mojo && bash scripts/mojo.sh run -I src tests/test_m18.mojo && bash scripts/mojo.sh run -I src tests/test_m19.mojo && bash scripts/mojo.sh run -I src tests/test_m20.mojo"
 test-cli = "bash tests/integration_cli.sh"
 test-experiment = "bash tests/integration_m01.sh"
 test-automl = "bash tests/integration_m02.sh"
@@ -29,6 +29,7 @@ test-gpu-catalogue = "bash tests/integration_m16.sh"
 test-systems = "bash tests/integration_m17.sh"
 test-meta = "bash tests/integration_m18.sh"
 test-joint = "bash tests/integration_m19.sh"
+test-rsi = "bash tests/integration_m20.sh"
 
 [dependencies]
 mojo = ">=1.2.0,<2"

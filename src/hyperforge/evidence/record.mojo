@@ -32,6 +32,9 @@ comptime RECORD_SYSTEMS_TRIAL = "systems_trial"
 comptime RECORD_META_ECONOMY = "meta_economy"
 comptime RECORD_CAUSAL_EDGE = "causal_edge"
 comptime RECORD_JOINT_OUTCOME = "joint_outcome"
+comptime RECORD_RSI_BASELINE = "rsi_baseline"
+comptime RECORD_RSI_PROTOCOL = "rsi_protocol"
+comptime RECORD_RSI_DECISION = "rsi_decision"
 
 
 struct Field:

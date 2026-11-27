@@ -386,4 +386,23 @@ M18 implementation and evidence are **VERIFIED** and pushed as commit
 | Causal claim from small fixture | explicitly rejected in report | PASS |
 
 M19 implementation and evidence are **VERIFIED** and pushed as commit
-`2b912a94c4b88b7c970b4326e9bdd34d8fc8f513`."
+`2b912a94c4b88b7c970b4326e9bdd34d8fc8f513`.
+
+## M20 — Bounded config-only RSI and evaluator hardening
+
+| Acceptance criterion | Evidence | Result |
+|---|---|---|
+| Protected baseline and evaluator | write-once records, checksum verification | PASS |
+| Written hypothesis and measurable change | `rsi_decision` records with gains | PASS |
+| Isolated candidate proposal | config-only mutation, no code execution | PASS |
+| Unit/property/regression/benchmark discipline | existing suites unchanged; 120 unit tests | PASS |
+| Independent verifier | reverse-traversal RMSE cross-check | PASS |
+| Threshold and holdout comparison | validation screen then protected test set | PASS |
+| Accept/reject/defer/rollback | observed all four decision kinds | PASS |
+| Immutable evidence | append-only decisions with both checksums | PASS |
+| Explicit authorization gate | `--apply` required; misplaced flag rejected | PASS |
+| Resource ceilings | trial/depth/wall/byte ceilings tested | PASS |
+| Unbounded self-modification | explicitly absent; evaluator unreachable | PASS |
+
+M20 implementation and evidence are **VERIFIED**; commit/push is the remaining
+workflow action.""

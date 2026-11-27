@@ -5,13 +5,14 @@ a command-line application only: no frontend, server, database, or Python
 application logic. MAX is a platform dependency used only where its documented
 interfaces are needed; it is not required for the core CLI.
 
-Current milestone: **M19 — joint AI×compute discovery benchmark**.
-M00–M18 (CLI, evidence, regression AutoML, adaptive optimization, SINN,
+Current milestone: **M20 — bounded config-only RSI**.
+M00–M19 (CLI, evidence, regression AutoML, adaptive optimization, SINN,
 SciTransformers, reciprocal discovery, AutoDL, AutoRL, AutoTransformers, AutoLLM
 substrate, SciML, SciDL, SciRL, Scientific Looper, GPU catalogue, DiscoveryGenome
-v2, meta economy and causal graph) are complete. M19 adds a nine-policy joint
-AI×compute benchmark with matched budgets, repeated seeds, and ablations.
-Local MAX inference remains `BLOCKED_BY_MAX_INTERFACE` rather than faked.
+v2, meta economy and causal graph, joint AI×compute benchmark) are complete.
+M20 adds a bounded config-only RSI loop with a protected evaluator, holdout
+gate, independent verifier, `--apply` authorization, and rollback. Local MAX
+inference remains `BLOCKED_BY_MAX_INTERFACE` rather than faked.
 
 ## Requirements
 
@@ -24,7 +25,7 @@ Local MAX inference remains `BLOCKED_BY_MAX_INTERFACE` rather than faked.
 ```bash
 pixi install
 pixi run build       # produces ./hyperforge
-pixi run test             # 116 unit tests
+pixi run test             # 120 unit tests
 pixi run test-cli         # build + 24 CLI integration checks
 pixi run test-experiment  # 17 experiment/journal checks
 pixi run test-automl      # 21 AutoML integration checks
@@ -45,6 +46,7 @@ pixi run test-gpu-catalogue # 15 GPU catalogue checks
 pixi run test-systems     # 11 systems-search checks
 pixi run test-meta        # 14 meta-economy checks
 pixi run test-joint       # 21 joint-benchmark checks
+pixi run test-rsi         # 25 bounded-RSI checks
 ```
 
 On pre-Turing NVIDIA devices, source `scripts/gpu-env.sh` before invoking GPU
@@ -109,6 +111,9 @@ commands directly so a compatible `ptxas` is selected. All pixi tasks use
 ./hyperforge meta graph
 ./hyperforge joint run [budget] [seed...]
 ./hyperforge joint show
+./hyperforge rsi run [trials] [--apply]
+./hyperforge rsi show
+./hyperforge rsi rollback [--apply]
 ```
 
 `doctor` reports toolchain pin, MAX CLI, accelerator visibility, workspace

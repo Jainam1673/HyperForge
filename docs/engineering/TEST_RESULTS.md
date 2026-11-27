@@ -302,6 +302,20 @@ an exploration floor); repeated identical configurations counted latency noise
 as discoveries (now gated by genome ID); and an unused loop index warning.
 Full suite: 116 unit tests and 314 integration checks pass.
 
+## M20 results
+
+| Command | Outcome |
+|---|---|
+| `pixi run bash scripts/mojo.sh run -I src tests/test_m20.mojo` | 4 tests pass |
+| `pixi run test-rsi` | `rsi integration: 25 passed, 0 failed` |
+| `rsi run 12` | 0 accepted, 8 rejected, 4 deferred, AWAITING_AUTHORIZATION |
+| `rsi run 12 --apply` | 4 accepted, 8 rejected, 0 deferred, ACCEPTED |
+
+Two defects were found and fixed during development: the protected protocol
+record lacked the `canonical` field needed for re-read (breaking the second
+run), and RSI journal kinds were unregistered in journal validation. Both were
+corrected and the full 120-unit/339-integration suite passes.
+
 ## Environment limitation
 
 A fresh `pixi install --frozen` into `/tmp/opencode/cleanhf3` failed with
