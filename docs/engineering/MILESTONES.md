@@ -244,5 +244,5 @@ M09 implementation and evidence are **VERIFIED** and pushed as commit
 | Checkpoint/config persistence and replay | artifacts + checksum verification | PASS |
 | Benchmark-based selection, not size assumptions | random config more accurate but ~6x slower | PASS |
 
-M10 implementation and evidence are **VERIFIED**; commit/push is the remaining
-workflow action.
+M10 implementation and evidence are **VERIFIED** and pushed as commit
+`20c0454ccf1d56bb93730aeeb2470d0059199e43`.

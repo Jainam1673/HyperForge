@@ -2,7 +2,8 @@
 
 ## Current state
 
-- M00–M10 are VERIFIED. M10 commit/push is the remaining workflow action.
+- M00–M10 are VERIFIED and pushed. M10 commit:
+  `20c0454ccf1d56bb93730aeeb2470d0059199e43`.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
 - Tests: `pixi run test` → 81 unit tests; integration totals
@@ -33,9 +34,8 @@ evidence/journal.mojo, evidence/record.mojo (autotrans record type)
 
 ## Next exact actions
 
-1. Commit and push M10 as its own milestone.
-2. Re-read the three authoritative documents (required after each milestone).
-3. Next family: AutoLLM through a supported local MAX boundary, with explicit
+1. Re-read the three authoritative documents (required after each milestone).
+2. Next family: AutoLLM through a supported local MAX boundary, with explicit
    local model-artifact discovery, prompt/evaluation versioning, and clear
    UNAVAILABLE status when no compatible model or interface exists. Do not claim
    training or fine-tuning without a validated Mojo/MAX path.

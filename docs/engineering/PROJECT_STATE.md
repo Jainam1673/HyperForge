@@ -86,5 +86,5 @@ M09 commit: `4fb11369fe12f8e01fab27e8a1d54542b9fbe36e`.
 AutoTransformers: M10, VERIFIED (4 unit tests, 14 integration checks,
 `AUTOTRANS_VALIDATION.md`). Configs differ behaviorally; quality and latency are
 measured by execution; random found a more accurate but slower config. No MAX
-inference claim. M10 commit pending.
+inference claim. M10 commit: `20c0454ccf1d56bb93730aeeb2470d0059199e43`.
 GitHub MCP is working (verified with `get_me` and `opencode mcp list`).
