@@ -31,6 +31,7 @@ comptime RECORD_GPU_BENCH = "gpu_bench"
 comptime RECORD_SYSTEMS_TRIAL = "systems_trial"
 comptime RECORD_META_ECONOMY = "meta_economy"
 comptime RECORD_CAUSAL_EDGE = "causal_edge"
+comptime RECORD_JOINT_OUTCOME = "joint_outcome"
 
 
 struct Field:

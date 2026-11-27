@@ -55,6 +55,7 @@ from hyperforge.cli.scirl_cmd import run_scirl, show_scirl
 from hyperforge.cli.looper_cmd import run_looper, show_looper
 from hyperforge.cli.systems_cmd import run_systems, show_systems
 from hyperforge.cli.meta_cmd import run_meta, show_graph
+from hyperforge.cli.joint_cmd import run_joint_benchmark, show_joint
 from hyperforge.core.exit_codes import EXIT_OK, EXIT_USAGE, EXIT_INTERNAL
 
 
@@ -319,6 +320,23 @@ def main() raises:
             code = run_meta(".", budget, seed)
         elif me[0] == "graph":
             code = show_graph(".")
+        else:
+            code = EXIT_USAGE
+    elif parsed.command == "joint":
+        ref jo = parsed.args
+        if jo[0] == "run":
+            var budget = 6
+            var seeds = List[UInt64]()
+            if len(jo) >= 2:
+                budget = Int(jo[1])
+            if len(jo) >= 3:
+                for i in range(2, len(jo)):
+                    seeds.append(UInt64(Int(jo[i])))
+            if len(seeds) == 0:
+                seeds.append(UInt64(42))
+            code = run_joint_benchmark(".", budget, seeds)
+        elif jo[0] == "show":
+            code = show_joint(".")
         else:
             code = EXIT_USAGE
     else:

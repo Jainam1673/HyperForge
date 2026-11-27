@@ -371,3 +371,19 @@ M17 implementation and evidence are **VERIFIED** and pushed as commit
 
 M18 implementation and evidence are **VERIFIED** and pushed as commit
 `8b2b6089591dff85364c73b67b366d657dc93b51`.
+
+## M19 — Joint AI×compute discovery benchmark
+
+| Acceptance criterion | Evidence | Result |
+|---|---|---|
+| A–F strategies compared at matched budget | nine policies in `joint run` | PASS |
+| Both sides alter measured outcomes | RMSE 0.287→1.6e-14; block latency changes | PASS |
+| Ablations remove history/adaptive/meta-policy | three ablation policies | PASS |
+| Repeated seeds | seeds 42/7/123 | PASS |
+| Memory and experiment cost reported | NOT_TESTED memory; matched eval count | PASS |
+| Negative results retained | fixed/ablations underperformed joint; no universal claim | PASS |
+| No duplicate-config discoveries | `contains_id` gate; fixed ≤2 discoveries | PASS |
+| Causal claim from small fixture | explicitly rejected in report | PASS |
+
+M19 implementation and evidence are **VERIFIED**; commit/push is the remaining
+workflow action."

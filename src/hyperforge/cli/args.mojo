@@ -91,6 +91,7 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             or token == "looper"
             or token == "systems"
             or token == "meta"
+            or token == "joint"
         ):
             result.command = token
         elif token.startswith("-"):
@@ -115,6 +116,7 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             or result.command == "looper"
             or result.command == "systems"
             or result.command == "meta"
+            or result.command == "joint"
         ):
             result.args.append(token)
         elif result.command == "init" and result.target == "":
@@ -198,6 +200,22 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
         or result.args[0] != "kernel"
     ):
         result.error = "usage: hyperforge benchmark kernel [name] [size] [repetitions]"
+    if result.command == "joint":
+        if len(result.args) == 0:
+            result.error = "joint requires: run|show"
+        elif result.args[0] == "run":
+            for i in range(1, len(result.args)):
+                var token = result.args[i]
+                try:
+                    _ = Int(token)
+                except e:
+                    _ = e
+                    result.error = "joint run: budget and seeds must be integers"
+                    break
+        elif result.args[0] == "show" and len(result.args) != 1:
+            result.error = "usage: hyperforge joint show"
+        elif result.args[0] != "run" and result.args[0] != "show":
+            result.error = "unknown joint subcommand: " + result.args[0]
     if result.command == "meta":
         if len(result.args) == 0:
             result.error = "meta requires: run|graph"

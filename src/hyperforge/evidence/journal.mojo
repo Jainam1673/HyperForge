@@ -32,6 +32,7 @@ from hyperforge.evidence.record import (
     RECORD_SYSTEMS_TRIAL,
     RECORD_META_ECONOMY,
     RECORD_CAUSAL_EDGE,
+    RECORD_JOINT_OUTCOME,
     parse_record,
     serialize_record,
 )
@@ -241,6 +242,15 @@ def required_fields_present(record: JournalRecord) raises -> Bool:
         required.append("target")
         required.append("relation")
         required.append("evidence")
+    elif record.kind == RECORD_JOINT_OUTCOME:
+        required.append("policy")
+        required.append("seed")
+        required.append("budget")
+        required.append("best_rmse")
+        required.append("best_latency")
+        required.append("ai_evaluations")
+        required.append("compute_evaluations")
+        required.append("discoveries")
     else:
         return False
     for key in required:

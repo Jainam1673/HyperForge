@@ -72,7 +72,7 @@ check_output "gpu_kernel" "doctor gpu probe"
 
 # CPU core must remain intact.
 check_status 0 "version" "$BIN" --version
-check_output "hyperforge 0.1.0 (M18)" "version text"
+check_output "hyperforge 0.1.0 (M19)" "version text"
 check_status 0 "experiment list" "$BIN" experiment list
 check_status 2 "bad hardware" "$BIN" hardware nonsense
 check_status 2 "bad benchmark" "$BIN" benchmark nonsense

@@ -34,6 +34,13 @@ explicitly typed `Optional` is used. `len(String)` is replaced by
 logic is implemented in shell. This follows the directive's allowance for
 small build/test automation.
 
+## D039 — Joint benchmark normalizes incommensurable objectives
+
+RMSE and latency gains are normalized by each side's own first observation
+before comparison, avoiding an arbitrary weighted score. A two-step exploration
+floor ensures both sides are exercised. Repeated genome IDs cannot count as
+discoveries, so latency noise on a fixed configuration is not evidence.
+
 ## D038 — Causal labels require controlled interventions
 
 Hypothesis-to-run edges are labeled `experimentally_supported` only after a

@@ -288,6 +288,20 @@ runs and failed due to timing variance; it now compares deterministic AI-only
 runs. A `meta graph` expectation was corrected to check the graph's own
 honesty note. Full suite: 111 unit tests and 293 integration checks pass.
 
+## M19 results
+
+| Command | Outcome |
+|---|---|
+| `pixi run bash scripts/mojo.sh run -I src tests/test_m19.mojo` | 5 tests pass |
+| `pixi run test-joint` | `joint integration: 21 passed, 0 failed` |
+| `joint run 6 42 7 123` | joint led mean discoveries (4.00) vs fixed 2.00 and ablations 2.67–3.67 |
+
+Three defects were found and fixed during development: raw RMSE/latency gain
+comparison funneled all budget to one side (now normalized relative gains with
+an exploration floor); repeated identical configurations counted latency noise
+as discoveries (now gated by genome ID); and an unused loop index warning.
+Full suite: 116 unit tests and 314 integration checks pass.
+
 ## Environment limitation
 
 A fresh `pixi install --frozen` into `/tmp/opencode/cleanhf3` failed with

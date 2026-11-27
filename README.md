@@ -5,13 +5,13 @@ a command-line application only: no frontend, server, database, or Python
 application logic. MAX is a platform dependency used only where its documented
 interfaces are needed; it is not required for the core CLI.
 
-Current milestone: **M18 — meta economy / causal evidence graph**.
-M00–M17 (CLI, evidence, regression AutoML, adaptive optimization, SINN,
+Current milestone: **M19 — joint AI×compute discovery benchmark**.
+M00–M18 (CLI, evidence, regression AutoML, adaptive optimization, SINN,
 SciTransformers, reciprocal discovery, AutoDL, AutoRL, AutoTransformers, AutoLLM
 substrate, SciML, SciDL, SciRL, Scientific Looper, GPU catalogue, DiscoveryGenome
-v2) are complete. M18 adds matched-budget experiment-allocation policies and a
-causally-labeled evidence graph. Local MAX inference remains
-`BLOCKED_BY_MAX_INTERFACE` rather than faked.
+v2, meta economy and causal graph) are complete. M19 adds a nine-policy joint
+AI×compute benchmark with matched budgets, repeated seeds, and ablations.
+Local MAX inference remains `BLOCKED_BY_MAX_INTERFACE` rather than faked.
 
 ## Requirements
 
@@ -24,7 +24,7 @@ causally-labeled evidence graph. Local MAX inference remains
 ```bash
 pixi install
 pixi run build       # produces ./hyperforge
-pixi run test             # 111 unit tests
+pixi run test             # 116 unit tests
 pixi run test-cli         # build + 24 CLI integration checks
 pixi run test-experiment  # 17 experiment/journal checks
 pixi run test-automl      # 21 AutoML integration checks
@@ -44,6 +44,7 @@ pixi run test-looper      # 11 Scientific Looper checks
 pixi run test-gpu-catalogue # 15 GPU catalogue checks
 pixi run test-systems     # 11 systems-search checks
 pixi run test-meta        # 14 meta-economy checks
+pixi run test-joint       # 21 joint-benchmark checks
 ```
 
 On pre-Turing NVIDIA devices, source `scripts/gpu-env.sh` before invoking GPU
@@ -106,6 +107,8 @@ commands directly so a compatible `ptxas` is selected. All pixi tasks use
 ./hyperforge systems show
 ./hyperforge meta run [budget] [seed]
 ./hyperforge meta graph
+./hyperforge joint run [budget] [seed...]
+./hyperforge joint show
 ```
 
 `doctor` reports toolchain pin, MAX CLI, accelerator visibility, workspace
