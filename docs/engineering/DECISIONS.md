@@ -34,6 +34,13 @@ explicitly typed `Optional` is used. `len(String)` is replaced by
 logic is implemented in shell. This follows the directive's allowance for
 small build/test automation.
 
+## D033 — SciDL reports underperformance honestly
+
+The supervised MLP was evaluated on a harder held-out parameter range and
+underperformed both a domain-specific linear fit and the finite-difference PDE
+solver. The result is recorded rather than tuned away, and the method is
+explicitly distinguished from SINN (no residual loss) and operator learning.
+
 ## D032 — SciML uses explicit operators and conventional references
 
 The inverse problem enters physics through the finite-difference Laplacian and

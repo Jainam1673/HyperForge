@@ -278,3 +278,17 @@ remains **BLOCKED_BY_MAX_INTERFACE** and is documented rather than faked.
 
 M12 implementation and evidence are **VERIFIED** and pushed as commit
 `9122944002c24f7a657b5875c3f9398587760fb3`.
+
+## M13 — SciDL
+
+| Acceptance criterion | Evidence | Result |
+|---|---|---|
+| Validated DL primitives on scientific grid/field data | tape MLP with parameter-node gradients | PASS |
+| Held-out generalization over physical parameters | train k<=1.0, test k>=1.05 | PASS |
+| PDE/numerical baselines | FD solver and fitted linear shape | PASS |
+| Physical metrics and honest comparison | field RMSE and max error reported; MLP worse than baselines | PASS |
+| Reproducibility | fixed seed, deterministic task, 4 tests | PASS |
+| Distinguish from SINN/operator learning | explicit scope in validation doc | PASS |
+
+M13 implementation and evidence are **VERIFIED**; commit/push is the remaining
+workflow action.

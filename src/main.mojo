@@ -46,6 +46,7 @@ from hyperforge.cli.sciml_cmd import (
     solve_problem as sciml_solve,
     show_result as sciml_show,
 )
+from hyperforge.cli.scidl_cmd import run_scidl, show_scidl
 from hyperforge.core.exit_codes import EXIT_OK, EXIT_USAGE, EXIT_INTERNAL
 
 
@@ -232,6 +233,17 @@ def main() raises:
             code = sciml_solve(".", seed)
         elif sa[0] == "show":
             code = sciml_show(".", sa[1])
+        else:
+            code = EXIT_USAGE
+    elif parsed.command == "scidl":
+        ref sd = parsed.args
+        if sd[0] == "run":
+            var seed: UInt64 = 42
+            if len(sd) >= 2:
+                seed = UInt64(Int(sd[1]))
+            code = run_scidl(".", seed)
+        elif sd[0] == "show":
+            code = show_scidl(".", sd[1])
         else:
             code = EXIT_USAGE
     else:

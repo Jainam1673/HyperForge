@@ -6,7 +6,7 @@ for live versions.
 """
 
 comptime VERSION = "0.1.0"
-comptime MILESTONE = "M12"
+comptime MILESTONE = "M13"
 comptime WORKSPACE_SCHEMA = "hyperforge-workspace-v1"
 
 # Pinned versions from pixi.toml/pixi.lock. These are declared facts, not live

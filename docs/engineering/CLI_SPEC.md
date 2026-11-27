@@ -45,6 +45,8 @@ hyperforge autollm status
 hyperforge sciml list-problems
 hyperforge sciml solve [seed]
 hyperforge sciml show <id>
+hyperforge scidl run [seed]
+hyperforge scidl show <id>
 ```
 
 `--help`/`-h` and `--version`/`-V` take precedence over other arguments.
@@ -58,7 +60,7 @@ and require it to be initialized with `hyperforge init`.
 | Command | Behavior | Exit codes |
 |---|---|---|
 | `--help`, `-h` | Print help, including implemented vs planned commands | 0 |
-| `--version`, `-V` | Print `hyperforge 0.1.0 (M12)` | 0 |
+| `--version`, `-V` | Print `hyperforge 0.1.0 (M13)` | 0 |
 | `--gpu` (with `doctor`) | Run the explicit GPU kernel check | 0, 1, 3 |
 | `doctor [--json]` | Print separate capability probes; human or versioned JSON | 0, 3 |
 | `init <path>` | Create `hyperforge.toml`, `experiments/`, `artifacts/`, `logs/` | 0, 1, 2 |
@@ -98,6 +100,8 @@ and require it to be initialized with `hyperforge init`.
 | `sciml list-problems` | List scientific problem registry entries | 0 |
 | `sciml solve` | Identify a PDE parameter from observations | 0, 1, 2 |
 | `sciml show` | Inspect a SciML result | 0, 1, 2 |
+| `scidl run` | Train/evaluate supervised scientific field model | 0, 1, 2 |
+| `scidl show` | Inspect a SciDL result | 0, 1, 2 |
 
 `experiment create` derives three trial seeds from the experiment seed and
 records them. The ID is `exp-` plus a 16-digit FNV-1a fingerprint of

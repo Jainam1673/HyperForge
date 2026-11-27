@@ -5,13 +5,13 @@ a command-line application only: no frontend, server, database, or Python
 application logic. MAX is a platform dependency used only where its documented
 interfaces are needed; it is not required for the core CLI.
 
-Current milestone: **M12 — SciML**.
-M00–M11 (CLI, evidence, regression AutoML, adaptive optimization, SINN,
+Current milestone: **M13 — SciDL**.
+M00–M12 (CLI, evidence, regression AutoML, adaptive optimization, SINN,
 SciTransformers, GPU proof, reciprocal discovery, AutoDL, AutoRL,
-AutoTransformers, AutoLLM substrate) are complete. M12 adds a typed scientific
-problem registry, finite-difference forward solver, inverse parameter
-identification, and held-out comparison against a data-only baseline. Local MAX
-model inference remains `BLOCKED_BY_MAX_INTERFACE` rather than faked.
+AutoTransformers, AutoLLM substrate, SciML) are complete. M13 adds supervised
+scientific field regression with held-out parameter ranges and honest comparison
+against linear and finite-difference baselines. Local MAX inference remains
+`BLOCKED_BY_MAX_INTERFACE` rather than faked.
 
 ## Requirements
 
@@ -24,7 +24,7 @@ model inference remains `BLOCKED_BY_MAX_INTERFACE` rather than faked.
 ```bash
 pixi install
 pixi run build       # produces ./hyperforge
-pixi run test             # 89 unit tests
+pixi run test             # 93 unit tests
 pixi run test-cli         # build + 24 CLI integration checks
 pixi run test-experiment  # 17 experiment/journal checks
 pixi run test-automl      # 21 AutoML integration checks
@@ -38,6 +38,7 @@ pixi run test-autorl      # 17 AutoRL checks
 pixi run test-autotrans   # 14 AutoTransformers checks
 pixi run test-autollm     # 16 AutoLLM substrate checks
 pixi run test-sciml       # 16 SciML checks
+pixi run test-scidl       # 9 SciDL checks
 ```
 
 On pre-Turing NVIDIA devices, source `scripts/gpu-env.sh` before invoking GPU
@@ -88,6 +89,8 @@ commands directly so a compatible `ptxas` is selected. All pixi tasks use
 ./hyperforge sciml list-problems
 ./hyperforge sciml solve [seed]
 ./hyperforge sciml show <id>
+./hyperforge scidl run [seed]
+./hyperforge scidl show <id>
 ```
 
 `doctor` reports toolchain pin, MAX CLI, accelerator visibility, workspace

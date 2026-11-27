@@ -41,6 +41,8 @@ def print_help() raises:
         + "  sciml list-problems     List scientific problem registry entries\n"
         + "  sciml solve [seed]      Identify a PDE parameter from observations\n"
         + "  sciml show <id>         Inspect a SciML result\n"
+        + "  scidl run [seed]        Train and evaluate a scientific field model\n"
+        + "  scidl show <id>         Inspect a SciDL result\n"
         + "  init <path>             Initialize a versioned local workspace\n"
         + "  experiment create <name> [seed]\n"
         + "                          Create a versioned experiment record\n"

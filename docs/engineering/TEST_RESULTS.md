@@ -213,6 +213,17 @@ grid then sampling observations. A missing `Path` import in M11's idempotency
 edit was also found by the full suite and fixed. Full suite: 89 unit tests and
 221 integration checks pass.
 
+## M13 results
+
+| Command | Outcome |
+|---|---|
+| `pixi run bash scripts/mojo.sh run -I src tests/test_m13.mojo` | 4 tests pass |
+| `pixi run test-scidl` | `scidl integration: 9 passed, 0 failed` |
+| `scidl run 42` | train RMSE 0.02322; held-out MLP RMSE 0.08675; linear 7.42e-18; FD 0.00398 |
+
+A test assumed `u(0.5;1)=0.25`; the analytic value is `1/pi^2`, and the test was
+corrected. Full suite: 93 unit tests and 230 integration checks pass.
+
 ## Environment limitation
 
 A fresh `pixi install --frozen` into `/tmp/opencode/cleanhf3` failed with
