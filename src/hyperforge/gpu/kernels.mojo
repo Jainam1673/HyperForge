@@ -76,6 +76,110 @@ def time_vector_add(
     return median(times)
 
 
+def axpy_kernel[LT: TensorLayout](
+    alpha: Float32,
+    a: ImmTileTensor[GPU_DTYPE, LT, ImmUntrackedOrigin],
+    b: ImmTileTensor[GPU_DTYPE, LT, ImmUntrackedOrigin],
+    c: MutTileTensor[GPU_DTYPE, LT, MutUntrackedOrigin],
+    size: Int32,
+):
+    comptime assert a.flat_rank == 1, "axpy expects a 1D tensor"
+    var index = global_idx.x
+    if index < Int(size):
+        c[index] = alpha * a[index] + b[index]
+
+
+def run_vector_axpy[N: Int](
+    mut ctx: DeviceContext, alpha: Float32, repetitions: Int
+) raises -> GPUResult:
+    """AXPY kernel with warm-up, correctness check, and repeated timing."""
+    if N < 1:
+        raise Error("vector size must be positive")
+    comptime layout = row_major[N]()
+    comptime kernel = axpy_kernel[type_of(layout)]
+    var a_buffer = ctx.enqueue_create_buffer[GPU_DTYPE](N)
+    var b_buffer = ctx.enqueue_create_buffer[GPU_DTYPE](N)
+    var c_buffer = ctx.enqueue_create_buffer[GPU_DTYPE](N)
+    a_buffer.enqueue_fill(1.0)
+    b_buffer.enqueue_fill(2.0)
+    var left = List[Float32]()
+    var right = List[Float32]()
+    for _ in range(N):
+        left.append(Float32(1.0))
+        right.append(Float32(2.0))
+    var expected_vector = cpu_vector_axpy(alpha, left, right)
+    var expected = expected_vector[0]
+
+    ctx.enqueue_function[kernel](
+        alpha,
+        TileTensor(a_buffer, layout).as_imm(),
+        TileTensor(b_buffer, layout).as_imm(),
+        TileTensor(c_buffer, layout),
+        Int32(N),
+        grid_dim=ceildiv(N, BLOCK_SIZE),
+        block_dim=BLOCK_SIZE,
+    )
+    ctx.synchronize()
+    var warmup_start = perf_counter()
+    ctx.enqueue_function[kernel](
+        alpha,
+        TileTensor(a_buffer, layout).as_imm(),
+        TileTensor(b_buffer, layout).as_imm(),
+        TileTensor(c_buffer, layout),
+        Int32(N),
+        grid_dim=ceildiv(N, BLOCK_SIZE),
+        block_dim=BLOCK_SIZE,
+    )
+    ctx.synchronize()
+    var warmup_seconds = perf_counter() - warmup_start
+
+    var observed: Float32
+    with c_buffer.map_to_host() as mapped:
+        var view = TileTensor(mapped, layout)
+        observed = view[0]
+    var error = abs_f32(observed - expected)
+
+    var kernel_times = List[Float64]()
+    for _ in range(repetitions):
+        var started = perf_counter()
+        ctx.enqueue_function[kernel](
+            alpha,
+            TileTensor(a_buffer, layout).as_imm(),
+            TileTensor(b_buffer, layout).as_imm(),
+            TileTensor(c_buffer, layout),
+            Int32(N),
+            grid_dim=ceildiv(N, BLOCK_SIZE),
+            block_dim=BLOCK_SIZE,
+        )
+        ctx.synchronize()
+        kernel_times.append(perf_counter() - started)
+    var kernel_median = median(kernel_times)
+    var state = String("PASS")
+    if error > Float32(1e-5):
+        state = "INCORRECT"
+    return GPUResult(
+        N, error, warmup_seconds, kernel_median, kernel_median,
+        Float64(3 * N * 4) / kernel_median, state,
+    )
+
+
+def abs_f32(value: Float32) raises -> Float32:
+    if value < 0.0:
+        return -value
+    return value
+
+
+def cpu_vector_axpy(
+    alpha: Float32, left: List[Float32], right: List[Float32]
+) raises -> List[Float32]:
+    if len(left) != len(right):
+        raise Error("axpy length mismatch")
+    var out = List[Float32]()
+    for i in range(len(left)):
+        out.append(alpha * left[i] + right[i])
+    return out^
+
+
 def cpu_vector_add(left: List[Float32], right: List[Float32]) raises -> List[Float32]:
     if len(left) != len(right):
         raise Error("vector add length mismatch")

@@ -51,6 +51,8 @@ hyperforge scirl run [episodes] [eval-episodes]
 hyperforge scirl show <id>
 hyperforge looper run <hypothesis> [budget]
 hyperforge looper show <run-id>
+hyperforge hardware catalogue
+hyperforge benchmark kernel [name] [size] [repetitions]
 ```
 
 `--help`/`-h` and `--version`/`-V` take precedence over other arguments.
@@ -64,7 +66,7 @@ and require it to be initialized with `hyperforge init`.
 | Command | Behavior | Exit codes |
 |---|---|---|
 | `--help`, `-h` | Print help, including implemented vs planned commands | 0 |
-| `--version`, `-V` | Print `hyperforge 0.1.0 (M15)` | 0 |
+| `--version`, `-V` | Print `hyperforge 0.1.0 (M16)` | 0 |
 | `--gpu` (with `doctor`) | Run the explicit GPU kernel check | 0, 1, 3 |
 | `doctor [--json]` | Print separate capability probes; human or versioned JSON | 0, 3 |
 | `init <path>` | Create `hyperforge.toml`, `experiments/`, `artifacts/`, `logs/` | 0, 1, 2 |
@@ -86,6 +88,8 @@ and require it to be initialized with `hyperforge init`.
 | `sci-transformers show` | Inspect a persisted transformer result | 0, 1, 2 |
 | `sci-transformers predict` | Predict a held-out frame from a checkpoint | 0, 1, 2, 3 |
 | `hardware probe` | Probe accelerator and run a GPU kernel check | 0, 1, 3 |
+| `hardware catalogue` | List catalogued GPU kernels | 0 |
+| `benchmark kernel` | Benchmark a catalogued kernel with medians | 0, 1, 2, 3 |
 | `benchmark kernel` | Benchmark the GPU vector-add kernel with medians | 0, 1, 3 |
 | `discover run` | Matched-budget reciprocal AI/compute comparison | 0, 1, 2, 3 |
 | `autodl run` | Train and compare MLP architecture searches | 0, 1, 2 |

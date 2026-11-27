@@ -34,6 +34,13 @@ explicitly typed `Optional` is used. `len(String)` is replaced by
 logic is implemented in shell. This follows the directive's allowance for
 small build/test automation.
 
+## D036 — GPU catalogue stays reference infrastructure
+
+The catalogue adds a second kernel and a reusable benchmark protocol but does
+not move application workloads to the GPU without profiling evidence. MAX model
+inference remains a separately blocked capability. Performance numbers are
+reported with toolchain pins, warm-up policy, repetitions, and aggregation.
+
 ## D035 — Looper events use monotonic ordering, not invented wall time
 
 The installed Mojo stdlib exposes `perf_counter` but no verified wall-clock or

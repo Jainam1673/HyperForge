@@ -250,6 +250,19 @@ The idempotency check initially ran after transition validation, so replaying an
 already-applied state was rejected; it now runs first and compares the last
 event's target state. Full suite: 101 unit tests and 253 integration checks pass.
 
+## M16 results
+
+| Command | Outcome |
+|---|---|
+| `pixi run bash scripts/mojo.sh run -I src tests/test_m16.mojo` | 3 tests pass |
+| `pixi run test-gpu-catalogue` | `gpu catalogue integration: 15 passed, 0 failed` |
+| `benchmark kernel vector_add 255 3` | zero error, kernel median ~7.1e-6 s, state PASS |
+| `benchmark kernel vector_axpy 1024 3` | zero error, kernel median ~8.9e-6 s, state PASS |
+
+The earlier GPU integration script depended on the old single-kernel text
+format; it was updated to the catalogue dispatch and report naming. Full suite:
+104 unit tests and 268 integration checks pass.
+
 ## Environment limitation
 
 A fresh `pixi install --frozen` into `/tmp/opencode/cleanhf3` failed with

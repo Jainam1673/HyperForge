@@ -323,3 +323,19 @@ M14 implementation and evidence are **VERIFIED** and pushed as commit
 
 M15 implementation and evidence are **VERIFIED** and pushed as commit
 `7b361b2f6246c48fec85441729b1067589a6d016`.
+
+## M16 — GPU kernel catalogue and reproducible performance infrastructure
+
+| Acceptance criterion | Evidence | Result |
+|---|---|---|
+| Kernel catalogue with CPU references | two entries, tested CPU references | PASS |
+| Correctness on hardware within tolerance | zero error at multiple sizes for both kernels | PASS |
+| Edge shapes and bounds | sizes 7, 255, 256, 1024, 4097 | PASS |
+| Warm-up, repetition, median protocol | documented and stored in report header | PASS |
+| Environment capture and artifact hashes | toolchain pins, repetition policy, checksum | PASS |
+| No performance claim without protocol | device-specific numbers with full context | PASS |
+| Application kernels moved to GPU | DEFERRED pending profiling evidence | DEFERRED |
+| MAX model inference adapter | BLOCKED_BY_MAX_INTERFACE; not claimed | BLOCKED |
+
+M16 implementation and evidence are **VERIFIED**; commit/push is the remaining
+workflow action.

@@ -184,9 +184,16 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
     ):
         result.error = "--gpu is only valid with 'doctor' or 'hardware probe'"
     if result.command == "hardware" and (
-        len(result.args) != 1 or result.args[0] != "probe"
+        len(result.args) != 1
+        or (result.args[0] != "probe" and result.args[0] != "catalogue")
     ):
-        result.error = "usage: hyperforge hardware probe"
+        result.error = "usage: hyperforge hardware probe|catalogue"
+    if result.command == "benchmark" and (
+        len(result.args) < 1
+        or len(result.args) > 4
+        or result.args[0] != "kernel"
+    ):
+        result.error = "usage: hyperforge benchmark kernel [name] [size] [repetitions]"
     if result.command == "looper":
         if len(result.args) == 0:
             result.error = "looper requires: run|show"
@@ -302,10 +309,6 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             result.error = "unknown discover subcommand: " + result.args[0]
         elif len(result.args) < 1 or len(result.args) > 3:
             result.error = "usage: hyperforge discover run [budget] [seed]"
-    if result.command == "benchmark" and (
-        len(result.args) != 1 or result.args[0] != "kernel"
-    ):
-        result.error = "usage: hyperforge benchmark kernel"
     if result.json and not machine_ok:
         result.error = "--json is only valid with 'doctor' or 'experiment list|show'"
 

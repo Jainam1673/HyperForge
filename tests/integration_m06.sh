@@ -48,19 +48,19 @@ mkdir -p "$TMPD/workspace/benchmarks"
 check_status 0 "hardware probe" "$BIN" hardware probe
 check_output "gpu_kernel:       PASS" "kernel status"
 check_output "max_abs_error:    0.0" "numeric correctness"
-check_output "gpu_path:" "executed on device"
+check_output "gpu_kernel:" "executed on device"
 
-check_status 0 "benchmark" "$BIN" benchmark kernel
-check_output "size=7 " "edge size 7"
-check_output "size=4097 " "non-multiple block size"
-check_output "state=PASS" "all benchmark states"
+check_status 0 "benchmark tiny" "$BIN" benchmark kernel vector_add 7 3
+check_output "state=PASS" "edge size 7"
+check_status 0 "benchmark large" "$BIN" benchmark kernel vector_add 4097 3
+check_output "state=PASS" "non-multiple block size"
 if grep -q 'report: ' "$TMPD/stdout"; then
   pass=$((pass + 1))
 else
   echo "FAIL [report]: no benchmark report path"
   fail=$((fail + 1))
 fi
-if [ -f "$TMPD/workspace/benchmarks/gpu-vector-add.txt" ]; then
+if [ -f "$TMPD/workspace/benchmarks/gpu-vector_add-4097.txt" ]; then
   pass=$((pass + 1))
 else
   echo "FAIL [report]: benchmark report missing"
@@ -72,7 +72,7 @@ check_output "gpu_kernel" "doctor gpu probe"
 
 # CPU core must remain intact.
 check_status 0 "version" "$BIN" --version
-check_output "hyperforge 0.1.0 (M15)" "version text"
+check_output "hyperforge 0.1.0 (M16)" "version text"
 check_status 0 "experiment list" "$BIN" experiment list
 check_status 2 "bad hardware" "$BIN" hardware nonsense
 check_status 2 "bad benchmark" "$BIN" benchmark nonsense

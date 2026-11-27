@@ -28,6 +28,7 @@ from hyperforge.evidence.record import (
     RECORD_SCIDL,
     RECORD_SCIRL,
     RECORD_LOOPER,
+    RECORD_GPU_BENCH,
     parse_record,
     serialize_record,
 )
@@ -209,6 +210,13 @@ def required_fields_present(record: JournalRecord) raises -> Bool:
         required.append("actor")
         required.append("reason")
         required.append("final_state")
+    elif record.kind == RECORD_GPU_BENCH:
+        required.append("kernel")
+        required.append("size")
+        required.append("error")
+        required.append("median")
+        required.append("state")
+        required.append("checksum")
     else:
         return False
     for key in required:

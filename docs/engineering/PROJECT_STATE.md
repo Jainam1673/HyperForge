@@ -104,4 +104,7 @@ finest-mesh heuristic on held-out conditions. M14 commit: `254a587bfad159b4bfd5d
 Scientific Looper: M15, VERIFIED (4 unit tests, 11 integration checks,
 `LOOPER_VALIDATION.md`). Validated state machine, idempotent events, bounded
 trials, sequential specialist roles, real measured evidence. M15 commit: `7b361b2f6246c48fec85441729b1067589a6d016`.
+GPU catalogue: M16, VERIFIED (3 unit tests, 15 integration checks,
+`GPU_CATALOGUE.md`). Two catalogued kernels with CPU references, warm-up/median
+protocol, environment capture, and checksummed evidence. M16 commit pending.
 GitHub MCP is working (verified with `get_me` and `opencode mcp list`).

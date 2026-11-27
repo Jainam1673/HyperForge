@@ -22,7 +22,11 @@ from hyperforge.cli.automl_cmd import (
 from hyperforge.cli.optimize_cmd import run_optimize
 from hyperforge.cli.sinn_cmd import list_problems, solve_problem, show_result
 from hyperforge.cli.scit_cmd import train_scit, show_scit, predict_scit
-from hyperforge.cli.gpu_cmd import hardware_probe, benchmark_kernel
+from hyperforge.cli.gpu_cmd import (
+    hardware_probe,
+    list_catalogue,
+    benchmark_catalogue,
+)
 from hyperforge.cli.discover_cmd import run_discovery
 from hyperforge.cli.autodl_cmd import run_autodl, show_autodl, replay_autodl
 from hyperforge.cli.autorl_cmd import (
@@ -149,9 +153,23 @@ def main() raises:
         else:
             code = EXIT_USAGE
     elif parsed.command == "hardware":
-        code = hardware_probe()
+        ref ha = parsed.args
+        if ha[0] == "catalogue":
+            code = list_catalogue()
+        else:
+            code = hardware_probe()
     elif parsed.command == "benchmark":
-        code = benchmark_kernel(".")
+        ref ba = parsed.args
+        var kernel_name = String("vector_add")
+        var size = 1024
+        var repetitions = 9
+        if len(ba) >= 2:
+            kernel_name = ba[1]
+        if len(ba) >= 3:
+            size = Int(ba[2])
+        if len(ba) >= 4:
+            repetitions = Int(ba[3])
+        code = benchmark_catalogue(".", kernel_name, size, repetitions)
     elif parsed.command == "discover":
         ref da = parsed.args
         var budget = 6
