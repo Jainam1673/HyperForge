@@ -2,7 +2,8 @@
 
 ## Current state
 
-- M00–M16 are VERIFIED. M16 commit/push is the remaining workflow action.
+- M00–M16 are VERIFIED and pushed. M16 commit:
+  `21b339c8c65e42ac94a03fd0e7a732f234365793`.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
 - Tests: `pixi run test` → 104 unit tests; integration totals
@@ -35,9 +36,8 @@ evidence/journal.mojo, evidence/record.mojo (gpu_bench record type)
 
 ## Next exact actions
 
-1. Commit and push M16 as its own milestone.
-2. Re-read the three authoritative documents (required after each milestone).
-3. Next: bounded RSI/evaluator hardening (protected baseline, isolated
+1. Re-read the three authoritative documents (required after each milestone).
+2. Next: bounded RSI/evaluator hardening (protected baseline, isolated
    candidate workspace, independent verifier, immutable evidence) followed by
    system-wide hardening and release verification. Do not register commands
    without real execution paths.

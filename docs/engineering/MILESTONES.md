@@ -337,5 +337,5 @@ M15 implementation and evidence are **VERIFIED** and pushed as commit
 | Application kernels moved to GPU | DEFERRED pending profiling evidence | DEFERRED |
 | MAX model inference adapter | BLOCKED_BY_MAX_INTERFACE; not claimed | BLOCKED |
 
-M16 implementation and evidence are **VERIFIED**; commit/push is the remaining
-workflow action.
+M16 implementation and evidence are **VERIFIED** and pushed as commit
+`21b339c8c65e42ac94a03fd0e7a732f234365793`.
