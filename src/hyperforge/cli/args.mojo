@@ -89,6 +89,7 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             or token == "scidl"
             or token == "scirl"
             or token == "looper"
+            or token == "systems"
         ):
             result.command = token
         elif token.startswith("-"):
@@ -111,6 +112,7 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             or result.command == "scidl"
             or result.command == "scirl"
             or result.command == "looper"
+            or result.command == "systems"
         ):
             result.args.append(token)
         elif result.command == "init" and result.target == "":
@@ -194,6 +196,15 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
         or result.args[0] != "kernel"
     ):
         result.error = "usage: hyperforge benchmark kernel [name] [size] [repetitions]"
+    if result.command == "systems":
+        if len(result.args) == 0:
+            result.error = "systems requires: search|show"
+        elif result.args[0] == "search" and (len(result.args) < 1 or len(result.args) > 3):
+            result.error = "usage: hyperforge systems search [budget] [seed]"
+        elif result.args[0] == "show" and len(result.args) != 1:
+            result.error = "usage: hyperforge systems show"
+        elif result.args[0] != "search" and result.args[0] != "show":
+            result.error = "unknown systems subcommand: " + result.args[0]
     if result.command == "looper":
         if len(result.args) == 0:
             result.error = "looper requires: run|show"

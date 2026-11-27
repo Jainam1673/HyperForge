@@ -339,3 +339,19 @@ M15 implementation and evidence are **VERIFIED** and pushed as commit
 
 M16 implementation and evidence are **VERIFIED** and pushed as commit
 `21b339c8c65e42ac94a03fd0e7a732f234365793`.
+
+## M17 — DiscoveryGenome v2 and systems-side search
+
+| Acceptance criterion | Evidence | Result |
+|---|---|---|
+| Genome with supported genes only | validation tests; AI gene explicitly unmeasured | PASS |
+| Canonical config and stable hash | genome_id/canonical tests | PASS |
+| Constraint-preserving mutation | mutation tests for all sides | PASS |
+| Measured candidates from executions | real GPU launches with correctness gate | PASS |
+| Pareto with missing/incomparable handling | dominance test with FAIL record | PASS |
+| Fixed vs random vs adaptive at matched budget | three policies in `systems search` | PASS |
+| No weighted score or causal claim | report notes; no causal graph yet | PASS |
+| Causal graph and adaptive economy | DEFERRED to M18 | DEFERRED |
+
+M17 implementation and evidence are **VERIFIED**; commit/push is the remaining
+workflow action.

@@ -2,45 +2,45 @@
 
 ## Current state
 
-- M00–M16 are VERIFIED and pushed. M16 commit:
-  `21b339c8c65e42ac94a03fd0e7a732f234365793`.
+- M00–M17 are VERIFIED. M17 commit/push is the remaining workflow action.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
-- Tests: `pixi run test` → 104 unit tests; integration totals
-  24+17+21+14+17+20+17+15+13+17+14+16+16+9+12+11+15 = 268 checks. All pass.
-- GPU catalogue has two correct kernels with reproducible benchmark evidence.
+- Tests: `pixi run test` → 108 unit tests; integration totals
+  24+17+21+14+17+20+17+15+13+17+14+16+16+9+12+11+15+11 = 279 checks. All pass.
+- Systems search measured real launch configurations with Pareto handling.
 
-## What M16 added
+## What M17 added
 
 ```
-src/hyperforge/gpu/catalogue.mojo
-src/hyperforge/cli/gpu_cmd.mojo (catalogue + parameterized benchmark)
-tests/test_m16.mojo
-tests/integration_m16.sh
-docs/engineering/GPU_CATALOGUE.md
+src/hyperforge/discovery/{genome_v2,systems_search}.mojo
+src/hyperforge/cli/systems_cmd.mojo
+tests/test_m17.mojo
+tests/integration_m17.sh
+docs/engineering/SYSTEMS_SEARCH.md
 src/main.mojo, args.mojo, help.mojo, version.mojo, pixi.toml (wiring)
-evidence/journal.mojo, evidence/record.mojo (gpu_bench record type)
+evidence/journal.mojo, evidence/record.mojo (systems_trial record type)
+src/hyperforge/gpu/kernels.mojo (runtime block launch helper)
 ```
 
 ## Known limitations / blockers
 
 - AutoLLM MAX inference is BLOCKED_BY_MAX_INTERFACE; AutoGenAI/SciLLM/SciGenAI
   not started.
-- No application workload moved to GPU; requires profiling evidence first.
+- No application kernel moved to GPU; no MAX model inference adapter.
+- Genome v2 AI gene is carried, not measured in systems search.
+- Causal evidence graph and adaptive experiment economy are deferred to M18.
 - Looper has no wall-clock timestamps and no parallel workers.
-- SciDL MLP underperformed linear/FD baselines; recorded honestly.
-- Adaptive search showed no advantage in M08/M10; joint coupling lost in M07.
 - Memory is `NOT_TESTED` in reciprocal discovery.
 - Atomic rename/truncate unavailable; journal recovery rewrites a validated
   prefix with a plain file write.
 
 ## Next exact actions
 
-1. Re-read the three authoritative documents (required after each milestone).
-2. Next: bounded RSI/evaluator hardening (protected baseline, isolated
-   candidate workspace, independent verifier, immutable evidence) followed by
-   system-wide hardening and release verification. Do not register commands
-   without real execution paths.
+1. Commit and push M17 as its own milestone.
+2. Re-read the three authoritative documents (required after each milestone).
+3. Next: M18 meta-discovery experiment economy with a typed causal evidence
+   graph (observed/hypothesized/supported labels, ablations before causal
+   claims), then M19 joint AI×compute benchmark and M20 bounded RSI.
 
 ## Resume commands
 
@@ -48,5 +48,5 @@ evidence/journal.mojo, evidence/record.mojo (gpu_bench record type)
 cd /home/jack/Projects/HyperForge
 pixi run build
 pixi run test
-pixi run test-gpu-catalogue
+pixi run test-systems
 ```

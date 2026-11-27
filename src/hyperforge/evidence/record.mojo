@@ -28,6 +28,7 @@ comptime RECORD_SCIDL = "scidl"
 comptime RECORD_SCIRL = "scirl"
 comptime RECORD_LOOPER = "looper"
 comptime RECORD_GPU_BENCH = "gpu_bench"
+comptime RECORD_SYSTEMS_TRIAL = "systems_trial"
 
 
 struct Field:

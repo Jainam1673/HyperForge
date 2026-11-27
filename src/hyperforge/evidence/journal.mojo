@@ -29,6 +29,7 @@ from hyperforge.evidence.record import (
     RECORD_SCIRL,
     RECORD_LOOPER,
     RECORD_GPU_BENCH,
+    RECORD_SYSTEMS_TRIAL,
     parse_record,
     serialize_record,
 )
@@ -217,6 +218,14 @@ def required_fields_present(record: JournalRecord) raises -> Bool:
         required.append("median")
         required.append("state")
         required.append("checksum")
+    elif record.kind == RECORD_SYSTEMS_TRIAL:
+        required.append("policy")
+        required.append("genome_id")
+        required.append("block_size")
+        required.append("error")
+        required.append("kernel_median")
+        required.append("end_to_end_median")
+        required.append("state")
     else:
         return False
     for key in required:

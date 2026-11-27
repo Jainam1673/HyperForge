@@ -76,6 +76,77 @@ def time_vector_add(
     return median(times)
 
 
+def run_vector_add_block[N: Int](
+    mut ctx: DeviceContext, block_size: Int, repetitions: Int
+) raises -> GPUResult:
+    """Vector add with a runtime-selected launch block size."""
+    if block_size < 1 or N < 1:
+        raise Error("invalid block size or vector size")
+    comptime layout = row_major[N]()
+    comptime kernel = vector_add_kernel[type_of(layout)]
+    var a_buffer = ctx.enqueue_create_buffer[GPU_DTYPE](N)
+    var b_buffer = ctx.enqueue_create_buffer[GPU_DTYPE](N)
+    var c_buffer = ctx.enqueue_create_buffer[GPU_DTYPE](N)
+    a_buffer.enqueue_fill(1.0)
+    b_buffer.enqueue_fill(2.0)
+    var grid = ceildiv(N, block_size)
+
+    ctx.enqueue_function[kernel](
+        TileTensor(a_buffer, layout).as_imm(),
+        TileTensor(b_buffer, layout).as_imm(),
+        TileTensor(c_buffer, layout),
+        Int32(N), grid_dim=grid, block_dim=block_size,
+    )
+    ctx.synchronize()
+    var warmup_start = perf_counter()
+    ctx.enqueue_function[kernel](
+        TileTensor(a_buffer, layout).as_imm(),
+        TileTensor(b_buffer, layout).as_imm(),
+        TileTensor(c_buffer, layout),
+        Int32(N), grid_dim=grid, block_dim=block_size,
+    )
+    ctx.synchronize()
+    var warmup_seconds = perf_counter() - warmup_start
+
+    var observed: Float32
+    with c_buffer.map_to_host() as mapped:
+        var view = TileTensor(mapped, layout)
+        observed = view[0]
+    var error = abs_f32(observed - Float32(3.0))
+    var kernel_times = List[Float64]()
+    var e2e_times = List[Float64]()
+    for _ in range(repetitions):
+        var started = perf_counter()
+        ctx.enqueue_function[kernel](
+            TileTensor(a_buffer, layout).as_imm(),
+            TileTensor(b_buffer, layout).as_imm(),
+            TileTensor(c_buffer, layout),
+            Int32(N), grid_dim=grid, block_dim=block_size,
+        )
+        ctx.synchronize()
+        kernel_times.append(perf_counter() - started)
+        var e2e_started = perf_counter()
+        ctx.enqueue_function[kernel](
+            TileTensor(a_buffer, layout).as_imm(),
+            TileTensor(b_buffer, layout).as_imm(),
+            TileTensor(c_buffer, layout),
+            Int32(N), grid_dim=grid, block_dim=block_size,
+        )
+        ctx.synchronize()
+        with c_buffer.map_to_host() as mapped:
+            var view = TileTensor(mapped, layout)
+            _ = view[0]
+        e2e_times.append(perf_counter() - e2e_started)
+    var kernel_median = median(kernel_times)
+    var state = String("PASS")
+    if error > Float32(1e-5):
+        state = "INCORRECT"
+    return GPUResult(
+        N, error, warmup_seconds, kernel_median, median(e2e_times),
+        Float64(3 * N * 4) / kernel_median, state,
+    )
+
+
 def axpy_kernel[LT: TensorLayout](
     alpha: Float32,
     a: ImmTileTensor[GPU_DTYPE, LT, ImmUntrackedOrigin],

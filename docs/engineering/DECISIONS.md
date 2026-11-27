@@ -34,6 +34,13 @@ explicitly typed `Optional` is used. `len(String)` is replaced by
 logic is implemented in shell. This follows the directive's allowance for
 small build/test automation.
 
+## D037 — Genome v2 separates carried and measured genes
+
+Only runtime block configuration has a measured execution path in the systems
+search. The AI gene is carried for later coupling and explicitly labeled
+unmeasured, so the report cannot be read as joint evidence. Pareto handling uses
+two measured latencies with no weighted score.
+
 ## D036 — GPU catalogue stays reference infrastructure
 
 The catalogue adds a second kernel and a reusable benchmark protocol but does

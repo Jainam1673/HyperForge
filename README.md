@@ -5,13 +5,13 @@ a command-line application only: no frontend, server, database, or Python
 application logic. MAX is a platform dependency used only where its documented
 interfaces are needed; it is not required for the core CLI.
 
-Current milestone: **M16 — GPU kernel catalogue**.
-M00–M15 (CLI, evidence, regression AutoML, adaptive optimization, SINN,
+Current milestone: **M17 — DiscoveryGenome v2 / systems search**.
+M00–M16 (CLI, evidence, regression AutoML, adaptive optimization, SINN,
 SciTransformers, reciprocal discovery, AutoDL, AutoRL, AutoTransformers, AutoLLM
-substrate, SciML, SciDL, SciRL, Scientific Looper) are complete. M16 adds a
-two-kernel GPU catalogue with reproducible warm-up/median benchmarks and
-environment capture. Local MAX inference remains `BLOCKED_BY_MAX_INTERFACE`
-rather than faked.
+substrate, SciML, SciDL, SciRL, Scientific Looper, GPU catalogue) are complete.
+M17 adds DiscoveryGenome v2 and systems-side search over measured GPU launch
+configurations with Pareto handling. Local MAX inference remains
+`BLOCKED_BY_MAX_INTERFACE` rather than faked.
 
 ## Requirements
 
@@ -24,7 +24,7 @@ rather than faked.
 ```bash
 pixi install
 pixi run build       # produces ./hyperforge
-pixi run test             # 104 unit tests
+pixi run test             # 108 unit tests
 pixi run test-cli         # build + 24 CLI integration checks
 pixi run test-experiment  # 17 experiment/journal checks
 pixi run test-automl      # 21 AutoML integration checks
@@ -42,6 +42,7 @@ pixi run test-scidl       # 9 SciDL checks
 pixi run test-scirl       # 12 SciRL checks
 pixi run test-looper      # 11 Scientific Looper checks
 pixi run test-gpu-catalogue # 15 GPU catalogue checks
+pixi run test-systems     # 11 systems-search checks
 ```
 
 On pre-Turing NVIDIA devices, source `scripts/gpu-env.sh` before invoking GPU
@@ -100,6 +101,8 @@ commands directly so a compatible `ptxas` is selected. All pixi tasks use
 ./hyperforge looper show <run-id>
 ./hyperforge hardware catalogue
 ./hyperforge benchmark kernel [name] [size] [repetitions]
+./hyperforge systems search [budget] [seed]
+./hyperforge systems show
 ```
 
 `doctor` reports toolchain pin, MAX CLI, accelerator visibility, workspace

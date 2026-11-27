@@ -263,6 +263,18 @@ The earlier GPU integration script depended on the old single-kernel text
 format; it was updated to the catalogue dispatch and report naming. Full suite:
 104 unit tests and 268 integration checks pass.
 
+## M17 results
+
+| Command | Outcome |
+|---|---|
+| `pixi run bash scripts/mojo.sh run -I src tests/test_m17.mojo` | 4 tests pass |
+| `pixi run test-systems` | `systems integration: 11 passed, 0 failed` |
+| `systems search 3 42` | fixed 1.11e-5s, random 7.54e-6s, adaptive 7.58e-6s kernel medians |
+
+Full suite: 108 unit tests and 279 integration checks pass. Objective handling
+uses two measured latency values rather than a weighted score; no causal claim
+is made at this stage.
+
 ## Environment limitation
 
 A fresh `pixi install --frozen` into `/tmp/opencode/cleanhf3` failed with
