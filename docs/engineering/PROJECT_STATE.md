@@ -122,5 +122,9 @@ independent verifier, `--apply` authorization, rollback. M20 commit: `c6933eb00f
 System hardening / release documentation: M21, VERIFIED (3 unit tests, 9
 integration checks, `CAPABILITY_MATRIX.md`, `RELEASE.md`). Centralized path and
 CSV input limits; doctor hardening probe; full suite 123 unit / 348 integration.
-M21 commit: `2614b54234204a379fc8eba9fdee5f4f52c3eecf`."""
+M21 commit: `2614b54234204a379fc8eba9fdee5f4f52c3eecf`.
+Final documentation pass: README rewritten as the canonical user guide;
+`ARCHITECTURE.md` created from the implemented tree; `--help` planned-command
+list corrected. No behavior change beyond help text; build and 123 unit tests
+re-verified."""
 GitHub MCP is working (verified with `get_me` and `opencode mcp list`).

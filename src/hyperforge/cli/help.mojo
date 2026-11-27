@@ -93,7 +93,7 @@ def print_help() raises:
         + "                          Predict a held-out frame from a checkpoint\n"
         + "\n"
         + "PLANNED COMMANDS (not registered; no behavior yet)\n"
-        + "  experiment compare, benchmark run, verify, discover,\n"
+        + "  experiment compare, benchmark run, verify,\n"
         + "  classification, multi-fidelity search\n"
         + "\n"
         + "EXIT CODES\n"

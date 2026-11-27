@@ -33,6 +33,7 @@ Observed facts live in `engineering/`:
 | `engineering/HANDOFF.md` | Current state, blockers, and exact next action. |
 | `engineering/MILESTONES.md` | Acceptance criteria and evidence per milestone. |
 | `engineering/TEST_RESULTS.md` | Exact commands, versions, outcomes, and limits. |
+| `engineering/ARCHITECTURE.md` | Implemented module map, evidence format, and coupling boundaries. |
 | `engineering/CAPABILITY_MATRIX.md` | Status of every AutoAI/SciAI keyword, including partial and blocked items. |
 | `engineering/RELEASE.md` | Pinned toolchain, clean-checkout commands, licensing, and reliability notes. |
 | `engineering/DECISIONS.md` | Dependency and architecture decisions with reasons. |

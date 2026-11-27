@@ -330,6 +330,14 @@ One defect was found and fixed: byte comparison used an integer literal against
 Mojo's byte-as-StringSpan indexing; the check now compares String values.
 Full verification is recorded in `RELEASE.md`.
 
+## Final documentation pass
+
+Rebuilt after the README/help edits: `pixi run build` clean, `pixi run test-cli`
+24/24, `pixi run test` exit 0 with 123 unit tests across 22 suites. README
+examples were captured from real runs of `automl run`, `automl show`, `report`,
+and `doctor`; the fixture relation `y = 2*x1 - 3*x2 + 5` was verified against
+the CSV. No test expectation changed.
+
 ## Environment limitation
 
 A fresh `pixi install --frozen` into `/tmp/opencode/cleanhf3` failed with

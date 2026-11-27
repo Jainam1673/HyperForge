@@ -9,6 +9,10 @@
 - Final verification: `pixi run test` → 123 unit tests; 22 integration suites →
   348 checks. All pass. Build is clean.
 - Roadmap milestone sequence is closed by M21; further growth is incremental.
+- README finalized as the single end-user entry point: positioning, quick start,
+  five guided workflows, grouped command reference, architecture, honest status,
+  verification commands, and limitations. `docs/engineering/ARCHITECTURE.md`
+  added from the implemented source tree; `--help` stale "discover" entry fixed.
 
 ## What M21 added
 
