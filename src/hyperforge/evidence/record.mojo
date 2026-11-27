@@ -29,6 +29,8 @@ comptime RECORD_SCIRL = "scirl"
 comptime RECORD_LOOPER = "looper"
 comptime RECORD_GPU_BENCH = "gpu_bench"
 comptime RECORD_SYSTEMS_TRIAL = "systems_trial"
+comptime RECORD_META_ECONOMY = "meta_economy"
+comptime RECORD_CAUSAL_EDGE = "causal_edge"
 
 
 struct Field:

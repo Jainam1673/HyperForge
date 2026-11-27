@@ -54,6 +54,7 @@ from hyperforge.cli.scidl_cmd import run_scidl, show_scidl
 from hyperforge.cli.scirl_cmd import run_scirl, show_scirl
 from hyperforge.cli.looper_cmd import run_looper, show_looper
 from hyperforge.cli.systems_cmd import run_systems, show_systems
+from hyperforge.cli.meta_cmd import run_meta, show_graph
 from hyperforge.core.exit_codes import EXIT_OK, EXIT_USAGE, EXIT_INTERNAL
 
 
@@ -304,6 +305,20 @@ def main() raises:
             code = run_systems(".", budget, seed)
         elif sy[0] == "show":
             code = show_systems(".")
+        else:
+            code = EXIT_USAGE
+    elif parsed.command == "meta":
+        ref me = parsed.args
+        if me[0] == "run":
+            var budget = 4
+            var seed: UInt64 = 42
+            if len(me) >= 2:
+                budget = Int(me[1])
+            if len(me) >= 3:
+                seed = UInt64(Int(me[2]))
+            code = run_meta(".", budget, seed)
+        elif me[0] == "graph":
+            code = show_graph(".")
         else:
             code = EXIT_USAGE
     else:

@@ -55,6 +55,8 @@ hyperforge hardware catalogue
 hyperforge benchmark kernel [name] [size] [repetitions]
 hyperforge systems search [budget] [seed]
 hyperforge systems show
+hyperforge meta run [budget] [seed]
+hyperforge meta graph
 ```
 
 `--help`/`-h` and `--version`/`-V` take precedence over other arguments.
@@ -68,7 +70,7 @@ and require it to be initialized with `hyperforge init`.
 | Command | Behavior | Exit codes |
 |---|---|---|
 | `--help`, `-h` | Print help, including implemented vs planned commands | 0 |
-| `--version`, `-V` | Print `hyperforge 0.1.0 (M17)` | 0 |
+| `--version`, `-V` | Print `hyperforge 0.1.0 (M18)` | 0 |
 | `--gpu` (with `doctor`) | Run the explicit GPU kernel check | 0, 1, 3 |
 | `doctor [--json]` | Print separate capability probes; human or versioned JSON | 0, 3 |
 | `init <path>` | Create `hyperforge.toml`, `experiments/`, `artifacts/`, `logs/` | 0, 1, 2 |
@@ -94,6 +96,8 @@ and require it to be initialized with `hyperforge init`.
 | `benchmark kernel` | Benchmark a catalogued kernel with medians | 0, 1, 2, 3 |
 | `systems search` | Search measured GPU launch configurations | 0, 1, 2, 3 |
 | `systems show` | List recorded systems trials | 0, 1, 2 |
+| `meta run` | Compare matched-budget allocation policies | 0, 1, 2, 3 |
+| `meta graph` | List causal evidence edges | 0, 1, 2 |
 | `benchmark kernel` | Benchmark the GPU vector-add kernel with medians | 0, 1, 3 |
 | `discover run` | Matched-budget reciprocal AI/compute comparison | 0, 1, 2, 3 |
 | `autodl run` | Train and compare MLP architecture searches | 0, 1, 2 |

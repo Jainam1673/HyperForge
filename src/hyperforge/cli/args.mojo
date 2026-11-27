@@ -90,6 +90,7 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             or token == "scirl"
             or token == "looper"
             or token == "systems"
+            or token == "meta"
         ):
             result.command = token
         elif token.startswith("-"):
@@ -113,6 +114,7 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             or result.command == "scirl"
             or result.command == "looper"
             or result.command == "systems"
+            or result.command == "meta"
         ):
             result.args.append(token)
         elif result.command == "init" and result.target == "":
@@ -196,6 +198,15 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
         or result.args[0] != "kernel"
     ):
         result.error = "usage: hyperforge benchmark kernel [name] [size] [repetitions]"
+    if result.command == "meta":
+        if len(result.args) == 0:
+            result.error = "meta requires: run|graph"
+        elif result.args[0] == "run" and (len(result.args) < 1 or len(result.args) > 3):
+            result.error = "usage: hyperforge meta run [budget] [seed]"
+        elif result.args[0] == "graph" and len(result.args) != 1:
+            result.error = "usage: hyperforge meta graph"
+        elif result.args[0] != "run" and result.args[0] != "graph":
+            result.error = "unknown meta subcommand: " + result.args[0]
     if result.command == "systems":
         if len(result.args) == 0:
             result.error = "systems requires: search|show"

@@ -355,3 +355,19 @@ M16 implementation and evidence are **VERIFIED** and pushed as commit
 
 M17 implementation and evidence are **VERIFIED** and pushed as commit
 `b4ee584726901c312c19be58a4a475a743b8ca85`.
+
+## M18 — Meta economy and causal evidence graph
+
+| Acceptance criterion | Evidence | Result |
+|---|---|---|
+| Typed causal nodes/edges with labels | graph tests; 20 edge records | PASS |
+| Observed vs hypothesized separation | supported only after controlled gain; coupling hypothesized | PASS |
+| Transparent allocation policy | `choose_side`/`mean_gain` unit tests | PASS |
+| Fixed/random/adaptive compared with matched budget | `meta run` output | PASS |
+| Ablation without compute allocation | `ai_only` policy | PASS |
+| Replayable sequences | deterministic AI-only replay assertion | PASS |
+| No causal claim from correlation | report notes; coupling edge label | PASS |
+| Multi-fidelity / formal intervals | DEFERRED | DEFERRED |
+
+M18 implementation and evidence are **VERIFIED**; commit/push is the remaining
+workflow action.

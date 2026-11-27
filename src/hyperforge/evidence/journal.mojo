@@ -30,6 +30,8 @@ from hyperforge.evidence.record import (
     RECORD_LOOPER,
     RECORD_GPU_BENCH,
     RECORD_SYSTEMS_TRIAL,
+    RECORD_META_ECONOMY,
+    RECORD_CAUSAL_EDGE,
     parse_record,
     serialize_record,
 )
@@ -226,6 +228,19 @@ def required_fields_present(record: JournalRecord) raises -> Bool:
         required.append("kernel_median")
         required.append("end_to_end_median")
         required.append("state")
+    elif record.kind == RECORD_META_ECONOMY:
+        required.append("policy")
+        required.append("seed")
+        required.append("budget")
+        required.append("total_gain")
+        required.append("ai_evaluations")
+        required.append("compute_evaluations")
+        required.append("state")
+    elif record.kind == RECORD_CAUSAL_EDGE:
+        required.append("source")
+        required.append("target")
+        required.append("relation")
+        required.append("evidence")
     else:
         return False
     for key in required:

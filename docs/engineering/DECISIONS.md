@@ -34,6 +34,13 @@ explicitly typed `Optional` is used. `len(String)` is replaced by
 logic is implemented in shell. This follows the directive's allowance for
 small build/test automation.
 
+## D038 — Causal labels require controlled interventions
+
+Hypothesis-to-run edges are labeled `experimentally_supported` only after a
+measured positive gain from a controlled change. Cross-loop coupling stays
+`hypothesized` because shared evidence is not an ablation. Replay assertions
+use deterministic AI-only gains because GPU latency varies between runs.
+
 ## D037 — Genome v2 separates carried and measured genes
 
 Only runtime block configuration has a measured execution path in the systems

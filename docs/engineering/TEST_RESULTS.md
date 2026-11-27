@@ -275,6 +275,19 @@ Full suite: 108 unit tests and 279 integration checks pass. Objective handling
 uses two measured latency values rather than a weighted score; no causal claim
 is made at this stage.
 
+## M18 results
+
+| Command | Outcome |
+|---|---|
+| `pixi run bash scripts/mojo.sh run -I src tests/test_m18.mojo` | 3 tests pass |
+| `pixi run test-meta` | `meta integration: 14 passed, 0 failed` |
+| `meta run 4 42` | fixed 0.03592, random 0.01796, adaptive 0.07183, ai_only 0.07183 total gain |
+
+A replay assertion initially compared total gains from GPU-timing-inclusive
+runs and failed due to timing variance; it now compares deterministic AI-only
+runs. A `meta graph` expectation was corrected to check the graph's own
+honesty note. Full suite: 111 unit tests and 293 integration checks pass.
+
 ## Environment limitation
 
 A fresh `pixi install --frozen` into `/tmp/opencode/cleanhf3` failed with
