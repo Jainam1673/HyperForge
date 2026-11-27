@@ -369,5 +369,5 @@ M17 implementation and evidence are **VERIFIED** and pushed as commit
 | No causal claim from correlation | report notes; coupling edge label | PASS |
 | Multi-fidelity / formal intervals | DEFERRED | DEFERRED |
 
-M18 implementation and evidence are **VERIFIED**; commit/push is the remaining
-workflow action.
+M18 implementation and evidence are **VERIFIED** and pushed as commit
+`8b2b6089591dff85364c73b67b366d657dc93b51`.

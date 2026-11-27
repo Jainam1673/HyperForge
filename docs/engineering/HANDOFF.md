@@ -2,7 +2,8 @@
 
 ## Current state
 
-- M00–M18 are VERIFIED. M18 commit/push is the remaining workflow action.
+- M00–M18 are VERIFIED and pushed. M18 commit:
+  `8b2b6089591dff85364c73b67b366d657dc93b51`.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
 - Tests: `pixi run test` → 111 unit tests; integration totals
@@ -35,9 +36,8 @@ evidence/journal.mojo, evidence/record.mojo (meta_economy, causal_edge)
 
 ## Next exact actions
 
-1. Commit and push M18 as its own milestone.
-2. Re-read the three authoritative documents (required after each milestone).
-3. Next: M19 joint AI×compute discovery benchmark with equal budgets, ablations
+1. Re-read the three authoritative documents (required after each milestone).
+2. Next: M19 joint AI×compute discovery benchmark with equal budgets, ablations
    (shared history, adaptive budgeting, meta-policy), repeated seeds, and
    negative results. Then M20 bounded RSI and M21 final verification.
 
