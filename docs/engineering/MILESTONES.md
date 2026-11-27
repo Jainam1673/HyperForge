@@ -405,4 +405,21 @@ M19 implementation and evidence are **VERIFIED** and pushed as commit
 | Unbounded self-modification | explicitly absent; evaluator unreachable | PASS |
 
 M20 implementation and evidence are **VERIFIED** and pushed as commit
-`c6933eb00f0d7b8362b665b3f08f629886bab628`.""
+`c6933eb00f0d7b8362b665b3f08f629886bab628`.
+
+## M21 — System hardening, capability matrix, release packaging
+
+| Acceptance criterion | Evidence | Result |
+|---|---|---|
+| Path validation (traversal, NUL, length) | `test_m21`, `init` integration | PASS |
+| CSV byte/row/column ceilings | `enforce_csv_limits` tests, oversized-CLI check | PASS |
+| Hardening visible in doctor | `input_hardening` probe | PASS |
+| Capability matrix for every keyword | `CAPABILITY_MATRIX.md` | PASS |
+| Reproducible clean-checkout commands | `RELEASE.md` | PASS |
+| Licensing / network / telemetry notes | `RELEASE.md` | PASS |
+| Honest limits (atomic writes, Ctrl-C, MAX inference) | `RELEASE.md` | PASS |
+| Full comprehensive verification | 123 unit + 348 integration checks | PASS |
+
+M21 implementation and evidence are **VERIFIED**; commit/push is the remaining
+workflow action. This closes the roadmap milestone sequence; further work is
+incremental expansion from the documented capability matrix."""

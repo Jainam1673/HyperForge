@@ -23,6 +23,20 @@ prove that any capability has been implemented.
 - `../.agents/skills/` — project-local Mojo/MAX skills (11 skills) that take priority over remembered syntax.
 - `../pixi.toml`, `../pixi.lock` — environment manifest and lock file.
 
-Engineering state files prescribed by the master directive (`PROJECT_STATE.md`,
-`HANDOFF.md`, `ENVIRONMENT.md`, `TEST_RESULTS.md`, and others) do not exist yet. Add
-them only when there are observed facts to record.
+## Engineering state
+
+Observed facts live in `engineering/`:
+
+| Document | Purpose |
+|---|---|
+| `engineering/PROJECT_STATE.md` | Verified status of implemented capabilities. |
+| `engineering/HANDOFF.md` | Current state, blockers, and exact next action. |
+| `engineering/MILESTONES.md` | Acceptance criteria and evidence per milestone. |
+| `engineering/TEST_RESULTS.md` | Exact commands, versions, outcomes, and limits. |
+| `engineering/CAPABILITY_MATRIX.md` | Status of every AutoAI/SciAI keyword, including partial and blocked items. |
+| `engineering/RELEASE.md` | Pinned toolchain, clean-checkout commands, licensing, and reliability notes. |
+| `engineering/DECISIONS.md` | Dependency and architecture decisions with reasons. |
+| `engineering/ENVIRONMENT.md` | Observed host and toolchain facts. |
+
+Source files and test evidence are authoritative over these documents when they
+disagree.

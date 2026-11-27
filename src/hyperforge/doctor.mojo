@@ -10,6 +10,7 @@ from std.pathlib import Path
 from std.sys import has_accelerator
 from hyperforge.core.version import VERSION, MILESTONE, MOJO_PIN, MAX_PIN, DOCTOR_SCHEMA
 from hyperforge.core.exit_codes import EXIT_OK, EXIT_UNAVAILABLE
+from hyperforge.hardening import hardening_summary
 
 
 struct Probe(Copyable, Movable):
@@ -96,6 +97,13 @@ def collect_probes(executable: String) raises -> List[Probe]:
         )
 
     probes.append(probe_workspace())
+    probes.append(
+        Probe(
+            "input_hardening",
+            "OK",
+            hardening_summary(),
+        )
+    )
     probes.append(
         Probe(
             "model_artifacts",

@@ -316,6 +316,20 @@ record lacked the `canonical` field needed for re-read (breaking the second
 run), and RSI journal kinds were unregistered in journal validation. Both were
 corrected and the full 120-unit/339-integration suite passes.
 
+## M21 final verification
+
+| Command | Outcome |
+|---|---|
+| `pixi run bash scripts/mojo.sh run -I src tests/test_m21.mojo` | 3 tests pass |
+| `pixi run test-hardening` | `hardening integration: 9 passed, 0 failed` |
+| `pixi run build` | clean build |
+| all 22 `test-*` integration tasks | 348 checks pass |
+| `pixi run test` | 123 unit tests pass, exit 0 |
+
+One defect was found and fixed: byte comparison used an integer literal against
+Mojo's byte-as-StringSpan indexing; the check now compares String values.
+Full verification is recorded in `RELEASE.md`.
+
 ## Environment limitation
 
 A fresh `pixi install --frozen` into `/tmp/opencode/cleanhf3` failed with

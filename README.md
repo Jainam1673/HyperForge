@@ -5,14 +5,14 @@ a command-line application only: no frontend, server, database, or Python
 application logic. MAX is a platform dependency used only where its documented
 interfaces are needed; it is not required for the core CLI.
 
-Current milestone: **M20 — bounded config-only RSI**.
-M00–M19 (CLI, evidence, regression AutoML, adaptive optimization, SINN,
+Current milestone: **M21 — system hardening and release verification**.
+M00–M20 (CLI, evidence, regression AutoML, adaptive optimization, SINN,
 SciTransformers, reciprocal discovery, AutoDL, AutoRL, AutoTransformers, AutoLLM
 substrate, SciML, SciDL, SciRL, Scientific Looper, GPU catalogue, DiscoveryGenome
-v2, meta economy and causal graph, joint AI×compute benchmark) are complete.
-M20 adds a bounded config-only RSI loop with a protected evaluator, holdout
-gate, independent verifier, `--apply` authorization, and rollback. Local MAX
-inference remains `BLOCKED_BY_MAX_INTERFACE` rather than faked.
+v2, meta economy and causal graph, joint AI×compute benchmark, bounded RSI) are
+complete. M21 adds centralized path/CSV input limits, a doctor hardening probe,
+and the authoritative capability matrix and release notes. Local MAX inference
+remains `BLOCKED_BY_MAX_INTERFACE` rather than faked.
 
 ## Requirements
 
@@ -25,7 +25,7 @@ inference remains `BLOCKED_BY_MAX_INTERFACE` rather than faked.
 ```bash
 pixi install
 pixi run build       # produces ./hyperforge
-pixi run test             # 120 unit tests
+pixi run test             # 123 unit tests
 pixi run test-cli         # build + 24 CLI integration checks
 pixi run test-experiment  # 17 experiment/journal checks
 pixi run test-automl      # 21 AutoML integration checks
@@ -47,6 +47,7 @@ pixi run test-systems     # 11 systems-search checks
 pixi run test-meta        # 14 meta-economy checks
 pixi run test-joint       # 21 joint-benchmark checks
 pixi run test-rsi         # 25 bounded-RSI checks
+pixi run test-hardening   # 9 hardening checks
 ```
 
 On pre-Turing NVIDIA devices, source `scripts/gpu-env.sh` before invoking GPU
@@ -160,4 +161,6 @@ cd ./workspace
 - `AGENTS.md` — durable agent contract
 - `docs/HYPERFORGE_MOJO_MAX_MASTER_BUILD_PROMPT.md` — authoritative build directive
 - `docs/MOJO_MAX_BOOTSTRAP_BLUEPRINT.md` — architecture blueprint
+- `docs/engineering/CAPABILITY_MATRIX.md` — authoritative status of every capability
+- `docs/engineering/RELEASE.md` — pinned toolchain, reproduction, licensing, limits
 - `docs/engineering/` — observed environment, state, decisions, tests, and handoff

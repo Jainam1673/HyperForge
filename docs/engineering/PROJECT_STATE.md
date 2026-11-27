@@ -118,5 +118,9 @@ checks, `JOINT_BENCHMARK.md`). Nine matched-budget strategies over real RMSE and
 GPU latency; joint led mean discoveries on a small fixture. M19 commit: `2b912a94c4b88b7c970b4326e9bdd34d8fc8f513`.
 Bounded config-only RSI: M20, VERIFIED (4 unit tests, 25 integration checks,
 `RSI.md`). Protected baseline/protocol with checksums, holdout gate,
-independent verifier, `--apply` authorization, rollback. M20 commit: `c6933eb00f0d7b8362b665b3f08f629886bab628`.""
+independent verifier, `--apply` authorization, rollback. M20 commit: `c6933eb00f0d7b8362b665b3f08f629886bab628`.
+System hardening / release documentation: M21, VERIFIED (3 unit tests, 9
+integration checks, `CAPABILITY_MATRIX.md`, `RELEASE.md`). Centralized path and
+CSV input limits; doctor hardening probe; full suite 123 unit / 348 integration.
+M21 commit pending."""
 GitHub MCP is working (verified with `get_me` and `opencode mcp list`).

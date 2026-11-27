@@ -9,6 +9,12 @@ rather than silently reinterpreted. Target cells must be present and finite.
 from std.pathlib import Path
 from hyperforge.core.hash import fnv1a64, hex64
 from hyperforge.core.numeric import is_finite
+from hyperforge.hardening import (
+    MAX_CSV_BYTES,
+    MAX_CSV_ROWS,
+    MAX_CSV_COLS,
+    enforce_csv_limits,
+)
 
 comptime DATASET_SCHEMA = "hyperforge-dataset-v1"
 comptime MIN_ROWS = 8
@@ -77,6 +83,8 @@ def target_at(dataset: Dataset, row: Int) raises -> Float64:
 def load_csv(path: String, target_name: String) raises -> Dataset:
     if not Path(path).exists():
         raise Error("dataset not found: " + path)
+    if not enforce_csv_limits(path, MAX_CSV_BYTES, MAX_CSV_ROWS, MAX_CSV_COLS):
+        raise Error("dataset exceeds hardened input limits")
     var content = open(path, "r").read()
     var lines = List[String]()
     for span in content.split("\n"):

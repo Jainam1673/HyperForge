@@ -5,6 +5,7 @@ from std.pathlib import Path
 from std.sys import stderr
 from hyperforge.core.version import VERSION, MILESTONE, WORKSPACE_SCHEMA
 from hyperforge.core.exit_codes import EXIT_OK, EXIT_USAGE, EXIT_FAILURE
+from hyperforge.hardening import validate_path
 
 
 def has_parent_segment(path: String) raises -> Bool:
@@ -29,6 +30,10 @@ def init_workspace(target: String) raises -> Int:
 
     if has_parent_segment(target):
         err.write("hyperforge: invalid workspace path: '..' is not allowed\n")
+        return EXIT_USAGE
+
+    if not validate_path(target):
+        err.write("hyperforge: invalid workspace path: traversal, NUL, or length limit\n")
         return EXIT_USAGE
 
     var root = Path(target)

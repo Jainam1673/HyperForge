@@ -75,9 +75,12 @@ and require it to be initialized with `hyperforge init`.
 | Command | Behavior | Exit codes |
 |---|---|---|
 | `--help`, `-h` | Print help, including implemented vs planned commands | 0 |
-| `--version`, `-V` | Print `hyperforge 0.1.0 (M20)` | 0 |
+| `--version`, `-V` | Print `hyperforge 0.1.0 (M21)` | 0 |
 | `--gpu` (with `doctor`) | Run the explicit GPU kernel check | 0, 1, 3 |
 | `--apply` (with `rsi`) | Authorize acceptance or rollback | 0, 1, 2 |
+
+`doctor` also reports an `input_hardening` probe listing the active path and
+CSV ceilings (M21).
 | `doctor [--json]` | Print separate capability probes; human or versioned JSON | 0, 3 |
 | `init <path>` | Create `hyperforge.toml`, `experiments/`, `artifacts/`, `logs/` | 0, 1, 2 |
 | `experiment create` | Write config artifact + journal records; print stable ID | 0, 1, 2 |

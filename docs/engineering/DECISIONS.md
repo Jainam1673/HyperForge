@@ -34,6 +34,14 @@ explicitly typed `Optional` is used. `len(String)` is replaced by
 logic is implemented in shell. This follows the directive's allowance for
 small build/test automation.
 
+## D041 — Hardening is centralized and honest about limits
+
+Path and CSV ceilings live in one first-party module used by workspace init,
+dataset loading, and the doctor probe. Atomic rename/truncate and Ctrl-C
+interception are not exposed by the installed Mojo release and are reported as
+limitations rather than claimed capabilities. `CAPABILITY_MATRIX.md` keeps every
+PARTIAL/BLOCKED/PLANNED keyword visible.
+
 ## D040 — RSI candidates are config-only and gated by --apply
 
 The RSI loop proposes hyperparameter values, never code. The baseline and

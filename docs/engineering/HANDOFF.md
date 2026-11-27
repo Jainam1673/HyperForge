@@ -2,43 +2,42 @@
 
 ## Current state
 
-- M00–M20 are VERIFIED and pushed. M20 commit:
-  `c6933eb00f0d7b8362b665b3f08f629886bab628`.
+- M00–M21 are VERIFIED. M21 commit/push is the remaining workflow action.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
-- Tests: `pixi run test` → 120 unit tests; integration totals
-  24+17+21+14+17+20+17+15+13+17+14+16+16+9+12+11+15+11+14+21+25 = 339 checks. All pass.
-- Bounded config-only RSI with protected evaluator, authorization gate, rollback.
+- Final verification: `pixi run test` → 123 unit tests; 22 integration suites →
+  348 checks. All pass. Build is clean.
+- Roadmap milestone sequence is closed by M21; further growth is incremental.
 
-## What M20 added
+## What M21 added
 
 ```
-src/hyperforge/rsi/{__init__,protected,candidate,loop}.mojo
-src/hyperforge/cli/rsi_cmd.mojo
-tests/test_m20.mojo
-tests/integration_m20.sh
-docs/engineering/RSI.md
-src/main.mojo, args.mojo, help.mojo, version.mojo, pixi.toml (wiring)
-evidence/journal.mojo, evidence/record.mojo (rsi_baseline, rsi_protocol, rsi_decision)
+src/hyperforge/hardening.mojo
+tests/test_m21.mojo
+tests/integration_m21.sh
+docs/engineering/CAPABILITY_MATRIX.md
+docs/engineering/RELEASE.md
+src/hyperforge/workspace.mojo, automl/dataset.mojo, doctor.mojo (wiring)
+src/hyperforge/core/version.mojo, pixi.toml, README.md (version/tasks)
 ```
 
 ## Known limitations / blockers
 
 - AutoLLM MAX inference is BLOCKED_BY_MAX_INTERFACE; AutoGenAI/SciLLM/SciGenAI
-  not started.
-- RSI is config-only; no code generation, no runtime service consumes applied
-  configs, no application code is rewritten.
-- Memory is NOT_TESTED; no verified memory API in installed Mojo.
-- No MAX model inference adapter; no application kernel moved to GPU.
-- Looper has no wall-clock timestamps and no parallel workers.
-- Atomic rename/truncate unavailable; journal recovery rewrites a validated
-  prefix with a plain file write.
+  blocked; no commands registered for them.
+- RSI is config-only; no code rewriting or runtime consumer of applied configs.
+- Atomic rename/truncate and Ctrl-C interception are unavailable in installed
+  Mojo and are reported honestly as limitations.
+- Memory is NOT_TESTED in several capabilities.
+- World models, broad HPC/HyperComputers, and application kernel migration are
+  PLANNED, not implemented.
 
 ## Next exact actions
 
-1. Re-read the three authoritative documents (required after each milestone).
-2. Next: M21 system-wide hardening, documentation, release packaging, and
-   comprehensive verification.
+1. Commit and push M21 as its own milestone.
+2. Re-read the three authoritative documents (required after each milestone).
+3. Work from `CAPABILITY_MATRIX.md`: only expand a PARTIAL/BLOCKED item after its
+   prerequisite is verified (notably local MAX inference before SciLLM/SciGenAI).
 
 ## Resume commands
 
@@ -46,5 +45,5 @@ evidence/journal.mojo, evidence/record.mojo (rsi_baseline, rsi_protocol, rsi_dec
 cd /home/jack/Projects/HyperForge
 pixi run build
 pixi run test
-pixi run test-rsi
+pixi run test-hardening
 ```
