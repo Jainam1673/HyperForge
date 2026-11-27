@@ -41,6 +41,11 @@ from hyperforge.cli.autollm_cmd import (
     evaluate_command,
     status_command,
 )
+from hyperforge.cli.sciml_cmd import (
+    list_problems as sciml_list,
+    solve_problem as sciml_solve,
+    show_result as sciml_show,
+)
 from hyperforge.core.exit_codes import EXIT_OK, EXIT_USAGE, EXIT_INTERNAL
 
 
@@ -214,6 +219,19 @@ def main() raises:
             code = evaluate_command(".", la[1], la[2])
         elif la[0] == "status":
             code = status_command(".")
+        else:
+            code = EXIT_USAGE
+    elif parsed.command == "sciml":
+        ref sa = parsed.args
+        if sa[0] == "list-problems":
+            code = sciml_list()
+        elif sa[0] == "solve":
+            var seed: UInt64 = 42
+            if len(sa) >= 2:
+                seed = UInt64(Int(sa[1]))
+            code = sciml_solve(".", seed)
+        elif sa[0] == "show":
+            code = sciml_show(".", sa[1])
         else:
             code = EXIT_USAGE
     else:

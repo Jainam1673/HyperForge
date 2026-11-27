@@ -2,6 +2,7 @@
 
 from std.math import abs
 from std.os import mkdir, remove
+from std.pathlib import Path
 from std.testing import assert_equal, assert_true, assert_false, TestSuite
 from hyperforge.autollm.registry import discover_models, model_format
 from hyperforge.autollm.prompt_suite import load_suite, load_responses, evaluate

@@ -85,6 +85,7 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             or token == "autorl"
             or token == "autotransformers"
             or token == "autollm"
+            or token == "sciml"
         ):
             result.command = token
         elif token.startswith("-"):
@@ -103,6 +104,7 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             or result.command == "autorl"
             or result.command == "autotransformers"
             or result.command == "autollm"
+            or result.command == "sciml"
         ):
             result.args.append(token)
         elif result.command == "init" and result.target == "":
@@ -179,6 +181,21 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
         len(result.args) != 1 or result.args[0] != "probe"
     ):
         result.error = "usage: hyperforge hardware probe"
+    if result.command == "sciml":
+        if len(result.args) == 0:
+            result.error = "sciml requires: list-problems|solve|show"
+        elif result.args[0] == "list-problems" and len(result.args) != 1:
+            result.error = "usage: hyperforge sciml list-problems"
+        elif result.args[0] == "solve" and (len(result.args) < 1 or len(result.args) > 2):
+            result.error = "usage: hyperforge sciml solve [seed]"
+        elif result.args[0] == "show" and len(result.args) != 2:
+            result.error = "usage: hyperforge sciml show <id>"
+        elif (
+            result.args[0] != "list-problems"
+            and result.args[0] != "solve"
+            and result.args[0] != "show"
+        ):
+            result.error = "unknown sciml subcommand: " + result.args[0]
     if result.command == "autollm":
         if len(result.args) == 0:
             result.error = "autollm requires: discover|evaluate|status"

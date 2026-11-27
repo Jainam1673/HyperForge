@@ -263,3 +263,18 @@ M10 implementation and evidence are **VERIFIED** and pushed as commit
 M11 offline core is **VERIFIED** and pushed as commit
 `ecbc58104e43ee1cd3243917a2ca4a544cbb8081`; the inference acceptance criterion
 remains **BLOCKED_BY_MAX_INTERFACE** and is documented rather than faked.
+
+## M12 — SciML
+
+| Acceptance criterion | Evidence | Result |
+|---|---|---|
+| Explicit problem registry with units/scaling/assumptions/reference | `sciml list-problems` and tests | PASS |
+| Conventional solver reference | FD solver RMS error < 1e-3 vs analytic | PASS |
+| Parameter identification from observations | k=0.989 vs true 1.0, 5 noise seeds | PASS |
+| Held-out evaluation with data-only baseline | inverse/hybrid L2 far below constant baseline | PASS |
+| Physics enters explicitly | discrete Laplacian + Dirichlet conditions in solver | PASS |
+| Variability reported | parameter std 0.03698 across noise seeds | PASS |
+| Broader inverse methods / operator learning | DEFERRED | DEFERRED |
+
+M12 implementation and evidence are **VERIFIED**; commit/push is the remaining
+workflow action.

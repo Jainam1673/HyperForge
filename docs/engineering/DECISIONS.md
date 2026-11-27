@@ -34,6 +34,14 @@ explicitly typed `Optional` is used. `len(String)` is replaced by
 logic is implemented in shell. This follows the directive's allowance for
 small build/test automation.
 
+## D032 — SciML uses explicit operators and conventional references
+
+The inverse problem enters physics through the finite-difference Laplacian and
+Dirichlet conditions rather than a penalty label. A conventional FD solver and
+a data-only constant baseline are evaluated on the same held-out points, and
+parameter variability across noise seeds is reported without claiming formal
+confidence coverage.
+
 ## D031 — AutoLLM reports BLOCKED rather than fabricating inference
 
 No validated native Mojo-to-MAX model-inference boundary exists in this

@@ -24,6 +24,7 @@ from hyperforge.evidence.record import (
     RECORD_AUTORL,
     RECORD_AUTOTRANS,
     RECORD_AUTOLLM,
+    RECORD_SCIML,
     parse_record,
     serialize_record,
 )
@@ -173,6 +174,16 @@ def required_fields_present(record: JournalRecord) raises -> Bool:
         required.append("config_checksum")
     elif record.kind == RECORD_AUTOLLM:
         required.append("kind")
+    elif record.kind == RECORD_SCIML:
+        required.append("problem")
+        required.append("seed")
+        required.append("estimated_parameter")
+        required.append("parameter_error")
+        required.append("parameter_std")
+        required.append("inverse_exact_l2")
+        required.append("hybrid_exact_l2")
+        required.append("constant_exact_l2")
+        required.append("finite_difference_l2")
     else:
         return False
     for key in required:

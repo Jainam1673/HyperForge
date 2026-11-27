@@ -198,6 +198,21 @@ exit 1 (operation failure), not exit 2 (usage). The artifact-discovery test was
 not idempotent on a reused temp directory and is now guarded by existence
 checks; the full 85-test suite passed after the fix.
 
+## M12 results
+
+| Command | Outcome |
+|---|---|
+| `pixi run bash scripts/mojo.sh run -I src tests/test_m12.mojo` | 4 tests pass |
+| `pixi run test-sciml` | `sciml integration: 16 passed, 0 failed` |
+| `sciml solve 42` | k=0.989, error 0.011, std 0.03698, inverse L2 0.000905 vs constant 0.044053 |
+
+The finite-difference solver initially assumed the supplied points spanned the
+whole domain; subset observation points truncated the boundary and biased the
+inverse estimate to the search upper bound. Fixed by solving the full interior
+grid then sampling observations. A missing `Path` import in M11's idempotency
+edit was also found by the full suite and fixed. Full suite: 89 unit tests and
+221 integration checks pass.
+
 ## Environment limitation
 
 A fresh `pixi install --frozen` into `/tmp/opencode/cleanhf3` failed with
