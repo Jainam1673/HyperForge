@@ -321,5 +321,5 @@ M14 implementation and evidence are **VERIFIED** and pushed as commit
 | Replayable decision trail | stable run ID and ordered events | PASS |
 | Wall-clock timestamps | no API available; monotonic sequence recorded | HONEST GAP |
 
-M15 implementation and evidence are **VERIFIED**; commit/push is the remaining
-workflow action.
+M15 implementation and evidence are **VERIFIED** and pushed as commit
+`7b361b2f6246c48fec85441729b1067589a6d016`.

@@ -2,7 +2,8 @@
 
 ## Current state
 
-- M00–M15 are VERIFIED. M15 commit/push is the remaining workflow action.
+- M00–M15 are VERIFIED and pushed. M15 commit:
+  `7b361b2f6246c48fec85441729b1067589a6d016`.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
 - Tests: `pixi run test` → 101 unit tests; integration totals
@@ -36,9 +37,8 @@ evidence/journal.mojo, evidence/record.mojo (looper record type)
 
 ## Next exact actions
 
-1. Commit and push M15 as its own milestone.
-2. Re-read the three authoritative documents (required after each milestone).
-3. Next: MAX/GPU kernel catalogue with reproducible performance infrastructure,
+1. Re-read the three authoritative documents (required after each milestone).
+2. Next: MAX/GPU kernel catalogue with reproducible performance infrastructure,
    or bounded RSI/evaluator hardening. Do not register a command for a
    capability without a real execution path.
 
