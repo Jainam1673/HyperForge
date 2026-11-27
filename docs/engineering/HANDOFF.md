@@ -2,7 +2,8 @@
 
 ## Current state
 
-- M00–M17 are VERIFIED. M17 commit/push is the remaining workflow action.
+- M00–M17 are VERIFIED and pushed. M17 commit:
+  `b4ee584726901c312c19be58a4a475a743b8ca85`.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
 - Tests: `pixi run test` → 108 unit tests; integration totals
@@ -36,9 +37,8 @@ src/hyperforge/gpu/kernels.mojo (runtime block launch helper)
 
 ## Next exact actions
 
-1. Commit and push M17 as its own milestone.
-2. Re-read the three authoritative documents (required after each milestone).
-3. Next: M18 meta-discovery experiment economy with a typed causal evidence
+1. Re-read the three authoritative documents (required after each milestone).
+2. Next: M18 meta-discovery experiment economy with a typed causal evidence
    graph (observed/hypothesized/supported labels, ablations before causal
    claims), then M19 joint AI×compute benchmark and M20 bounded RSI.
 

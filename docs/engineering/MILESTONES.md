@@ -353,5 +353,5 @@ M16 implementation and evidence are **VERIFIED** and pushed as commit
 | No weighted score or causal claim | report notes; no causal graph yet | PASS |
 | Causal graph and adaptive economy | DEFERRED to M18 | DEFERRED |
 
-M17 implementation and evidence are **VERIFIED**; commit/push is the remaining
-workflow action.
+M17 implementation and evidence are **VERIFIED** and pushed as commit
+`b4ee584726901c312c19be58a4a475a743b8ca85`.

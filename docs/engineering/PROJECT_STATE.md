@@ -109,5 +109,5 @@ GPU catalogue: M16, VERIFIED (3 unit tests, 15 integration checks,
 protocol, environment capture, and checksummed evidence. M16 commit: `21b339c8c65e42ac94a03fd0e7a732f234365793`.
 DiscoveryGenome v2 / systems search: M17, VERIFIED (4 unit tests, 11 integration
 checks, `SYSTEMS_SEARCH.md`). Real measured launch-configuration search with
-Pareto handling; AI gene carried but not measured. M17 commit pending.
+Pareto handling; AI gene carried but not measured. M17 commit: `b4ee584726901c312c19be58a4a475a743b8ca85`.
 GitHub MCP is working (verified with `get_me` and `opencode mcp list`).
