@@ -23,6 +23,7 @@ from hyperforge.evidence.record import (
     RECORD_AUTOML_DL,
     RECORD_AUTORL,
     RECORD_AUTOTRANS,
+    RECORD_AUTOLLM,
     parse_record,
     serialize_record,
 )
@@ -170,6 +171,8 @@ def required_fields_present(record: JournalRecord) raises -> Bool:
         required.append("test_mse")
         required.append("latency")
         required.append("config_checksum")
+    elif record.kind == RECORD_AUTOLLM:
+        required.append("kind")
     else:
         return False
     for key in required:

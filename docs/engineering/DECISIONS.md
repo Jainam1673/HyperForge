@@ -34,6 +34,14 @@ explicitly typed `Optional` is used. `len(String)` is replaced by
 logic is implemented in shell. This follows the directive's allowance for
 small build/test automation.
 
+## D031 — AutoLLM reports BLOCKED rather than fabricating inference
+
+No validated native Mojo-to-MAX model-inference boundary exists in this
+environment, and no user-supplied model artifact is present. AutoLLM therefore
+implements discovery, versioned suites, and offline scoring, and reports
+`UNAVAILABLE`/`BLOCKED_BY_MAX_INTERFACE` for execution. No responses, latency,
+or throughput values are invented, and no Python bridge is used.
+
 ## D030 — AutoTransformers measures, not assumes, config efficiency
 
 Configuration search uses validation MSE and measured inference latency from

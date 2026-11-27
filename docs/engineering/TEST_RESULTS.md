@@ -181,6 +181,23 @@ were initially allocated per token instead of once per layer, causing parameter
 index overflows; history gene was overridden by the task contract; task index
 sets were derived from TaskSpec counts rather than nonexistent split fields.
 
+## M11 results
+
+| Command | Outcome |
+|---|---|
+| `pixi run bash scripts/mojo.sh run -I src tests/test_m11.mojo` | 4 tests pass |
+| `pixi run test-autollm` | `autollm integration: 16 passed, 0 failed` |
+| `autollm evaluate examples/autollm/prompts.txt examples/autollm/responses.txt` | 3 cases, 2 matched, 1 missing, accuracy 0.6667 |
+| `autollm discover <synthetic artifact dir>` | 1 artifact, checksum, `license=DECLARED`, `BLOCKED_BY_MAX_INTERFACE` |
+| `autollm status` with no artifacts | `UNAVAILABLE`, remedy printed |
+
+A parser collision made `discover` ambiguous between the top-level command and
+the `autollm` subcommand; command tokens are now accepted only when no command
+is set. An integration expectation was corrected: missing input files return
+exit 1 (operation failure), not exit 2 (usage). The artifact-discovery test was
+not idempotent on a reused temp directory and is now guarded by existence
+checks; the full 85-test suite passed after the fix.
+
 ## Environment limitation
 
 A fresh `pixi install --frozen` into `/tmp/opencode/cleanhf3` failed with

@@ -22,6 +22,7 @@ comptime RECORD_DISCOVERY = "discovery"
 comptime RECORD_AUTOML_DL = "autodl"
 comptime RECORD_AUTORL = "autorl"
 comptime RECORD_AUTOTRANS = "autotrans"
+comptime RECORD_AUTOLLM = "autollm"
 
 
 struct Field:

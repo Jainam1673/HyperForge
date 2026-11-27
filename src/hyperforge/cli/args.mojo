@@ -72,7 +72,7 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
                 result.error = "unexpected command: " + token
                 return result^
             result.command = "experiment"
-        elif (
+        elif result.command == "" and (
             token == "automl"
             or token == "report"
             or token == "optimize"
@@ -84,10 +84,8 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             or token == "autodl"
             or token == "autorl"
             or token == "autotransformers"
+            or token == "autollm"
         ):
-            if result.command != "":
-                result.error = "unexpected command: " + token
-                return result^
             result.command = token
         elif token.startswith("-"):
             result.error = "unknown option: " + token
@@ -104,6 +102,7 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             or result.command == "autodl"
             or result.command == "autorl"
             or result.command == "autotransformers"
+            or result.command == "autollm"
         ):
             result.args.append(token)
         elif result.command == "init" and result.target == "":
@@ -180,6 +179,21 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
         len(result.args) != 1 or result.args[0] != "probe"
     ):
         result.error = "usage: hyperforge hardware probe"
+    if result.command == "autollm":
+        if len(result.args) == 0:
+            result.error = "autollm requires: discover|evaluate|status"
+        elif result.args[0] == "discover" and (len(result.args) < 1 or len(result.args) > 2):
+            result.error = "usage: hyperforge autollm discover [model-directory]"
+        elif result.args[0] == "evaluate" and len(result.args) != 3:
+            result.error = "usage: hyperforge autollm evaluate <suite> <responses>"
+        elif result.args[0] == "status" and len(result.args) != 1:
+            result.error = "usage: hyperforge autollm status"
+        elif (
+            result.args[0] != "discover"
+            and result.args[0] != "evaluate"
+            and result.args[0] != "status"
+        ):
+            result.error = "unknown autollm subcommand: " + result.args[0]
     if result.command == "autotransformers":
         if len(result.args) == 0:
             result.error = "autotransformers requires: run|show|replay"

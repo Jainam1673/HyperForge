@@ -1,0 +1,3 @@
+HFPS1|capital|What is the capital of France?|Paris|exact
+HFPS1|color|Name the primary color that starts with b|blue|contains
+HFPS1|missing|This case intentionally has no recorded response|absent|exact

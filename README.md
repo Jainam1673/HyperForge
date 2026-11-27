@@ -5,12 +5,13 @@ a command-line application only: no frontend, server, database, or Python
 application logic. MAX is a platform dependency used only where its documented
 interfaces are needed; it is not required for the core CLI.
 
-Current milestone: **M10 — AutoTransformers**.
-M00–M09 (CLI, evidence, regression AutoML, adaptive optimization, SINN,
-SciTransformers, GPU proof, reciprocal discovery, AutoDL, AutoRL) are complete.
-M10 adds transformer configuration search with measured validation/test quality
-and inference latency, plus config/checkpoint persistence. No MAX inference or
-serving capability is claimed. Further family expansion remains planned.
+Current milestone: **M11 — AutoLLM substrate (offline core)**.
+M00–M10 (CLI, evidence, regression AutoML, adaptive optimization, SINN,
+SciTransformers, GPU proof, reciprocal discovery, AutoDL, AutoRL,
+AutoTransformers) are complete. M11 adds local model-artifact discovery,
+versioned prompt suites, and offline recorded-response scoring. Local MAX
+model inference is reported `BLOCKED_BY_MAX_INTERFACE` rather than faked.
+Further family expansion remains planned.
 
 ## Requirements
 
@@ -23,7 +24,7 @@ serving capability is claimed. Further family expansion remains planned.
 ```bash
 pixi install
 pixi run build       # produces ./hyperforge
-pixi run test             # 81 unit tests
+pixi run test             # 85 unit tests
 pixi run test-cli         # build + 24 CLI integration checks
 pixi run test-experiment  # 17 experiment/journal checks
 pixi run test-automl      # 21 AutoML integration checks
@@ -35,6 +36,7 @@ pixi run test-discover    # 15 reciprocal discovery checks
 pixi run test-autodl      # 13 AutoDL checks
 pixi run test-autorl      # 17 AutoRL checks
 pixi run test-autotrans   # 14 AutoTransformers checks
+pixi run test-autollm     # 16 AutoLLM substrate checks
 ```
 
 On pre-Turing NVIDIA devices, source `scripts/gpu-env.sh` before invoking GPU
@@ -79,6 +81,9 @@ commands directly so a compatible `ptxas` is selected. All pixi tasks use
 ./hyperforge autotransformers run [budget] [seed]
 ./hyperforge autotransformers show <policy>
 ./hyperforge autotransformers replay <policy>
+./hyperforge autollm discover [dir]
+./hyperforge autollm evaluate <suite> <responses>
+./hyperforge autollm status
 ```
 
 `doctor` reports toolchain pin, MAX CLI, accelerator visibility, workspace

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# M10 CLI integration checks: build, help/version, doctor, init, exit codes.
+# M11 CLI integration checks: build, help/version, doctor, init, exit codes.
 # Run with: pixi run test-cli
 set -euo pipefail
 
@@ -57,10 +57,10 @@ check_status 0 "help" "$BIN" --help
 check_output "IMPLEMENTED COMMANDS" "help section"
 
 check_status 0 "version" "$BIN" --version
-check_output "hyperforge 0.1.0 (M10)" "version text"
+check_output "hyperforge 0.1.0 (M11)" "version text"
 
 check_status 0 "doctor" "$BIN" doctor
-check_output "hyperforge doctor (M10)" "doctor header"
+check_output "hyperforge doctor (M11)" "doctor header"
 check_output "toolchain_pin" "doctor probe"
 
 check_status 0 "doctor json" "$BIN" doctor --json

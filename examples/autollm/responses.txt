@@ -1,0 +1,2 @@
+HFRSP1|capital|Paris
+HFRSP1|color|I think the answer is blue.

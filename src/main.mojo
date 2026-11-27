@@ -36,6 +36,11 @@ from hyperforge.cli.autotrans_cmd import (
     show_autotrans,
     replay_autotrans,
 )
+from hyperforge.cli.autollm_cmd import (
+    discover_command,
+    evaluate_command,
+    status_command,
+)
 from hyperforge.core.exit_codes import EXIT_OK, EXIT_USAGE, EXIT_INTERNAL
 
 
@@ -196,6 +201,19 @@ def main() raises:
             code = show_autotrans(".", ta[1])
         elif ta[0] == "replay":
             code = replay_autotrans(".", ta[1])
+        else:
+            code = EXIT_USAGE
+    elif parsed.command == "autollm":
+        ref la = parsed.args
+        if la[0] == "discover":
+            var path = String(".")
+            if len(la) >= 2:
+                path = la[1]
+            code = discover_command(".", path)
+        elif la[0] == "evaluate":
+            code = evaluate_command(".", la[1], la[2])
+        elif la[0] == "status":
+            code = status_command(".")
         else:
             code = EXIT_USAGE
     else:

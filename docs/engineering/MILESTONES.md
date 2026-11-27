@@ -246,3 +246,20 @@ M09 implementation and evidence are **VERIFIED** and pushed as commit
 
 M10 implementation and evidence are **VERIFIED** and pushed as commit
 `20c0454ccf1d56bb93730aeeb2470d0059199e43`.
+
+## M11 — AutoLLM substrate (offline core)
+
+| Acceptance criterion | Evidence | Result |
+|---|---|---|
+| Experiment specs / versioned prompt suite | suite schema and checksum tests | PASS |
+| Local artifact discovery with hashes and license declaration | integration discover check | PASS |
+| Reproducible evaluation suite | recorded-response scoring, missing counted | PASS |
+| Model unavailable gives clear actionable result | `UNAVAILABLE` with remedy | PASS |
+| No external inference API or Python bridge | no such code path | PASS |
+| No implied training/fine-tuning | no training code in this module | PASS |
+| Local MAX inference validated for a user model | no native Mojo boundary and no compatible artifact | BLOCKED_BY_MAX_INTERFACE |
+| Latency/throughput capture | requires a backend | BLOCKED |
+
+M11 offline core is **VERIFIED**; the inference acceptance criterion remains
+**BLOCKED_BY_MAX_INTERFACE** and is documented rather than faked. Commit/push
+is the remaining workflow action.
