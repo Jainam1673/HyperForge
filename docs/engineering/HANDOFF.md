@@ -2,7 +2,8 @@
 
 ## Current state
 
-- M00–M13 are VERIFIED. M13 commit/push is the remaining workflow action.
+- M00–M13 are VERIFIED and pushed. M13 commit:
+  `83b9f320f935db6a008e941f42365c6da8385fd8`.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
 - Tests: `pixi run test` → 93 unit tests; integration totals
@@ -32,9 +33,8 @@ evidence/journal.mojo, evidence/record.mojo (scidl record type)
 
 ## Next exact actions
 
-1. Commit and push M13 as its own milestone.
-2. Re-read the three authoritative documents (required after each milestone).
-3. Next family: SciRL (bounded scientific decision/control in a validated
+1. Re-read the three authoritative documents (required after each milestone).
+2. Next family: SciRL (bounded scientific decision/control in a validated
    simulator with held-out conditions and repeated seeds) or close the AutoLLM
    MAX-inference blocker if a native boundary becomes available.
 

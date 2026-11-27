@@ -290,5 +290,5 @@ M12 implementation and evidence are **VERIFIED** and pushed as commit
 | Reproducibility | fixed seed, deterministic task, 4 tests | PASS |
 | Distinguish from SINN/operator learning | explicit scope in validation doc | PASS |
 
-M13 implementation and evidence are **VERIFIED**; commit/push is the remaining
-workflow action.
+M13 implementation and evidence are **VERIFIED** and pushed as commit
+`83b9f320f935db6a008e941f42365c6da8385fd8`.
