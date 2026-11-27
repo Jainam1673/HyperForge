@@ -238,6 +238,18 @@ held-out conditions covered only the high band, leaving one set of Q-states
 untrained. Both were fixed and are covered by tests. Full suite: 97 unit tests
 and 242 integration checks pass.
 
+## M15 results
+
+| Command | Outcome |
+|---|---|
+| `pixi run bash scripts/mojo.sh run -I src tests/test_m15.mojo` | 4 tests pass |
+| `pixi run test-looper` | `looper integration: 11 passed, 0 failed` |
+| `looper run linear-beats-mean 4` | baseline 4.841229, candidate 9.97e-05, ACCEPTED, 10 events |
+
+The idempotency check initially ran after transition validation, so replaying an
+already-applied state was rejected; it now runs first and compares the last
+event's target state. Full suite: 101 unit tests and 253 integration checks pass.
+
 ## Environment limitation
 
 A fresh `pixi install --frozen` into `/tmp/opencode/cleanhf3` failed with

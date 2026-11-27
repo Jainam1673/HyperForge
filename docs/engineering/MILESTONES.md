@@ -307,3 +307,19 @@ M13 implementation and evidence are **VERIFIED** and pushed as commit
 
 M14 implementation and evidence are **VERIFIED** and pushed as commit
 `254a587bfad159b4bfd5defce9dc12b18c820554`.
+
+## M15 — Scientific Looper
+
+| Acceptance criterion | Evidence | Result |
+|---|---|---|
+| Explicit state machine with validated transitions | transition rules tests | PASS |
+| Event records with actor, reason, IDs, budget, artifact | 10 persisted looper events | PASS |
+| Idempotent repeated transitions | test asserts no duplicate event | PASS |
+| Bounded trials and terminal decisions | budget guard and immutable terminal states | PASS |
+| Specialist roles without false agent claims | sequential passes; output states this | PASS |
+| Real measured evidence before decision | baseline 4.84 vs candidate 9.97e-05, verified | PASS |
+| Replayable decision trail | stable run ID and ordered events | PASS |
+| Wall-clock timestamps | no API available; monotonic sequence recorded | HONEST GAP |
+
+M15 implementation and evidence are **VERIFIED**; commit/push is the remaining
+workflow action.

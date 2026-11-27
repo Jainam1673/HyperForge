@@ -34,6 +34,14 @@ explicitly typed `Optional` is used. `len(String)` is replaced by
 logic is implemented in shell. This follows the directive's allowance for
 small build/test automation.
 
+## D035 — Looper events use monotonic ordering, not invented wall time
+
+The installed Mojo stdlib exposes `perf_counter` but no verified wall-clock or
+epoch API. Loop events record monotonic sequence and relative monotonic time,
+and documentation states that no wall-clock timestamp is claimed. Specialist
+roles are sequential passes with recorded identities; no parallel agents are
+claimed.
+
 ## D034 — SciRL validates the simulator before learning
 
 The Poisson decision simulator is checked against the analytic solution, and

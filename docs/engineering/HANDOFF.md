@@ -2,30 +2,32 @@
 
 ## Current state
 
-- M00–M14 are VERIFIED and pushed. M14 commit:
-  `254a587bfad159b4bfd5defce9dc12b18c820554`.
+- M00–M15 are VERIFIED. M15 commit/push is the remaining workflow action.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
-- Tests: `pixi run test` → 97 unit tests; integration totals
-  24+17+21+14+17+20+17+15+13+17+14+16+16+9+12 = 242 checks. All pass.
-- SciRL learned solver-selection policy beats random and heuristic baselines.
+- Tests: `pixi run test` → 101 unit tests; integration totals
+  24+17+21+14+17+20+17+15+13+17+14+16+16+9+12+11 = 253 checks. All pass.
+- Scientific Looper accepted a real hypothesis with verified metrics and 10
+  recorded transitions.
 
-## What M14 added
+## What M15 added
 
 ```
-src/hyperforge/scirl/{__init__,simulator,agent}.mojo
-src/hyperforge/cli/scirl_cmd.mojo
-tests/test_m14.mojo
-tests/integration_m14.sh
-docs/engineering/SCIRL_VALIDATION.md
+src/hyperforge/looper/{__init__,state_machine,engine}.mojo
+src/hyperforge/cli/looper_cmd.mojo
+tests/test_m15.mojo
+tests/integration_m15.sh
+docs/engineering/LOOPER_VALIDATION.md
 src/main.mojo, args.mojo, help.mojo, version.mojo, pixi.toml (wiring)
-evidence/journal.mojo, evidence/record.mojo (scirl record type)
+evidence/journal.mojo, evidence/record.mojo (looper record type)
 ```
 
 ## Known limitations / blockers
 
-- AutoLLM MAX inference is BLOCKED_BY_MAX_INTERFACE; AutoGenAI not started.
-- SciRL is one bounded one-step simulator; no continuous control or world model.
+- AutoLLM MAX inference is BLOCKED_BY_MAX_INTERFACE; AutoGenAI/SciLLM/SciGenAI
+  not started.
+- Looper has no wall-clock timestamps and no parallel workers; roles are
+  sequential passes and are recorded as such.
 - SciDL MLP underperformed linear/FD baselines; recorded honestly.
 - Adaptive search showed no advantage in M08/M10; joint coupling lost in M07.
 - Memory is `NOT_TESTED` in reciprocal discovery.
@@ -34,10 +36,11 @@ evidence/journal.mojo, evidence/record.mojo (scirl record type)
 
 ## Next exact actions
 
-1. Re-read the three authoritative documents (required after each milestone).
-2. Next: SciLLM/SciGenAI remain blocked by MAX inference; viable options are
-   SciML extensions/operator learning, controlled agentic improvement, or
-   system hardening. Do not register a command without a real execution path.
+1. Commit and push M15 as its own milestone.
+2. Re-read the three authoritative documents (required after each milestone).
+3. Next: MAX/GPU kernel catalogue with reproducible performance infrastructure,
+   or bounded RSI/evaluator hardening. Do not register a command for a
+   capability without a real execution path.
 
 ## Resume commands
 
@@ -45,5 +48,5 @@ evidence/journal.mojo, evidence/record.mojo (scirl record type)
 cd /home/jack/Projects/HyperForge
 pixi run build
 pixi run test
-pixi run test-scirl
+pixi run test-looper
 ```

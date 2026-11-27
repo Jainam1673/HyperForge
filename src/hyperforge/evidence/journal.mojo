@@ -27,6 +27,7 @@ from hyperforge.evidence.record import (
     RECORD_SCIML,
     RECORD_SCIDL,
     RECORD_SCIRL,
+    RECORD_LOOPER,
     parse_record,
     serialize_record,
 )
@@ -200,6 +201,14 @@ def required_fields_present(record: JournalRecord) raises -> Bool:
         required.append("heuristic_mean")
         required.append("improvement_random")
         required.append("state")
+    elif record.kind == RECORD_LOOPER:
+        required.append("run_id")
+        required.append("sequence")
+        required.append("from_state")
+        required.append("to_state")
+        required.append("actor")
+        required.append("reason")
+        required.append("final_state")
     else:
         return False
     for key in required:

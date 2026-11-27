@@ -48,6 +48,7 @@ from hyperforge.cli.sciml_cmd import (
 )
 from hyperforge.cli.scidl_cmd import run_scidl, show_scidl
 from hyperforge.cli.scirl_cmd import run_scirl, show_scirl
+from hyperforge.cli.looper_cmd import run_looper, show_looper
 from hyperforge.core.exit_codes import EXIT_OK, EXIT_USAGE, EXIT_INTERNAL
 
 
@@ -259,6 +260,17 @@ def main() raises:
             code = run_scirl(".", episodes, evaluation_episodes)
         elif rl[0] == "show":
             code = show_scirl(".", rl[1])
+        else:
+            code = EXIT_USAGE
+    elif parsed.command == "looper":
+        ref lp = parsed.args
+        if lp[0] == "run":
+            var budget = 4
+            if len(lp) >= 3:
+                budget = Int(lp[2])
+            code = run_looper(".", lp[1], budget)
+        elif lp[0] == "show":
+            code = show_looper(".", lp[1])
         else:
             code = EXIT_USAGE
     else:

@@ -101,4 +101,7 @@ M13 commit: `83b9f320f935db6a008e941f42365c6da8385fd8`.
 SciRL: M14, VERIFIED (4 unit tests, 12 integration checks,
 `SCIRL_VALIDATION.md`). Learned solver-selection policy beats random and
 finest-mesh heuristic on held-out conditions. M14 commit: `254a587bfad159b4bfd5defce9dc12b18c820554`.
+Scientific Looper: M15, VERIFIED (4 unit tests, 11 integration checks,
+`LOOPER_VALIDATION.md`). Validated state machine, idempotent events, bounded
+trials, sequential specialist roles, real measured evidence. M15 commit pending.
 GitHub MCP is working (verified with `get_me` and `opencode mcp list`).

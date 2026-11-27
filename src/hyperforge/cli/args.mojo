@@ -88,6 +88,7 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             or token == "sciml"
             or token == "scidl"
             or token == "scirl"
+            or token == "looper"
         ):
             result.command = token
         elif token.startswith("-"):
@@ -109,6 +110,7 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             or result.command == "sciml"
             or result.command == "scidl"
             or result.command == "scirl"
+            or result.command == "looper"
         ):
             result.args.append(token)
         elif result.command == "init" and result.target == "":
@@ -185,6 +187,15 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
         len(result.args) != 1 or result.args[0] != "probe"
     ):
         result.error = "usage: hyperforge hardware probe"
+    if result.command == "looper":
+        if len(result.args) == 0:
+            result.error = "looper requires: run|show"
+        elif result.args[0] == "run" and (len(result.args) < 2 or len(result.args) > 3):
+            result.error = "usage: hyperforge looper run <hypothesis> [budget]"
+        elif result.args[0] == "show" and len(result.args) != 2:
+            result.error = "usage: hyperforge looper show <run-id>"
+        elif result.args[0] != "run" and result.args[0] != "show":
+            result.error = "unknown looper subcommand: " + result.args[0]
     if result.command == "scirl":
         if len(result.args) == 0:
             result.error = "scirl requires: run|show"
