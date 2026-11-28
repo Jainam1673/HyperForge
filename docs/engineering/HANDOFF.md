@@ -2,7 +2,8 @@
 
 ## Current state
 
-- M00–M22 VERIFIED and pushed. M23 implemented and VERIFIED; commit/push pending.
+- M00–M22 VERIFIED and pushed. M23 implemented, VERIFIED and pushed. M23 commit:
+  `4eb74366b89ce39da67c5c2b8c159e0c132db72b`.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
 - Final verification: 132 unit tests; 24 integration suites → 395 checks. All pass.
@@ -33,9 +34,8 @@ docs/engineering/{CAPABILITY_MATRIX,TECH_INVENTORY,MILESTONES,PROJECT_STATE,TEST
 
 ## Next exact actions
 
-1. Commit and push M23 as its own milestone.
-2. Re-read the three authoritative documents (required after each milestone).
-3. Next tech monolith: M24 AutoDL + AutoTransformers + HPO/NAS breadth.
+1. Re-read the three authoritative documents (required after each milestone).
+2. Next tech monolith: M24 AutoDL + AutoTransformers + HPO/NAS breadth.
 
 ## Resume commands
 

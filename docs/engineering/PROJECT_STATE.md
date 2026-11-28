@@ -128,7 +128,7 @@ M22 AutoML full monolith: VERIFIED (4 unit tests, 17 integration checks,
 k-fold CV, grid/random search. M22 commit: `1882fb149f4d1c82970f9c3232e0d715a9243e60`.
 AutoLLM full first-party lifecycle: M23, VERIFIED (5 unit tests, 30 integration
 checks, `AUTOLLM_LIFECYCLE.md`). PreTrain/MidTrain/PostTrain/Infer with real
-gradients, checkpoints, and lineage; MAX boundary kept separate. M23 commit pending.
+gradients, checkpoints, and lineage; MAX boundary kept separate. M23 commit: `4eb74366b89ce39da67c5c2b8c159e0c132db72b`.
 Final documentation pass: README rewritten as the canonical user guide;
 `ARCHITECTURE.md` created from the implemented tree; `--help` planned-command
 list corrected. No behavior change beyond help text; build and 123 unit tests

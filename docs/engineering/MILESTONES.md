@@ -453,5 +453,5 @@ M22 implementation and evidence are **VERIFIED** and pushed as commit
 | Per-stage status and honest MAX boundary | `autollm status` output | PASS |
 | Original substrate unchanged | `test-autollm` 16/16 | PASS |
 
-M23 implementation and evidence are **VERIFIED**; commit/push is the remaining
-workflow action."""
+M23 implementation and evidence are **VERIFIED** and pushed as commit
+`4eb74366b89ce39da67c5c2b8c159e0c132db72b`."""
