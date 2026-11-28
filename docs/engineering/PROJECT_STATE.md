@@ -133,7 +133,7 @@ MAX readiness / portability: M24, VERIFIED (2 unit tests, 13 integration checks,
 `MAX_READINESS.md`). Honest BLOCKED boundary, refusal path, target matrix.
 M24 commit: `8be29cd`.
 AutoDL full breadth: M25, VERIFIED (2 unit tests, 17 integration checks,
-`AUTODL_FULL.md`). M25 commit pending.
+`AUTODL_FULL.md`). M25 commit: `fe7fe9b`.
 Final documentation pass: README rewritten as the canonical user guide;
 `ARCHITECTURE.md` created from the implemented tree; `--help` planned-command
 list corrected. No behavior change beyond help text; build and 123 unit tests
