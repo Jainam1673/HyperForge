@@ -374,6 +374,12 @@ Full suite: 132 unit tests and 395 integration checks.
 | `pixi run test-serve` | `serve integration: 13 passed, 0 failed` |
 | `serve status` | BLOCKED_BY_MAX_INTERFACE, serve_enabled false, AMD/Apple NOT_TESTED |
 
+## M25 results
+
+`test_m25` 2 tests pass; `test-autodl-full` 17 checks pass. Four policies run at
+budget 4 with 2 seeds; adaptive and multifidelity selected depth 3 × width 8
+relu with test loss 0.385 and accuracy 0.875.
+
 ## Environment limitation
 
 A fresh `pixi install --frozen` into `/tmp/opencode/cleanhf3` failed with

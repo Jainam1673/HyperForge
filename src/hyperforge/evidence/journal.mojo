@@ -41,6 +41,7 @@ from hyperforge.evidence.record import (
     RECORD_AUTOLLM_STAGE,
     RECORD_AUTOLLM_RESPONSE,
     RECORD_SERVE_STATUS,
+    RECORD_AUTODL_FULL,
     parse_record,
     serialize_record,
 )
@@ -296,6 +297,19 @@ def required_fields_present(record: JournalRecord) raises -> Bool:
         required.append("seed")
         required.append("validation_score")
         required.append("valid")
+    elif record.kind == RECORD_AUTODL_FULL:
+        required.append("schema")
+        required.append("policy")
+        required.append("seed")
+        required.append("budget")
+        required.append("seeds")
+        required.append("candidate_id")
+        required.append("validation_loss")
+        required.append("test_loss")
+        required.append("test_accuracy")
+        required.append("trained")
+        required.append("distinct_architectures")
+        required.append("fidelity_promotions")
     elif record.kind == RECORD_SERVE_STATUS:
         required.append("adapter_schema")
         required.append("portability_schema")

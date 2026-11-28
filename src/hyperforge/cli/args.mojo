@@ -384,8 +384,15 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
         ):
             result.error = "unknown autorl subcommand: " + result.args[0]
     if result.command == "autodl":
+        if len(result.args) >= 1 and result.args[0] == "full" and (
+            len(result.args) < 4 or len(result.args) > 5
+        ):
+            result.error = (
+                "usage: hyperforge autodl full <policy> <budget> <seed> [seeds]"
+            )
+    if result.command == "autodl":
         if len(result.args) == 0:
-            result.error = "autodl requires: run|show|replay"
+            result.error = "autodl requires: full|run|show|replay"
         elif result.args[0] == "run" and (len(result.args) < 1 or len(result.args) > 3):
             result.error = "usage: hyperforge autodl run [budget] [seed]"
         elif (
@@ -394,7 +401,8 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
         ):
             result.error = "usage: hyperforge autodl " + result.args[0] + " <id>"
         elif (
-            result.args[0] != "run"
+            result.args[0] != "full"
+            and result.args[0] != "run"
             and result.args[0] != "show"
             and result.args[0] != "replay"
         ):

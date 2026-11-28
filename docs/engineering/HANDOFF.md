@@ -19,6 +19,10 @@ tests/test_m23.mojo
 tests/integration_m23.sh
 docs/engineering/AUTOLLM_LIFECYCLE.md
 docs/engineering/MAX_READINESS.md
+docs/engineering/AUTODL_FULL.md
+src/hyperforge/autodl/full_search.mojo
+src/hyperforge/cli/autodl_full_cmd.mojo
+tests/test_m25.mojo, tests/integration_m25.sh
 src/hyperforge/runtime/{max_adapter,portability}.mojo
 src/hyperforge/cli/serve_cmd.mojo
 tests/test_m24.mojo, tests/integration_m24.sh

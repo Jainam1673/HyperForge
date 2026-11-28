@@ -468,3 +468,9 @@ M23 implementation and evidence are **VERIFIED** and pushed as commit
 | No fake serve command | only `serve status` registered | PASS |
 
 M24 VERIFIED and pushed as commit `8be29cd`.
+
+## M25 — Full AutoDL breadth
+
+grid/random/adaptive/multifidelity HPO + structural NAS, low-fidelity screen,
+repeated seeds, held-out test. `test_m25` 2 tests and `test-autodl-full` 17 checks
+pass. VERIFIED; commit pending.

@@ -40,6 +40,7 @@ comptime RECORD_FULL_SUMMARY = "full_summary"
 comptime RECORD_AUTOLLM_STAGE = "autollm_stage"
 comptime RECORD_AUTOLLM_RESPONSE = "autollm_response"
 comptime RECORD_SERVE_STATUS = "serve_status"
+comptime RECORD_AUTODL_FULL = "autodl_full"
 
 
 struct Field:

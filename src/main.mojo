@@ -52,6 +52,7 @@ from hyperforge.cli.autollm_lifecycle_cmd import (
     lifecycle_status,
 )
 from hyperforge.cli.serve_cmd import status_command as serve_status_command
+from hyperforge.cli.autodl_full_cmd import run_autodl_full
 from hyperforge.cli.sciml_cmd import (
     list_problems as sciml_list,
     solve_problem as sciml_solve,
@@ -207,7 +208,19 @@ def main() raises:
         code = run_discovery(".", budget, seed)
     elif parsed.command == "autodl":
         ref aa = parsed.args
-        if aa[0] == "run":
+        if aa[0] == "full":
+            var policy = aa[1]
+            var budget = 4
+            var seed: UInt64 = 42
+            var seeds = 2
+            if len(aa) >= 3:
+                budget = Int(aa[2])
+            if len(aa) >= 4:
+                seed = UInt64(Int(aa[3]))
+            if len(aa) >= 5:
+                seeds = Int(aa[4])
+            code = run_autodl_full(".", policy, budget, seed, seeds)
+        elif aa[0] == "run":
             var budget = 4
             var seed: UInt64 = 42
             if len(aa) >= 2:
