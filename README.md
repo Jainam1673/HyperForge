@@ -302,6 +302,7 @@ Core CPU paths need no network, account, model download, or external service.
 | [`docs/HYPERFORGE_MOJO_MAX_MASTER_BUILD_PROMPT.md`](docs/HYPERFORGE_MOJO_MAX_MASTER_BUILD_PROMPT.md) | Authoritative build directive M00–M21 |
 | [`docs/MOJO_MAX_BOOTSTRAP_BLUEPRINT.md`](docs/MOJO_MAX_BOOTSTRAP_BLUEPRINT.md) | Architecture blueprint |
 | [`docs/engineering/ARCHITECTURE.md`](docs/engineering/ARCHITECTURE.md) | Implemented module map and invariants |
+| [`docs/engineering/EXPANSION_ROADMAP.md`](docs/engineering/EXPANSION_ROADMAP.md) | Post-M21 scope: broader algorithms, full AutoLLM lifecycle, interconnection |
 | [`docs/engineering/CAPABILITY_MATRIX.md`](docs/engineering/CAPABILITY_MATRIX.md) | Verified status of every capability |
 | [`docs/engineering/RELEASE.md`](docs/engineering/RELEASE.md) | Pins, reproduction, licensing, reliability posture |
 | [`docs/engineering/TEST_RESULTS.md`](docs/engineering/TEST_RESULTS.md) | Exact commands, outcomes, and fixes |
