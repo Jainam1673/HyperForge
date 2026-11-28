@@ -135,7 +135,7 @@ M24 commit: `8be29cd`.
 AutoDL full breadth: M25, VERIFIED (2 unit tests, 17 integration checks,
 `AUTODL_FULL.md`). M25 commit: `fe7fe9b` (docs `a73ace5`).
 AutoRL full breadth: M26, VERIFIED (3 unit tests, 21 integration checks,
-`AUTORL_FULL.md`). M26 commit pending.
+`AUTORL_FULL.md`). M26 commit: `942e074`.
 Final documentation pass: README rewritten as the canonical user guide;
 `ARCHITECTURE.md` created from the implemented tree; `--help` planned-command
 list corrected. No behavior change beyond help text; build and 123 unit tests
