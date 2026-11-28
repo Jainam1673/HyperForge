@@ -20,6 +20,10 @@ tests/integration_m23.sh
 docs/engineering/AUTOLLM_LIFECYCLE.md
 docs/engineering/MAX_READINESS.md
 docs/engineering/AUTODL_FULL.md
+docs/engineering/AUTORL_FULL.md
+src/hyperforge/autorl/full.mojo
+src/hyperforge/cli/autorl_full_cmd.mojo
+tests/test_m26.mojo, tests/integration_m26.sh
 src/hyperforge/autodl/full_search.mojo
 src/hyperforge/cli/autodl_full_cmd.mojo
 tests/test_m25.mojo, tests/integration_m25.sh

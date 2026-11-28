@@ -4,8 +4,8 @@
 > **bounded reciprocal search** — no frontend, no server, no database, and no
 > Python application code.
 
-**Status:** roadmap M00–M21 complete; M22 AutoML, M23 AutoLLM, M24 MAX readiness, M25 full AutoDL monoliths complete · Mojo `1.2.0` · MAX `26.7.0` ·
-`136` unit tests · `425` integration checks · CLI-only · offline core
+**Status:** roadmap M00–M21 complete; M22 AutoML, M23 AutoLLM, M24 MAX readiness, M25 full AutoDL, M26 full AutoRL monoliths complete · Mojo `1.2.0` · MAX `26.7.0` ·
+`139` unit tests · `446` integration checks · CLI-only · offline core
 
 ---
 
@@ -231,7 +231,7 @@ The authoritative, always-current status of every capability keyword is in
 [`docs/engineering/CAPABILITY_MATRIX.md`](docs/engineering/CAPABILITY_MATRIX.md).
 In short:
 
-- **Complete:** CLI/evidence, full AutoML (M22), full AutoLLM lifecycle (M23), MAX readiness (M24), full AutoDL (M25), adaptive optimization, SINN,
+- **Complete:** CLI/evidence, full AutoML (M22), full AutoLLM lifecycle (M23), MAX readiness (M24), full AutoDL (M25), full AutoRL (M26), adaptive optimization, SINN,
   SciTransformers, reciprocal discovery proof, AutoDL, AutoRL,
   AutoTransformers, SciML, SciDL, SciRL, Scientific Looper, GPU kernel
   catalogue, bounded RSI.
@@ -254,7 +254,7 @@ proof, and the SciDL MLP underperformed linear/FD baselines.
 
 ```bash
 pixi run build                 # native Mojo build
-pixi run test                  # 136 unit tests
+pixi run test                  # 139 unit tests
 pixi run test-cli              # 24 checks
 pixi run test-experiment       # 17 checks
 pixi run test-automl           # 21 checks
@@ -270,6 +270,7 @@ pixi run test-autollm          # 16 checks
 pixi run test-autollm-lifecycle # 30 full-AutoLLM checks
 pixi run test-serve            # 13 MAX-readiness checks
 pixi run test-autodl-full      # 17 full-AutoDL checks
+pixi run test-autorl-full      # 21 full-AutoRL checks
 pixi run test-sciml            # 16 checks
 pixi run test-scidl            # 9 checks
 pixi run test-scirl            # 12 checks

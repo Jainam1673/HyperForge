@@ -24,6 +24,8 @@ def print_help() raises:
         + "                          Search real MLP architectures on CPU\n"
         + "  autodl show <id>        Inspect an AutoDL result\n"
         + "  autodl replay <id>      Verify a restored checkpoint\n"
+        + "  autorl full <algorithm> [env] [episodes] [eval] [seed] [seeds]\n"
+        + "                          Full RL algorithms with held-out evaluation\n"
         + "  autorl list-envs        List deterministic RL environments\n"
         + "  autorl run [episodes] [eval-episodes]\n"
         + "                          Train tabular policies with held-out evaluation\n"

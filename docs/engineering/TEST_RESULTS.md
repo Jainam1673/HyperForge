@@ -380,6 +380,13 @@ Full suite: 132 unit tests and 395 integration checks.
 budget 4 with 2 seeds; adaptive and multifidelity selected depth 3 × width 8
 relu with test loss 0.385 and accuracy 0.875.
 
+## M26 results
+
+`test_m26` 3 tests pass; `test-autorl-full` 21 checks pass. Value iteration
+achieved mean return 5.0 and 1.0 success rate; all policies scored -24 on the
+held-out wall layout (negative result retained). Total: 139 unit tests and 446
+integration checks.
+
 ## Environment limitation
 
 A fresh `pixi install --frozen` into `/tmp/opencode/cleanhf3` failed with

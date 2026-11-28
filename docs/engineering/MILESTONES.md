@@ -474,3 +474,9 @@ M24 VERIFIED and pushed as commit `8be29cd`.
 grid/random/adaptive/multifidelity HPO + structural NAS, low-fidelity screen,
 repeated seeds, held-out test. `test_m25` 2 tests and `test-autodl-full` 17 checks
 pass. VERIFIED; commit pending.
+
+## M26 — Full AutoRL breadth
+
+Five algorithms, two environments, safe actions, held-out wall layout, repeated
+seeds. `test_m26` 3 tests and `test-autorl-full` 21 checks pass. Negative
+transfer result retained. VERIFIED; commit pending.

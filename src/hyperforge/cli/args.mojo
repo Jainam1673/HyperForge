@@ -365,8 +365,16 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
         ):
             result.error = "unknown autotransformers subcommand: " + result.args[0]
     if result.command == "autorl":
+        if len(result.args) >= 1 and result.args[0] == "full" and (
+            len(result.args) < 2 or len(result.args) > 7
+        ):
+            result.error = (
+                "usage: hyperforge autorl full <algorithm> [env] "
+                "[episodes] [eval] [seed] [seeds]"
+            )
+    if result.command == "autorl":
         if len(result.args) == 0:
-            result.error = "autorl requires: list-envs|run|show|replay"
+            result.error = "autorl requires: full|list-envs|run|show|replay"
         elif result.args[0] == "list-envs" and len(result.args) != 1:
             result.error = "usage: hyperforge autorl list-envs"
         elif result.args[0] == "run" and (len(result.args) < 1 or len(result.args) > 3):
@@ -377,7 +385,8 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
         ):
             result.error = "usage: hyperforge autorl " + result.args[0] + " <id>"
         elif (
-            result.args[0] != "list-envs"
+            result.args[0] != "full"
+            and result.args[0] != "list-envs"
             and result.args[0] != "run"
             and result.args[0] != "show"
             and result.args[0] != "replay"

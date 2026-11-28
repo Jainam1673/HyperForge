@@ -166,7 +166,7 @@ def run_full_search(
         if report.validation_loss < best_validation:
             best_validation = report.validation_loss
             best = candidate.copy()
-            best_model = result[0].copy()
+            _ = result[0]
             initialized = True
 
     if not initialized:

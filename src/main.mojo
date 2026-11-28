@@ -53,6 +53,7 @@ from hyperforge.cli.autollm_lifecycle_cmd import (
 )
 from hyperforge.cli.serve_cmd import status_command as serve_status_command
 from hyperforge.cli.autodl_full_cmd import run_autodl_full
+from hyperforge.cli.autorl_full_cmd import run_autorl_full
 from hyperforge.cli.sciml_cmd import (
     list_problems as sciml_list,
     solve_problem as sciml_solve,
@@ -235,21 +236,38 @@ def main() raises:
         else:
             code = EXIT_USAGE
     elif parsed.command == "autorl":
-        ref ra = parsed.args
-        if ra[0] == "list-envs":
+        ref ar = parsed.args
+        if ar[0] == "full":
+            var environment = String("grid_4x4")
+            var episodes = 40
+            var evaluation = 8
+            var seed: UInt64 = 42
+            var seeds = 2
+            if len(ar) >= 2:
+                environment = ar[2]
+            if len(ar) >= 3:
+                episodes = Int(ar[3])
+            if len(ar) >= 4:
+                evaluation = Int(ar[4])
+            if len(ar) >= 5:
+                seed = UInt64(Int(ar[5]))
+            if len(ar) >= 6:
+                seeds = Int(ar[6])
+            code = run_autorl_full(".", ar[1], environment, episodes, evaluation, seed, seeds)
+        elif ar[0] == "list-envs":
             code = list_environments()
-        elif ra[0] == "run":
+        elif ar[0] == "run":
             var episodes = 60
             var evaluation_episodes = 20
-            if len(ra) >= 2:
-                episodes = Int(ra[1])
-            if len(ra) >= 3:
-                evaluation_episodes = Int(ra[2])
+            if len(ar) >= 2:
+                episodes = Int(ar[1])
+            if len(ar) >= 3:
+                evaluation_episodes = Int(ar[2])
             code = run_autorl(".", episodes, evaluation_episodes)
-        elif ra[0] == "show":
-            code = show_autorl(".", ra[1])
-        elif ra[0] == "replay":
-            code = replay_autorl(".", ra[1])
+        elif ar[0] == "show":
+            code = show_autorl(".", ar[1])
+        elif ar[0] == "replay":
+            code = replay_autorl(".", ar[1])
         else:
             code = EXIT_USAGE
     elif parsed.command == "autotransformers":
