@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# M23 integration checks: full AutoLLM PreTrain/MidTrain/PostTrain/Infer.
+# M24 integration checks: full AutoLLM PreTrain/MidTrain/PostTrain/Infer.
 # Run with: pixi run test-autollm-lifecycle
 set -euo pipefail
 
@@ -97,7 +97,7 @@ else
 fi
 
 check_status 0 "version" "$BIN" --version
-check_output "hyperforge 0.1.0 (M23)" "version text"
+check_output "hyperforge 0.1.0 (M24)" "version text"
 check_status 2 "bad subcommand" "$BIN" autollm nonsense
 
 echo "autollm lifecycle integration: $pass passed, $fail failed"

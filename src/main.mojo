@@ -51,6 +51,7 @@ from hyperforge.cli.autollm_lifecycle_cmd import (
     infer_command,
     lifecycle_status,
 )
+from hyperforge.cli.serve_cmd import status_command as serve_status_command
 from hyperforge.cli.sciml_cmd import (
     list_problems as sciml_list,
     solve_problem as sciml_solve,
@@ -384,6 +385,8 @@ def main() raises:
             code = show_joint(".")
         else:
             code = EXIT_USAGE
+    elif parsed.command == "serve":
+        code = serve_status_command(".")
     elif parsed.command == "rsi":
         ref rs = parsed.args
         var trials = DEFAULT_TRIALS

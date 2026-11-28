@@ -37,6 +37,8 @@ Observed facts live in `engineering/`:
 | `engineering/EXPANSION_ROADMAP.md` | Post-M21 expansion: broader algorithm space, full AutoLLM lifecycle, interconnection. |
 | `engineering/TECH_INVENTORY.md` | Every tech name with its full scope, current status, and boundary. |
 | `engineering/AUTOML_FULL.md` | Complete AutoML algorithm inventory and verified results. |
+| `engineering/MAX_READINESS.md` | MAX adapter boundary, verification checklist, vendor target matrix. |
+| `engineering/OWNER_SCOPE.md` | Owner directive for full breadth of every technology. |
 | `engineering/AUTOLLM_LIFECYCLE.md` | Full first-party LLM lifecycle, checkpoints, and MAX boundary. |
 | `engineering/CAPABILITY_MATRIX.md` | Status of every AutoAI/SciAI keyword, including partial and blocked items. |
 | `engineering/RELEASE.md` | Pinned toolchain, clean-checkout commands, licensing, and reliability notes. |

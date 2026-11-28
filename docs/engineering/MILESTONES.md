@@ -455,3 +455,16 @@ M22 implementation and evidence are **VERIFIED** and pushed as commit
 
 M23 implementation and evidence are **VERIFIED** and pushed as commit
 `4eb74366b89ce39da67c5c2b8c159e0c132db72b`."""
+
+## M24 — MAX serving readiness and portability contract
+
+| Criterion | Evidence | Result |
+|---|---|---|
+| Honest MAX boundary and refusal | `serve status` reports BLOCKED + REFUSED | PASS |
+| Six-item verification checklist | all items UNVERIFIED, no false enable | PASS |
+| Cross-vendor target matrix | NVIDIA sm_61/CPU VERIFIED; AMD/Apple NOT_TESTED | PASS |
+| Source portability rules | five rules printed and tested | PASS |
+| Durable readiness record | `serve_status` journal record | PASS |
+| No fake serve command | only `serve status` registered | PASS |
+
+M24 VERIFIED; commit pending.

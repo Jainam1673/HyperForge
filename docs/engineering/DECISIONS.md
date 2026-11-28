@@ -34,6 +34,13 @@ explicitly typed `Optional` is used. `len(String)` is replaced by
 logic is implemented in shell. This follows the directive's allowance for
 small build/test automation.
 
+## D044 — MAX serving is a readiness boundary, not a claim
+
+No `serve run` command is registered because the native Mojo inference boundary
+is unverified. `serve status` exposes a checklist and target matrix; serving is
+refused until each item has evidence. AMD and Apple Silicon stay NOT_TESTED
+because no hardware was available. This is the honest form of "ready to serve".
+
 ## D043 — AutoLLM lifecycle uses a first-party tiny model, not MAX
 
 A byte-level max-entropy context model trained with the autodiff tape provides

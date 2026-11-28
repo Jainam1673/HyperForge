@@ -6,7 +6,7 @@
   `4eb74366b89ce39da67c5c2b8c159e0c132db72b`.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
-- Final verification: 132 unit tests; 24 integration suites → 395 checks. All pass.
+- Final verification: 134 unit tests; 25 integration suites → 408 checks. All pass.
 - Owner strategy: monolithic per tech, not thin slices (`EXPANSION_ROADMAP.md`).
 
 ## What M23 added
@@ -18,6 +18,10 @@ examples/autollm/{corpus_pre.txt,corpus_mid.txt,pairs.tsv}
 tests/test_m23.mojo
 tests/integration_m23.sh
 docs/engineering/AUTOLLM_LIFECYCLE.md
+docs/engineering/MAX_READINESS.md
+src/hyperforge/runtime/{max_adapter,portability}.mojo
+src/hyperforge/cli/serve_cmd.mojo
+tests/test_m24.mojo, tests/integration_m24.sh
 src/main.mojo, args.mojo, help.mojo, version.mojo, pixi.toml (wiring)
 evidence/journal.mojo, evidence/record.mojo (autollm_stage, autollm_response)
 docs/engineering/{CAPABILITY_MATRIX,TECH_INVENTORY,MILESTONES,PROJECT_STATE,TEST_RESULTS,DECISIONS}.md

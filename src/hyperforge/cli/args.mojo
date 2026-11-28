@@ -97,6 +97,7 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             or token == "meta"
             or token == "joint"
             or token == "rsi"
+            or token == "serve"
         ):
             result.command = token
         elif token.startswith("-"):
@@ -123,6 +124,7 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             or result.command == "meta"
             or result.command == "joint"
             or result.command == "rsi"
+            or result.command == "serve"
         ):
             result.args.append(token)
         elif result.command == "init" and result.target == "":
@@ -208,6 +210,9 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
         result.error = "usage: hyperforge benchmark kernel [name] [size] [repetitions]"
     if result.apply and result.command != "rsi":
         result.error = "--apply is only valid with 'rsi run|rollback'"
+    if result.command == "serve":
+        if len(result.args) != 1 or result.args[0] != "status":
+            result.error = "usage: hyperforge serve status"
     if result.command == "rsi":
         if len(result.args) == 0:
             result.error = "rsi requires: run|show|rollback"

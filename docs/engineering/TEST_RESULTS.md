@@ -366,6 +366,14 @@ Mojo, UTF-8 byte-to-int conversion, output dimension off by one, checkpoint
 checksum including a trailing newline, and sampling selecting the padding token.
 Full suite: 132 unit tests and 395 integration checks.
 
+## M24 results
+
+| Command | Outcome |
+|---|---|
+| `pixi run bash scripts/mojo.sh run -I src tests/test_m24.mojo` | 2 tests pass |
+| `pixi run test-serve` | `serve integration: 13 passed, 0 failed` |
+| `serve status` | BLOCKED_BY_MAX_INTERFACE, serve_enabled false, AMD/Apple NOT_TESTED |
+
 ## Environment limitation
 
 A fresh `pixi install --frozen` into `/tmp/opencode/cleanhf3` failed with

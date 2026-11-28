@@ -4,8 +4,8 @@
 > **bounded reciprocal search** — no frontend, no server, no database, and no
 > Python application code.
 
-**Status:** roadmap M00–M21 complete; M22 AutoML + M23 AutoLLM full monoliths complete · Mojo `1.2.0` · MAX `26.7.0` ·
-`132` unit tests · `395` integration checks · CLI-only · offline core
+**Status:** roadmap M00–M21 complete; M22 AutoML, M23 AutoLLM, M24 MAX readiness full monoliths complete · Mojo `1.2.0` · MAX `26.7.0` ·
+`134` unit tests · `408` integration checks · CLI-only · offline core
 
 ---
 
@@ -149,6 +149,7 @@ protected holdout and an independent verifier gate every acceptance.
 ./hyperforge autollm posttrain examples/autollm/pairs.tsv 6
 ./hyperforge autollm infer "the " 8 1.0
 ./hyperforge autollm status
+./hyperforge serve status
 ```
 
 A tiny first-party byte-level model is genuinely trained with reverse-mode
@@ -230,7 +231,7 @@ The authoritative, always-current status of every capability keyword is in
 [`docs/engineering/CAPABILITY_MATRIX.md`](docs/engineering/CAPABILITY_MATRIX.md).
 In short:
 
-- **Complete:** CLI/evidence, full AutoML (M22), full AutoLLM lifecycle (M23), adaptive optimization, SINN,
+- **Complete:** CLI/evidence, full AutoML (M22), full AutoLLM lifecycle (M23), MAX readiness (M24), adaptive optimization, SINN,
   SciTransformers, reciprocal discovery proof, AutoDL, AutoRL,
   AutoTransformers, SciML, SciDL, SciRL, Scientific Looper, GPU kernel
   catalogue, bounded RSI.
@@ -253,7 +254,7 @@ proof, and the SciDL MLP underperformed linear/FD baselines.
 
 ```bash
 pixi run build                 # native Mojo build
-pixi run test                  # 132 unit tests
+pixi run test                  # 134 unit tests
 pixi run test-cli              # 24 checks
 pixi run test-experiment       # 17 checks
 pixi run test-automl           # 21 checks
@@ -267,6 +268,7 @@ pixi run test-autorl           # 17 checks
 pixi run test-autotrans        # 14 checks
 pixi run test-autollm          # 16 checks
 pixi run test-autollm-lifecycle # 30 full-AutoLLM checks
+pixi run test-serve            # 13 MAX-readiness checks
 pixi run test-sciml            # 16 checks
 pixi run test-scidl            # 9 checks
 pixi run test-scirl            # 12 checks
@@ -320,6 +322,8 @@ Core CPU paths need no network, account, model download, or external service.
 | [`docs/HYPERFORGE_MOJO_MAX_MASTER_BUILD_PROMPT.md`](docs/HYPERFORGE_MOJO_MAX_MASTER_BUILD_PROMPT.md) | Authoritative build directive M00–M21 |
 | [`docs/MOJO_MAX_BOOTSTRAP_BLUEPRINT.md`](docs/MOJO_MAX_BOOTSTRAP_BLUEPRINT.md) | Architecture blueprint |
 | [`docs/engineering/AUTOML_FULL.md`](docs/engineering/AUTOML_FULL.md) | Complete AutoML inventory and results |
+| [`docs/engineering/MAX_READINESS.md`](docs/engineering/MAX_READINESS.md) | Honest MAX adapter and portability matrix |
+| [`docs/engineering/OWNER_SCOPE.md`](docs/engineering/OWNER_SCOPE.md) | Full-breadth directive and honest constraints |
 | [`docs/engineering/AUTOLLM_LIFECYCLE.md`](docs/engineering/AUTOLLM_LIFECYCLE.md) | Full first-party LLM lifecycle and MAX boundary |
 | [`docs/engineering/ARCHITECTURE.md`](docs/engineering/ARCHITECTURE.md) | Implemented module map and invariants |
 | [`docs/engineering/EXPANSION_ROADMAP.md`](docs/engineering/EXPANSION_ROADMAP.md) | Post-M21 scope: broader algorithms, full AutoLLM lifecycle, interconnection |
