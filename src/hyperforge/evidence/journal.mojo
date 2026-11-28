@@ -36,6 +36,8 @@ from hyperforge.evidence.record import (
     RECORD_RSI_BASELINE,
     RECORD_RSI_PROTOCOL,
     RECORD_RSI_DECISION,
+    RECORD_FULL_TRIAL,
+    RECORD_FULL_SUMMARY,
     parse_record,
     serialize_record,
 )
@@ -284,6 +286,25 @@ def required_fields_present(record: JournalRecord) raises -> Bool:
         required.append("authorized")
         required.append("baseline_checksum")
         required.append("protocol_checksum")
+    elif record.kind == RECORD_FULL_TRIAL:
+        required.append("candidate_id")
+        required.append("kind")
+        required.append("task")
+        required.append("seed")
+        required.append("validation_score")
+        required.append("valid")
+    elif record.kind == RECORD_FULL_SUMMARY:
+        required.append("schema")
+        required.append("task")
+        required.append("winner_id")
+        required.append("winner_kind")
+        required.append("seed")
+        required.append("budget")
+        required.append("folds")
+        required.append("test_rmse")
+        required.append("test_accuracy")
+        required.append("test_f1")
+        required.append("test_auc")
     else:
         return False
     for key in required:

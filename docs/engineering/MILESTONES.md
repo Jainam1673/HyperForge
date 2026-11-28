@@ -421,6 +421,22 @@ M20 implementation and evidence are **VERIFIED** and pushed as commit
 | Full comprehensive verification | 123 unit + 348 integration checks | PASS |
 
 M21 implementation and evidence are **VERIFIED** and pushed as commit
-`2614b54234204a379fc8eba9fdee5f4f52c3eecf`. This closes the roadmap milestone
-sequence; further work is incremental expansion from the documented capability
-matrix."""
+`2614b54234204a379fc8eba9fdee5f4f52c3eecf`. This closed the original roadmap
+milestone sequence.
+
+## M22 — AutoML full monolithic implementation
+
+Owner changed strategy to monolithic-per-tech; recorded in `EXPANSION_ROADMAP.md`.
+
+| Acceptance criterion | Evidence | Result |
+|---|---|---|
+| All 18 declared model kinds execute | `test_m22` fits/predicts every kind | PASS |
+| Regression + classification tasks | `automl full` on both fixtures | PASS |
+| Full metric suite | analytic metric unit tests; CLI reports all | PASS |
+| K-fold CV without holdout leakage | folds on train; test once after selection | PASS |
+| Random + grid search over full kind space | `make_candidates`, `grid_candidates` | PASS |
+| Durable per-trial evidence | `full_trial`, `full_summary` records | PASS |
+| Earlier capabilities unchanged | 21 integration suites re-run clean | PASS |
+
+M22 implementation and evidence are **VERIFIED**; commit/push is the remaining
+workflow action."""

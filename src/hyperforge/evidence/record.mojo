@@ -35,6 +35,8 @@ comptime RECORD_JOINT_OUTCOME = "joint_outcome"
 comptime RECORD_RSI_BASELINE = "rsi_baseline"
 comptime RECORD_RSI_PROTOCOL = "rsi_protocol"
 comptime RECORD_RSI_DECISION = "rsi_decision"
+comptime RECORD_FULL_TRIAL = "full_trial"
+comptime RECORD_FULL_SUMMARY = "full_summary"
 
 
 struct Field:

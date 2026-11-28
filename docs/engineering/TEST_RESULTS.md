@@ -338,6 +338,20 @@ examples were captured from real runs of `automl run`, `automl show`, `report`,
 and `doctor`; the fixture relation `y = 2*x1 - 3*x2 + 5` was verified against
 the CSV. No test expectation changed.
 
+## M22 results
+
+| Command | Outcome |
+|---|---|
+| `pixi run bash scripts/mojo.sh run -I src tests/test_m22.mojo` | 4 tests pass |
+| `pixi run test-automl-full` | `automl full integration: 17 passed, 0 failed` |
+| `automl full regression_linear.csv y 12 42 3` | winner linear_gd, test RMSE 0.00269 |
+| `automl full classification_binary.csv y 12 42 3` | winner logistic_regression, accuracy 0.667, AUC 1.0 |
+
+Four defects were found and fixed: polynomial feature-width bug (index out of
+bounds), classification candidates never appearing in a small budget, log loss
+computed on thresholded labels instead of probabilities, and a Float64 loop
+bound passed to `range`. Full suite: 127 unit tests and 365 integration checks.
+
 ## Environment limitation
 
 A fresh `pixi install --frozen` into `/tmp/opencode/cleanhf3` failed with

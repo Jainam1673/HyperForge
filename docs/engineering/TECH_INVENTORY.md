@@ -40,34 +40,34 @@ Everything in it: every subfamily below — AutoML, AutoDL, AutoRL, AutoLLM,
 AutoGenAI, AutoTransformers, plus HPO, NAS, and MLOps/LLMOps lifecycle
 support. It must never imply all subfamilies are complete.
 
-### AutoML ✅ (regression slice; broader work planned)
+### AutoML ✅ (M22 full declared inventory)
 **Everything in it:**
 
-- **Data layer** — numeric CSV (done); planned: classification targets,
-  categorical encoding, schema inference, missing-value strategies, scaling,
-  feature selection, cross-validation folds, grouped/time-series splits,
-  data fingerprinting, leakage detection.
-- **Task families** — regression (done); planned: classification, ranking,
-  clustering, time-series forecasting.
-- **Model families**
-  - Linear/regularized: mean baseline ✅, linear GD ✅, ridge GD ✅; planned
-    Lasso (L1), Elastic Net, Huber robust, Bayesian ridge, logistic regression,
+- **Data layer** — numeric CSV ✅, classification targets ✅, train-fitted
+  preprocessing ✅, seeded splits ✅, k-fold CV ✅; planned: categorical
+  encoding, schema inference, grouped/time-series splits, leakage detection.
+- **Task families** — regression ✅, classification ✅; planned: ranking,
+  clustering as a scored task, time-series forecasting.
+- **Model families (18 kinds implemented in M22)**
+  - Linear/regularized: baseline ✅, linear GD ✅, ridge ✅, Lasso ✅,
+    Elastic Net ✅, Huber ✅, logistic regression ✅; planned: Bayesian ridge,
     linear SVM, LDA.
-  - Non-linear/kernel: kNN ✅; planned polynomial basis, kernel ridge (RBF),
-    SVR-style epsilon loss, Gaussian process.
-  - Trees/ensembles (planned): decision tree, random forest, ExtraTrees,
-    AdaBoost, gradient boosting, bagging, stacking.
-  - Probabilistic (planned): Gaussian/Bernoulli naive Bayes, GMM.
-  - Unsupervised (planned): k-means, DBSCAN, hierarchical clustering, PCA,
-    autoencoder.
+  - Non-linear/basis: kNN ✅, polynomial degree-2 ✅, PCA projection ✅;
+    planned: kernel ridge (RBF), SVR, Gaussian process.
+  - Trees/ensembles: decision tree reg/cls ✅, random forest reg/cls ✅,
+    gradient boosting reg ✅; planned: ExtraTrees, AdaBoost, bagging, stacking.
+  - Probabilistic: Gaussian naive Bayes ✅; planned Bernoulli NB, GMM.
+  - Unsupervised: k-means ✅; planned DBSCAN, hierarchical, autoencoder.
   - Neural (planned): MLP, tabular transformer.
-- **Search** — random ✅, adaptive with real feedback ✅; planned grid search,
-  Bayesian optimization, TPE, evolutionary search, early stopping,
-  multi-fidelity.
-- **Metrics** — MAE/MSE/RMSE/R² ✅; planned MAPE, accuracy, precision, recall,
-  F1, confusion matrix, log loss, ROC-AUC, silhouette, NDCG.
-- **Lifecycle** — inspect/run/show/replay/compare ✅; planned leaderboard,
+- **Search** — random ✅, adaptive with feedback ✅, grid ✅; planned Bayesian,
+  TPE, evolutionary, multi-fidelity.
+- **Metrics** — MAE/MSE/RMSE/R²/MAPE ✅, accuracy/precision/recall/F1/confusion
+  matrix/log loss/ROC-AUC ✅; planned silhouette, NDCG.
+- **Lifecycle** — inspect/run/full/show/replay/compare ✅; planned leaderboard,
   seed sweeps, paired significance tests.
+
+Remaining planned items are a future expansion **of this same tech**, not a new
+technology or a thin slice. See `AUTOML_FULL.md`.
 
 **Boundary:** "all algorithms" is unbounded; the declared first wave is in
 `EXPANSION_ROADMAP.md` and grows only as slices are verified.

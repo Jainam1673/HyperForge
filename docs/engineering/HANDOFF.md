@@ -2,51 +2,41 @@
 
 ## Current state
 
-- M00–M21 are VERIFIED and pushed. M21 commit:
-  `2614b54234204a379fc8eba9fdee5f4f52c3eecf`.
+- M00–M21 VERIFIED and pushed. M22 implemented and VERIFIED; commit/push pending.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
-- Final verification: `pixi run test` → 123 unit tests; 22 integration suites →
-  348 checks. All pass. Build is clean.
-- Roadmap M00–M21 is closed. Owner expanded scope after M21: broader algorithm
-  space, full AutoLLM PreTrain→MidTrain→PostTrain→Infer lifecycle, and all
-  capabilities interconnected via evidence. Recorded in
-  `docs/engineering/EXPANSION_ROADMAP.md`; full per-tech scope map in
-  `docs/engineering/TECH_INVENTORY.md`; no code started for it yet. Owner asked
-  to enumerate every tech and everything inside it before implementation.
-- README finalized as the single end-user entry point: positioning, quick start,
-  five guided workflows, grouped command reference, architecture, honest status,
-  verification commands, and limitations. `docs/engineering/ARCHITECTURE.md`
-  added from the implemented source tree; `--help` stale "discover" entry fixed.
+- Final verification: 127 unit tests; 23 integration suites → 365 checks. All pass.
+- Owner strategy: monolithic per tech, not thin slices (`EXPANSION_ROADMAP.md`).
 
-## What M21 added
+## What M22 added
 
 ```
-src/hyperforge/hardening.mojo
-tests/test_m21.mojo
-tests/integration_m21.sh
-docs/engineering/CAPABILITY_MATRIX.md
-docs/engineering/RELEASE.md
-src/hyperforge/workspace.mojo, automl/dataset.mojo, doctor.mojo (wiring)
-src/hyperforge/core/version.mojo, pixi.toml, README.md (version/tasks)
+src/hyperforge/automl/{full_models,full_metrics,full_validation}.mojo
+src/hyperforge/cli/automl_full_cmd.mojo
+examples/classification_binary.csv
+tests/test_m22.mojo
+tests/integration_m22.sh
+docs/engineering/AUTOML_FULL.md
+src/main.mojo, args.mojo, help.mojo, version.mojo, pixi.toml (wiring)
+evidence/journal.mojo, evidence/record.mojo (full_trial, full_summary)
+docs/engineering/{EXPANSION_ROADMAP,CAPABILITY_MATRIX,TECH_INVENTORY,MILESTONES,PROJECT_STATE,TEST_RESULTS,DECISIONS}.md
 ```
 
 ## Known limitations / blockers
 
-- AutoLLM MAX inference is BLOCKED_BY_MAX_INTERFACE; AutoGenAI/SciLLM/SciGenAI
-  blocked; no commands registered for them.
-- RSI is config-only; no code rewriting or runtime consumer of applied configs.
-- Atomic rename/truncate and Ctrl-C interception are unavailable in installed
-  Mojo and are reported honestly as limitations.
-- Memory is NOT_TESTED in several capabilities.
-- World models, broad HPC/HyperComputers, and application kernel migration are
-  PLANNED, not implemented.
+- AutoML remaining breadth (SVM, GP, DBSCAN, MLP, ranking, forecasting) is a
+  future expansion of the same tech; 18 kinds are covered now.
+- AutoLLM MAX inference BLOCKED_BY_MAX_INTERFACE; full lifecycle still planned.
+- Atomic rename/truncate and Ctrl-C interception unavailable in installed Mojo.
+- Memory NOT_TESTED in several capabilities.
+- World models, HyperComputers, quantum, and agent swarm not implemented.
 
 ## Next exact actions
 
-1. Re-read the three authoritative documents (required after each milestone).
-2. Work from `CAPABILITY_MATRIX.md`: only expand a PARTIAL/BLOCKED item after its
-   prerequisite is verified (notably local MAX inference before SciLLM/SciGenAI).
+1. Commit and push M22 as its own milestone.
+2. Re-read the three authoritative documents (required after each milestone).
+3. Next tech monolith: M23 AutoLLM full PreTrain→MidTrain→PostTrain→Infer
+   using the autodiff tape, with MAX boundary kept separate.
 
 ## Resume commands
 
@@ -54,5 +44,5 @@ src/hyperforge/core/version.mojo, pixi.toml, README.md (version/tasks)
 cd /home/jack/Projects/HyperForge
 pixi run build
 pixi run test
-pixi run test-hardening
+pixi run test-automl-full
 ```

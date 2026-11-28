@@ -4,8 +4,8 @@
 > **bounded reciprocal search** — no frontend, no server, no database, and no
 > Python application code.
 
-**Status:** roadmap M00–M21 complete · Mojo `1.2.0` · MAX `26.7.0` ·
-`123` unit tests · `348` integration checks · CLI-only · offline core
+**Status:** roadmap M00–M21 complete; M22 AutoML full monolith complete · Mojo `1.2.0` · MAX `26.7.0` ·
+`127` unit tests · `365` integration checks · CLI-only · offline core
 
 ---
 
@@ -152,7 +152,7 @@ optional arguments document their usage in the error message.
 |---|---|---|
 | Diagnostics | `doctor [--json] [--gpu]`, `hardware probe\|catalogue`, `benchmark kernel` | Report capabilities, detect devices, benchmark GPU kernels |
 | Workspace | `init <path>`, `experiment create\|list\|show\|replay`, `report <id>` | Create and inspect versioned local records |
-| AutoML | `automl inspect\|run\|show\|replay\|compare` | Regression experiments on numeric CSV |
+| AutoML | `automl full\|inspect\|run\|show\|replay\|compare` | 18 algorithms, regression + classification, k-fold CV |
 | Optimization | `optimize run` | Adaptive search vs matched random baseline |
 | Scientific ML | `sinn list-problems\|solve\|show`, `sci-transformers train\|show\|predict`, `sciml list-problems\|solve\|show`, `scidl run\|show`, `scirl run\|show` | PDE, sequence, field, and simulated-control experiments |
 | AutoAI slices | `autodl run\|show\|replay`, `autorl list-envs\|run\|show\|replay`, `autotransformers run\|show\|replay`, `autollm discover\|evaluate\|status` | Architecture, RL, transformer, and offline LLM-substrate slices |
@@ -214,7 +214,7 @@ The authoritative, always-current status of every capability keyword is in
 [`docs/engineering/CAPABILITY_MATRIX.md`](docs/engineering/CAPABILITY_MATRIX.md).
 In short:
 
-- **Complete:** CLI/evidence, regression AutoML, adaptive optimization, SINN,
+- **Complete:** CLI/evidence, full AutoML (M22), adaptive optimization, SINN,
   SciTransformers, reciprocal discovery proof, AutoDL, AutoRL,
   AutoTransformers, SciML, SciDL, SciRL, Scientific Looper, GPU kernel
   catalogue, bounded RSI.
@@ -237,7 +237,7 @@ proof, and the SciDL MLP underperformed linear/FD baselines.
 
 ```bash
 pixi run build                 # native Mojo build
-pixi run test                  # 123 unit tests
+pixi run test                  # 127 unit tests
 pixi run test-cli              # 24 checks
 pixi run test-experiment       # 17 checks
 pixi run test-automl           # 21 checks
@@ -260,6 +260,7 @@ pixi run test-meta             # 14 checks
 pixi run test-joint            # 21 checks
 pixi run test-rsi              # 25 checks
 pixi run test-hardening        # 9 checks
+pixi run test-automl-full      # 17 full-AutoML checks
 ```
 
 **GPU note.** On pre-Turing NVIDIA devices (e.g. MX230 / `sm_61`), the bundled
@@ -301,6 +302,7 @@ Core CPU paths need no network, account, model download, or external service.
 | [`docs/INDEX.md`](docs/INDEX.md) | Documentation index |
 | [`docs/HYPERFORGE_MOJO_MAX_MASTER_BUILD_PROMPT.md`](docs/HYPERFORGE_MOJO_MAX_MASTER_BUILD_PROMPT.md) | Authoritative build directive M00–M21 |
 | [`docs/MOJO_MAX_BOOTSTRAP_BLUEPRINT.md`](docs/MOJO_MAX_BOOTSTRAP_BLUEPRINT.md) | Architecture blueprint |
+| [`docs/engineering/AUTOML_FULL.md`](docs/engineering/AUTOML_FULL.md) | Complete AutoML inventory and results |
 | [`docs/engineering/ARCHITECTURE.md`](docs/engineering/ARCHITECTURE.md) | Implemented module map and invariants |
 | [`docs/engineering/EXPANSION_ROADMAP.md`](docs/engineering/EXPANSION_ROADMAP.md) | Post-M21 scope: broader algorithms, full AutoLLM lifecycle, interconnection |
 | [`docs/engineering/TECH_INVENTORY.md`](docs/engineering/TECH_INVENTORY.md) | Every tech name, its full scope, status, and boundary |

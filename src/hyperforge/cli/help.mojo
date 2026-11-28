@@ -71,6 +71,8 @@ def print_help() raises:
         + "  experiment show <id> [--json]\n"
         + "                          Inspect one experiment and its events\n"
         + "  experiment replay <id>  Verify inputs before replay\n"
+        + "  automl full <csv> <target> [budget] [seed] [folds] [grid]\n"
+        + "                          Complete algorithm suite with k-fold CV\n"
         + "  automl inspect <csv> <target>\n"
         + "                          Validate a CSV dataset and show its schema\n"
         + "  automl run <csv> <target> [budget] [seed]\n"

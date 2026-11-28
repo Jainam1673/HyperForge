@@ -109,7 +109,52 @@ graph or shared mutable state.
 
 ---
 
-## Ordered milestones (one slice each)
+## Owner strategy change (2026-11-28): monolithic per tech
+
+The owner changed the implementation strategy: **implement one technology at
+a time, but implement the whole declared breadth of that technology in one
+monolithic milestone**, rather than taking thin slices across many
+technologies. This remains compatible with the root directive's "one complete
+capability at a time" rule: one tech at a time, fully, with tests, before
+moving to the next.
+
+Because "everything possible" is unbounded, each tech's breadth is defined by
+a **finite declared inventory** recorded in this roadmap before implementation
+starts. "Complete" for a tech means every item in that inventory has a real,
+tested execution path — not that an infinite algorithm space was exhausted.
+If an item cannot be implemented honestly, it is marked BLOCKED with the
+reason, and the inventory is updated explicitly.
+
+### Monolithic milestone order
+
+1. **M22 — AutoML, complete.** Full declared inventory (below), one milestone.
+2. **M23 — AutoLLM, complete.** PreTrain→MidTrain→PostTrain→Infer lifecycle.
+3. **M24 — AutoDL + AutoTransformers + NAS/HPO breadth**, one milestone.
+4. **M25 — AutoRL breadth**, one milestone.
+5. **M26 — SciAI breadth** (SINN/SciML/SciDL/SciRL/SciTransformers + UQ +
+   differentiable simulation + neural-operator feasibility spike), one milestone.
+6. **M27 — Discovery/RSI/HPC breadth + full interconnection**, one milestone.
+
+No next tech begins until the current tech's inventory is verified, documented,
+and pushed.
+
+### M22 AutoML declared inventory (monolithic)
+
+- **Regression models:** mean baseline, linear GD, ridge, lasso, elastic net,
+  Huber robust, polynomial basis, kNN, decision tree, random forest,
+  gradient boosting.
+- **Classification models:** logistic regression, Gaussian naive Bayes, kNN,
+  decision tree, random forest.
+- **Unsupervised:** k-means, PCA projection.
+- **Metrics:** regression MAE/MSE/RMSE/R²/MAPE; classification accuracy,
+  precision, recall, F1, confusion matrix, log loss, ROC-AUC.
+- **Validation:** deterministic holdout + k-fold cross-validation.
+- **Search:** random, grid, and adaptive (feedback-connected) over the full
+  candidate space.
+- **Evidence:** every trial persisted in the journal with task type, config,
+  seed, metrics, and checksums.
+
+## Original slice-based milestones (superseded by the strategy above)
 
 | Milestone | Slice | Gate |
 |---|---|---|

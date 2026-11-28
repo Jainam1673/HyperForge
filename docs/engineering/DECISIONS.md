@@ -34,6 +34,13 @@ explicitly typed `Optional` is used. `len(String)` is replaced by
 logic is implemented in shell. This follows the directive's allowance for
 small build/test automation.
 
+## D042 — Monolithic per tech, bounded by a declared inventory
+
+Owner changed the strategy from thin slices across technologies to implementing
+one technology's full declared breadth in one milestone. "Everything" is bounded
+by a concrete inventory recorded before implementation, so completeness remains
+testable and no infinite scope is claimed. AutoML is the first monolith (M22).
+
 ## D041 — Hardening is centralized and honest about limits
 
 Path and CSV ceilings live in one first-party module used by workspace init,

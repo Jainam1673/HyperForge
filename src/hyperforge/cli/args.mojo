@@ -421,7 +421,14 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
         result.error = "usage: hyperforge report <experiment-id>"
     if result.command == "automl":
         if len(result.args) == 0:
-            result.error = "automl requires: inspect|run|show|replay|compare"
+            result.error = "automl requires: inspect|run|full|show|replay|compare"
+        elif result.args[0] == "full" and (
+            len(result.args) < 3 or len(result.args) > 7
+        ):
+            result.error = (
+                "usage: hyperforge automl full <data.csv> <target> "
+                "[budget] [seed] [folds] [grid]"
+            )
         elif result.args[0] == "inspect" and len(result.args) != 3:
             result.error = "usage: hyperforge automl inspect <data.csv> <target>"
         elif result.args[0] == "run" and (len(result.args) < 3 or len(result.args) > 5):
@@ -436,6 +443,7 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
         elif (
             result.args[0] != "inspect"
             and result.args[0] != "run"
+            and result.args[0] != "full"
             and result.args[0] != "show"
             and result.args[0] != "replay"
             and result.args[0] != "compare"

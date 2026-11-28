@@ -6,7 +6,7 @@ Statuses describe **verified repository evidence**, not intent. `PARTIAL` and
 | Capability | Status | Evidence / boundary |
 |---|---|---|
 | Native Mojo CLI (`doctor`, `init`, `experiment`) | COMPLETE | M00–M01; CLI_SPEC.md |
-| AutoML regression (native, real metrics) | COMPLETE | M02–M03; adaptive search lost to random in one fixture |
+| AutoML (full declared algorithm suite) | COMPLETE | M02–M03 + M22: 18 model kinds, classification+regression, full metric suite, k-fold CV, grid/random/adaptive; `AUTOML_FULL.md` |
 | SINN (scientific neural networks) | COMPLETE | M05 |
 | SciTransformers | COMPLETE | M06 |
 | Reciprocal discovery proof | COMPLETE | M07; joint search lost in that fixture (negative result retained) |

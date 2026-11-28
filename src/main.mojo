@@ -57,6 +57,7 @@ from hyperforge.cli.systems_cmd import run_systems, show_systems
 from hyperforge.cli.meta_cmd import run_meta, show_graph
 from hyperforge.cli.joint_cmd import run_joint_benchmark, show_joint
 from hyperforge.cli.rsi_cmd import run_rsi_cmd, show_rsi, rollback_rsi, DEFAULT_TRIALS
+from hyperforge.cli.automl_full_cmd import run_full
 from hyperforge.core.exit_codes import EXIT_OK, EXIT_USAGE, EXIT_INTERNAL
 
 
@@ -102,6 +103,20 @@ def main() raises:
             if len(a) >= 5:
                 seed = UInt64(Int(a[4]))
             code = run_experiment(".", a[1], a[2], budget, seed)
+        elif a[0] == "full":
+            var budget = 8
+            var seed: UInt64 = 42
+            var folds = 3
+            var use_grid = False
+            if len(a) >= 4:
+                budget = Int(a[3])
+            if len(a) >= 5:
+                seed = UInt64(Int(a[4]))
+            if len(a) >= 6:
+                folds = Int(a[5])
+            if len(a) >= 7 and a[6] == "grid":
+                use_grid = True
+            code = run_full(".", a[1], a[2], budget, seed, folds, use_grid)
         elif a[0] == "show":
             code = automl_show(".", a[1])
         elif a[0] == "replay":

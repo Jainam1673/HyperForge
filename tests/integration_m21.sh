@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# M21 integration checks: hardening probes, path validation, CSV ceilings.
+# M22 integration checks: hardening probes, path validation, CSV ceilings.
 # Run with: pixi run test-hardening
 set -euo pipefail
 
@@ -44,7 +44,7 @@ bash "$ROOT/scripts/mojo.sh" build -I "$ROOT/src" "$ROOT/src/main.mojo" -o "$BIN
 check_status 0 "doctor json" "$BIN" doctor --json
 check_output "input_hardening" "hardening probe"
 check_output "CSV<=16777216B/100000 rows/256 cols" "csv ceilings"
-check_output '"milestone":"M21"' "milestone text"
+check_output '"milestone":"M22"' "milestone text"
 
 check_status 2 "traversal init" "$BIN" init "$TMPD/../escape"
 check_status 0 "valid init" "$BIN" init "$TMPD/workspace"
