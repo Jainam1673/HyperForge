@@ -438,5 +438,5 @@ Owner changed strategy to monolithic-per-tech; recorded in `EXPANSION_ROADMAP.md
 | Durable per-trial evidence | `full_trial`, `full_summary` records | PASS |
 | Earlier capabilities unchanged | 21 integration suites re-run clean | PASS |
 
-M22 implementation and evidence are **VERIFIED**; commit/push is the remaining
-workflow action."""
+M22 implementation and evidence are **VERIFIED** and pushed as commit
+`1882fb149f4d1c82970f9c3232e0d715a9243e60`."""

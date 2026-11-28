@@ -2,7 +2,8 @@
 
 ## Current state
 
-- M00–M21 VERIFIED and pushed. M22 implemented and VERIFIED; commit/push pending.
+- M00–M21 VERIFIED and pushed. M22 implemented, VERIFIED and pushed. M22 commit:
+  `1882fb149f4d1c82970f9c3232e0d715a9243e60`.
 - Git remote: `https://github.com/Jainam1673/HyperForge.git`, branch `main`.
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
 - Final verification: 127 unit tests; 23 integration suites → 365 checks. All pass.
@@ -33,9 +34,8 @@ docs/engineering/{EXPANSION_ROADMAP,CAPABILITY_MATRIX,TECH_INVENTORY,MILESTONES,
 
 ## Next exact actions
 
-1. Commit and push M22 as its own milestone.
-2. Re-read the three authoritative documents (required after each milestone).
-3. Next tech monolith: M23 AutoLLM full PreTrain→MidTrain→PostTrain→Infer
+1. Re-read the three authoritative documents (required after each milestone).
+2. Next tech monolith: M23 AutoLLM full PreTrain→MidTrain→PostTrain→Infer
    using the autodiff tape, with MAX boundary kept separate.
 
 ## Resume commands
