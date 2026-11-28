@@ -8,7 +8,10 @@
 - GitHub MCP is working (`get_me`, `opencode mcp list`).
 - Final verification: `pixi run test` → 123 unit tests; 22 integration suites →
   348 checks. All pass. Build is clean.
-- Roadmap milestone sequence is closed by M21; further growth is incremental.
+- Roadmap M00–M21 is closed. Owner expanded scope after M21: broader algorithm
+  space, full AutoLLM PreTrain→MidTrain→PostTrain→Infer lifecycle, and all
+  capabilities interconnected via evidence. Recorded in
+  `docs/engineering/EXPANSION_ROADMAP.md`; no code started for it yet.
 - README finalized as the single end-user entry point: positioning, quick start,
   five guided workflows, grouped command reference, architecture, honest status,
   verification commands, and limitations. `docs/engineering/ARCHITECTURE.md`
