@@ -352,6 +352,20 @@ bounds), classification candidates never appearing in a small budget, log loss
 computed on thresholded labels instead of probabilities, and a Float64 loop
 bound passed to `range`. Full suite: 127 unit tests and 365 integration checks.
 
+## M23 results
+
+| Command | Outcome |
+|---|---|
+| `pixi run bash scripts/mojo.sh run -I src tests/test_m23.mojo` | 5 tests pass |
+| `pixi run test-autollm-lifecycle` | `autollm lifecycle integration: 30 passed, 0 failed` |
+| four-stage run | losses 2.57 → 2.11 → 1.37; response lineage has 3 checksums |
+| existing `test-autollm` | 16 checks pass unchanged |
+
+Five defects were found and fixed: hex-seed parsing unsupported in installed
+Mojo, UTF-8 byte-to-int conversion, output dimension off by one, checkpoint
+checksum including a trailing newline, and sampling selecting the padding token.
+Full suite: 132 unit tests and 395 integration checks.
+
 ## Environment limitation
 
 A fresh `pixi install --frozen` into `/tmp/opencode/cleanhf3` failed with

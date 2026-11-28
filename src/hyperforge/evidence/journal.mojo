@@ -38,6 +38,8 @@ from hyperforge.evidence.record import (
     RECORD_RSI_DECISION,
     RECORD_FULL_TRIAL,
     RECORD_FULL_SUMMARY,
+    RECORD_AUTOLLM_STAGE,
+    RECORD_AUTOLLM_RESPONSE,
     parse_record,
     serialize_record,
 )
@@ -293,6 +295,23 @@ def required_fields_present(record: JournalRecord) raises -> Bool:
         required.append("seed")
         required.append("validation_score")
         required.append("valid")
+    elif record.kind == RECORD_AUTOLLM_STAGE:
+        required.append("schema")
+        required.append("stage")
+        required.append("epochs")
+        required.append("checksum")
+        required.append("lineage")
+        required.append("detail")
+        required.append("loss")
+    elif record.kind == RECORD_AUTOLLM_RESPONSE:
+        required.append("schema")
+        required.append("prompt")
+        required.append("response")
+        required.append("lineage")
+        required.append("model_checksum")
+        required.append("seed")
+        required.append("max_tokens")
+        required.append("temperature")
     elif record.kind == RECORD_FULL_SUMMARY:
         required.append("schema")
         required.append("task")

@@ -13,7 +13,7 @@ Statuses describe **verified repository evidence**, not intent. `PARTIAL` and
 | AutoDL | COMPLETE | M10 |
 | AutoRL | COMPLETE | M11 |
 | AutoTransformers | COMPLETE | M12 |
-| AutoLLM substrate | PARTIAL | M12 offline substrate; local MAX inference `BLOCKED_BY_MAX_INTERFACE` |
+| AutoLLM (full first-party lifecycle) | COMPLETE | M23: tiny trained byte model, PreTrain/MidTrain/PostTrain/Infer, checkpoint lineage, honest MAX boundary; `AUTOLLM_LIFECYCLE.md` |
 | AutoGenAI | BLOCKED | depends on a verified local MAX inference boundary; no command registered |
 | SciML | COMPLETE | M13 |
 | SciDL | COMPLETE | M14; MLP underperformed linear/FD baselines (negative result) |

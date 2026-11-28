@@ -45,6 +45,12 @@ from hyperforge.cli.autollm_cmd import (
     evaluate_command,
     status_command,
 )
+from hyperforge.cli.autollm_lifecycle_cmd import (
+    pretrain_command,
+    continue_command,
+    infer_command,
+    lifecycle_status,
+)
 from hyperforge.cli.sciml_cmd import (
     list_problems as sciml_list,
     solve_problem as sciml_solve,
@@ -250,7 +256,30 @@ def main() raises:
             code = EXIT_USAGE
     elif parsed.command == "autollm":
         ref la = parsed.args
-        if la[0] == "discover":
+        if la[0] == "pretrain":
+            var epochs = 6
+            if len(la) >= 3:
+                epochs = Int(la[2])
+            code = pretrain_command(".", la[1], epochs)
+        elif la[0] == "midtrain":
+            var epochs = 6
+            if len(la) >= 3:
+                epochs = Int(la[2])
+            code = continue_command(".", "midtrain", la[1], epochs)
+        elif la[0] == "posttrain":
+            var epochs = 6
+            if len(la) >= 3:
+                epochs = Int(la[2])
+            code = continue_command(".", "posttrain", la[1], epochs)
+        elif la[0] == "infer":
+            var max_tokens = 12
+            var temperature = 1.0
+            if len(la) >= 3:
+                max_tokens = Int(la[2])
+            if len(la) >= 4:
+                temperature = Float64(la[3])
+            code = infer_command(".", la[1], max_tokens, temperature)
+        elif la[0] == "discover":
             var path = String(".")
             if len(la) >= 2:
                 path = la[1]

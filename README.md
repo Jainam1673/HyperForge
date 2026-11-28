@@ -4,8 +4,8 @@
 > **bounded reciprocal search** — no frontend, no server, no database, and no
 > Python application code.
 
-**Status:** roadmap M00–M21 complete; M22 AutoML full monolith complete · Mojo `1.2.0` · MAX `26.7.0` ·
-`127` unit tests · `365` integration checks · CLI-only · offline core
+**Status:** roadmap M00–M21 complete; M22 AutoML + M23 AutoLLM full monoliths complete · Mojo `1.2.0` · MAX `26.7.0` ·
+`132` unit tests · `395` integration checks · CLI-only · offline core
 
 ---
 
@@ -141,6 +141,22 @@ Candidates are config values only. The baseline and evaluator protocol are
 write-once, checksummed records with no candidate-facing mutation path; a
 protected holdout and an independent verifier gate every acceptance.
 
+### 6. AutoLLM end-to-end lifecycle
+
+```bash
+./hyperforge autollm pretrain examples/autollm/corpus_pre.txt 6
+./hyperforge autollm midtrain examples/autollm/corpus_mid.txt 6
+./hyperforge autollm posttrain examples/autollm/pairs.tsv 6
+./hyperforge autollm infer "the " 8 1.0
+./hyperforge autollm status
+```
+
+A tiny first-party byte-level model is genuinely trained with reverse-mode
+gradients at each stage. Every stage writes a checksummed checkpoint and a
+lineage record; inference names the exact checkpoint chain that produced the
+response. This is **not** MAX model inference — that boundary stays
+`BLOCKED_BY_MAX_INTERFACE` and is reported separately.
+
 ---
 
 ## Command reference
@@ -155,7 +171,7 @@ optional arguments document their usage in the error message.
 | AutoML | `automl full\|inspect\|run\|show\|replay\|compare` | 18 algorithms, regression + classification, k-fold CV |
 | Optimization | `optimize run` | Adaptive search vs matched random baseline |
 | Scientific ML | `sinn list-problems\|solve\|show`, `sci-transformers train\|show\|predict`, `sciml list-problems\|solve\|show`, `scidl run\|show`, `scirl run\|show` | PDE, sequence, field, and simulated-control experiments |
-| AutoAI slices | `autodl run\|show\|replay`, `autorl list-envs\|run\|show\|replay`, `autotransformers run\|show\|replay`, `autollm discover\|evaluate\|status` | Architecture, RL, transformer, and offline LLM-substrate slices |
+| AutoAI slices | `autodl run\|show\|replay`, `autorl list-envs\|run\|show\|replay`, `autotransformers run\|show\|replay`, `autollm pretrain\|midtrain\|posttrain\|infer\|discover\|evaluate\|status` | Architecture, RL, transformer, and full first-party LLM lifecycle |
 | Discovery loops | `discover run`, `systems search\|show`, `meta run\|graph`, `joint run\|show` | Fixed/independent/sequential/joint search, economy, causal evidence |
 | Self-improvement | `rsi run\|show\|rollback` | Guarded config-only propose-evaluate-accept loop |
 | Scientific Looper | `looper run\|show` | Validated experiment-loop transitions |
@@ -214,7 +230,7 @@ The authoritative, always-current status of every capability keyword is in
 [`docs/engineering/CAPABILITY_MATRIX.md`](docs/engineering/CAPABILITY_MATRIX.md).
 In short:
 
-- **Complete:** CLI/evidence, full AutoML (M22), adaptive optimization, SINN,
+- **Complete:** CLI/evidence, full AutoML (M22), full AutoLLM lifecycle (M23), adaptive optimization, SINN,
   SciTransformers, reciprocal discovery proof, AutoDL, AutoRL,
   AutoTransformers, SciML, SciDL, SciRL, Scientific Looper, GPU kernel
   catalogue, bounded RSI.
@@ -237,7 +253,7 @@ proof, and the SciDL MLP underperformed linear/FD baselines.
 
 ```bash
 pixi run build                 # native Mojo build
-pixi run test                  # 127 unit tests
+pixi run test                  # 132 unit tests
 pixi run test-cli              # 24 checks
 pixi run test-experiment       # 17 checks
 pixi run test-automl           # 21 checks
@@ -250,6 +266,7 @@ pixi run test-autodl           # 13 checks
 pixi run test-autorl           # 17 checks
 pixi run test-autotrans        # 14 checks
 pixi run test-autollm          # 16 checks
+pixi run test-autollm-lifecycle # 30 full-AutoLLM checks
 pixi run test-sciml            # 16 checks
 pixi run test-scidl            # 9 checks
 pixi run test-scirl            # 12 checks
@@ -303,6 +320,7 @@ Core CPU paths need no network, account, model download, or external service.
 | [`docs/HYPERFORGE_MOJO_MAX_MASTER_BUILD_PROMPT.md`](docs/HYPERFORGE_MOJO_MAX_MASTER_BUILD_PROMPT.md) | Authoritative build directive M00–M21 |
 | [`docs/MOJO_MAX_BOOTSTRAP_BLUEPRINT.md`](docs/MOJO_MAX_BOOTSTRAP_BLUEPRINT.md) | Architecture blueprint |
 | [`docs/engineering/AUTOML_FULL.md`](docs/engineering/AUTOML_FULL.md) | Complete AutoML inventory and results |
+| [`docs/engineering/AUTOLLM_LIFECYCLE.md`](docs/engineering/AUTOLLM_LIFECYCLE.md) | Full first-party LLM lifecycle and MAX boundary |
 | [`docs/engineering/ARCHITECTURE.md`](docs/engineering/ARCHITECTURE.md) | Implemented module map and invariants |
 | [`docs/engineering/EXPANSION_ROADMAP.md`](docs/engineering/EXPANSION_ROADMAP.md) | Post-M21 scope: broader algorithms, full AutoLLM lifecycle, interconnection |
 | [`docs/engineering/TECH_INVENTORY.md`](docs/engineering/TECH_INVENTORY.md) | Every tech name, its full scope, status, and boundary |

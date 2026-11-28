@@ -84,28 +84,28 @@ Q-learning/policy evaluation, held-out episodes, replay/verification; planned
 value/policy iteration, SARSA, DQN, REINFORCE, A2C/PPO, model-based control,
 regret and sample-efficiency metrics.
 
-### AutoLLM ◐ — full lifecycle required by owner
+### AutoLLM ✅ — full first-party lifecycle (M23)
 **Everything in it (end-to-end):**
 
-- **PreTrain** — corpus ingestion, tokenizer/vocab construction, dedup/
-  filtering, data provenance, tiny first-party transformer, next-token
-  objective, optimizer, checkpoint, config + data fingerprint.
-- **MidTrain** — resume from checkpoint, continued training on a second
-  declared corpus, domain adaptation, replay of prior data, LR schedule reset,
-  invalid-transition rejection.
-- **PostTrain** — supervised instruction pairs, preference pairs, bounded
-  reward/preference scoring, SFT-style fine-tuning, distillation, evaluation
-  suites; frontier-scale RLHF is out of scope.
-- **Infer** — autoregressive decoding (greedy/temperature/top-k/beam),
-  context window, response recording, offline scoring, lineage to exact
-  checkpoint chain; MAX-served inference remains ⛔ and is reported separately.
-- **Ops** — model/artifact registry, per-stage status, versioned evaluation
-  suites, CLI-level rollout comparison, provenance.
+- **PreTrain** ✅ — corpus ingestion, deterministic byte vocabulary, data
+  fingerprint, tiny first-party max-entropy context model, next-token
+  cross-entropy, reverse-mode gradient descent, checkpoint, lineage.
+- **MidTrain** ✅ — resume from the PreTrain checkpoint, continued training on
+  a second declared corpus with a lower learning rate, invalid-transition
+  rejection; replay of prior data is not implemented.
+- **PostTrain** ✅ — supervised `prompt<TAB>response` pairs from a local TSV,
+  SFT-style next-token fine-tuning; preference pairs / DPO / RLHF are not
+  implemented.
+- **Infer** ✅ — deterministic autoregressive byte decoding with temperature
+  and top-k, response recording, lineage to the exact checkpoint chain;
+  MAX-served inference remains ⛔ and is reported separately.
+- **Ops** ✅ — checksummed artifact registry, per-stage status, versioned
+  offline suite evaluation, provenance; CLI-level rollout comparison is not
+  implemented.
 
-**Feasibility:** the autodiff tape already trains a tiny transformer in
-SciTransformers, so a **tiny first-party** PreTrain→Infer path with genuine
-gradients is achievable on CPU. It must be labeled as tiny and first-party —
-not a MAX-served frontier LLM.
+The model is a tiny byte-level context model trained with the project's
+autodiff tape — real gradients, not a transformer or frontier LLM. Every stage
+states that boundary. See `AUTOLLM_LIFECYCLE.md`.
 
 ### AutoGenAI ⛔
 Everything in it: text/code/config/hypothesis candidate generation, explicit
@@ -333,7 +333,7 @@ another's protected records.
 ## Summary counts
 
 - **Platform/substrate:** 7 names — 6 ✅, 1 ◐.
-- **AutoAI:** 10 names — 5 ✅ (including the umbrella), 4 ◐, 1 ⛔.
+- **AutoAI:** 10 names — 6 ✅ (including the umbrella and AutoLLM), 3 ◐, 1 ⛔.
 - **SciAI:** 13 names — 7 ✅ (including the umbrella and alias), 1 ◐, 2 ⛔, 3 ○.
 - **Discovery infrastructure:** 10 names — 1 ✅, 7 ◐, 2 ○; plus 9 agent roles ◐.
 - **Systems/long-horizon:** 6 names — 1 ✅, 3 ◐, 2 ○.

@@ -306,7 +306,27 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             result.error = "unknown sciml subcommand: " + result.args[0]
     if result.command == "autollm":
         if len(result.args) == 0:
-            result.error = "autollm requires: discover|evaluate|status"
+            result.error = (
+                "autollm requires: pretrain|midtrain|posttrain|infer|discover|evaluate|status"
+            )
+        elif result.args[0] == "pretrain" and (
+            len(result.args) < 2 or len(result.args) > 3
+        ):
+            result.error = "usage: hyperforge autollm pretrain <corpus> [epochs]"
+        elif result.args[0] == "midtrain" and (
+            len(result.args) < 2 or len(result.args) > 3
+        ):
+            result.error = "usage: hyperforge autollm midtrain <corpus> [epochs]"
+        elif result.args[0] == "posttrain" and (
+            len(result.args) < 2 or len(result.args) > 3
+        ):
+            result.error = "usage: hyperforge autollm posttrain <pairs.tsv> [epochs]"
+        elif result.args[0] == "infer" and (
+            len(result.args) < 2 or len(result.args) > 4
+        ):
+            result.error = (
+                "usage: hyperforge autollm infer <prompt> [max_tokens] [temperature]"
+            )
         elif result.args[0] == "discover" and (len(result.args) < 1 or len(result.args) > 2):
             result.error = "usage: hyperforge autollm discover [model-directory]"
         elif result.args[0] == "evaluate" and len(result.args) != 3:
@@ -314,7 +334,11 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
         elif result.args[0] == "status" and len(result.args) != 1:
             result.error = "usage: hyperforge autollm status"
         elif (
-            result.args[0] != "discover"
+            result.args[0] != "pretrain"
+            and result.args[0] != "midtrain"
+            and result.args[0] != "posttrain"
+            and result.args[0] != "infer"
+            and result.args[0] != "discover"
             and result.args[0] != "evaluate"
             and result.args[0] != "status"
         ):

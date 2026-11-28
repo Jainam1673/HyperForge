@@ -34,6 +34,13 @@ explicitly typed `Optional` is used. `len(String)` is replaced by
 logic is implemented in shell. This follows the directive's allowance for
 small build/test automation.
 
+## D043 — AutoLLM lifecycle uses a first-party tiny model, not MAX
+
+A byte-level max-entropy context model trained with the autodiff tape provides
+real PreTrain→Infer execution without claiming MAX inference. Checkpoints carry
+checksums and lineage; every stage report states the boundary. DPO/RLHF, BPE,
+and attention are explicitly outside the declared M23 inventory.
+
 ## D042 — Monolithic per tech, bounded by a declared inventory
 
 Owner changed the strategy from thin slices across technologies to implementing

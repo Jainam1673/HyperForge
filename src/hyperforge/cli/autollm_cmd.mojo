@@ -87,6 +87,7 @@ def evaluate_command(workspace: String, suite_path: String, responses_path: Stri
 
 
 def status_command(workspace: String) raises -> Int:
+    from hyperforge.cli.autollm_lifecycle_cmd import lifecycle_status
     var journal = read_journal(journal_path(workspace))
     var count = 0
     for i in range(len(journal.records)):
@@ -99,4 +100,5 @@ def status_command(workspace: String) raises -> Int:
     print("max_cli:        " + (status.max_cli if status.max_cli != "" else "NOT_FOUND"))
     print("detail:         " + status.detail)
     print("offline_core:   AVAILABLE (discovery, versioned suites, recorded evaluation)")
+    lifecycle_status(workspace)
     return EXIT_OK

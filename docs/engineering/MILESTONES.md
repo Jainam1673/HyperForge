@@ -439,4 +439,19 @@ Owner changed strategy to monolithic-per-tech; recorded in `EXPANSION_ROADMAP.md
 | Earlier capabilities unchanged | 21 integration suites re-run clean | PASS |
 
 M22 implementation and evidence are **VERIFIED** and pushed as commit
-`1882fb149f4d1c82970f9c3232e0d715a9243e60`."""
+`1882fb149f4d1c82970f9c3232e0d715a9243e60`.
+
+## M23 — AutoLLM full lifecycle monolith
+
+| Acceptance criterion | Evidence | Result |
+|---|---|---|
+| PreTrain with real gradients and checkpoint | tape-trained loss 2.57; checksum recorded | PASS |
+| MidTrain from previous checkpoint | lineage parent pretrain; loss 2.11 | PASS |
+| PostTrain on recorded instruction pairs | 120 tokens; loss 1.37 | PASS |
+| Infer with checkpoint lineage | response record names all 3 checksums | PASS |
+| Invalid transitions rejected | integration test in fresh workspace | PASS |
+| Per-stage status and honest MAX boundary | `autollm status` output | PASS |
+| Original substrate unchanged | `test-autollm` 16/16 | PASS |
+
+M23 implementation and evidence are **VERIFIED**; commit/push is the remaining
+workflow action."""
