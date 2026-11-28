@@ -35,6 +35,7 @@ Observed facts live in `engineering/`:
 | `engineering/TEST_RESULTS.md` | Exact commands, versions, outcomes, and limits. |
 | `engineering/ARCHITECTURE.md` | Implemented module map, evidence format, and coupling boundaries. |
 | `engineering/EXPANSION_ROADMAP.md` | Post-M21 expansion: broader algorithm space, full AutoLLM lifecycle, interconnection. |
+| `engineering/TECH_INVENTORY.md` | Every tech name with its full scope, current status, and boundary. |
 | `engineering/CAPABILITY_MATRIX.md` | Status of every AutoAI/SciAI keyword, including partial and blocked items. |
 | `engineering/RELEASE.md` | Pinned toolchain, clean-checkout commands, licensing, and reliability notes. |
 | `engineering/DECISIONS.md` | Dependency and architecture decisions with reasons. |

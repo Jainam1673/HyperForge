@@ -303,6 +303,7 @@ Core CPU paths need no network, account, model download, or external service.
 | [`docs/MOJO_MAX_BOOTSTRAP_BLUEPRINT.md`](docs/MOJO_MAX_BOOTSTRAP_BLUEPRINT.md) | Architecture blueprint |
 | [`docs/engineering/ARCHITECTURE.md`](docs/engineering/ARCHITECTURE.md) | Implemented module map and invariants |
 | [`docs/engineering/EXPANSION_ROADMAP.md`](docs/engineering/EXPANSION_ROADMAP.md) | Post-M21 scope: broader algorithms, full AutoLLM lifecycle, interconnection |
+| [`docs/engineering/TECH_INVENTORY.md`](docs/engineering/TECH_INVENTORY.md) | Every tech name, its full scope, status, and boundary |
 | [`docs/engineering/CAPABILITY_MATRIX.md`](docs/engineering/CAPABILITY_MATRIX.md) | Verified status of every capability |
 | [`docs/engineering/RELEASE.md`](docs/engineering/RELEASE.md) | Pins, reproduction, licensing, reliability posture |
 | [`docs/engineering/TEST_RESULTS.md`](docs/engineering/TEST_RESULTS.md) | Exact commands, outcomes, and fixes |

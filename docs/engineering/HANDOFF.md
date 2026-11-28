@@ -11,7 +11,9 @@
 - Roadmap M00–M21 is closed. Owner expanded scope after M21: broader algorithm
   space, full AutoLLM PreTrain→MidTrain→PostTrain→Infer lifecycle, and all
   capabilities interconnected via evidence. Recorded in
-  `docs/engineering/EXPANSION_ROADMAP.md`; no code started for it yet.
+  `docs/engineering/EXPANSION_ROADMAP.md`; full per-tech scope map in
+  `docs/engineering/TECH_INVENTORY.md`; no code started for it yet. Owner asked
+  to enumerate every tech and everything inside it before implementation.
 - README finalized as the single end-user entry point: positioning, quick start,
   five guided workflows, grouped command reference, architecture, honest status,
   verification commands, and limitations. `docs/engineering/ARCHITECTURE.md`
