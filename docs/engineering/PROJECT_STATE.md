@@ -131,7 +131,7 @@ checks, `AUTOLLM_LIFECYCLE.md`). PreTrain/MidTrain/PostTrain/Infer with real
 gradients, checkpoints, and lineage; MAX boundary kept separate. M23 commit: `4eb74366b89ce39da67c5c2b8c159e0c132db72b`.
 MAX readiness / portability: M24, VERIFIED (2 unit tests, 13 integration checks,
 `MAX_READINESS.md`). Honest BLOCKED boundary, refusal path, target matrix.
-M24 commit pending.
+M24 commit: `8be29cd`.
 Final documentation pass: README rewritten as the canonical user guide;
 `ARCHITECTURE.md` created from the implemented tree; `--help` planned-command
 list corrected. No behavior change beyond help text; build and 123 unit tests

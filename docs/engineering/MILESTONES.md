@@ -467,4 +467,4 @@ M23 implementation and evidence are **VERIFIED** and pushed as commit
 | Durable readiness record | `serve_status` journal record | PASS |
 | No fake serve command | only `serve status` registered | PASS |
 
-M24 VERIFIED; commit pending.
+M24 VERIFIED and pushed as commit `8be29cd`.
