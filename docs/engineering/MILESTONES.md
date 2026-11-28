@@ -480,3 +480,9 @@ pass. VERIFIED; commit pending.
 Five algorithms, two environments, safe actions, held-out wall layout, repeated
 seeds. `test_m26` 3 tests and `test-autorl-full` 21 checks pass. Negative
 transfer result retained. VERIFIED; commit pending.
+
+## M27 — Full SciAI breadth
+
+Three analytic problems; SciML+UQ, SciDL baselines, SciRL selection, jet
+gradient verification, neural-operator spike. `test_m27` 2 tests and
+`test-sciai-full` 17 checks pass. VERIFIED; commit pending.

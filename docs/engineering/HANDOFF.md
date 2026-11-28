@@ -21,6 +21,10 @@ docs/engineering/AUTOLLM_LIFECYCLE.md
 docs/engineering/MAX_READINESS.md
 docs/engineering/AUTODL_FULL.md
 docs/engineering/AUTORL_FULL.md
+docs/engineering/SCIAI_FULL.md
+src/hyperforge/sciai/full.mojo
+src/hyperforge/cli/sciai_full_cmd.mojo
+tests/test_m27.mojo, tests/integration_m27.sh
 src/hyperforge/autorl/full.mojo
 src/hyperforge/cli/autorl_full_cmd.mojo
 tests/test_m26.mojo, tests/integration_m26.sh

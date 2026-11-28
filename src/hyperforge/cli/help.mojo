@@ -74,6 +74,7 @@ def print_help() raises:
         + "  rsi show                Inspect protected records and decisions\n"
         + "  rsi rollback [--apply]  Restore the protected baseline config\n"
         + "  serve status            Report MAX serving readiness and target portability\n"
+        + "  sciai full [seed]       Full SciAI breadth across analytic problems\n"
         + "  init <path>             Initialize a versioned local workspace\n"
         + "  experiment create <name> [seed]\n"
         + "                          Create a versioned experiment record\n"

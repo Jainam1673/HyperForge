@@ -54,6 +54,7 @@ from hyperforge.cli.autollm_lifecycle_cmd import (
 from hyperforge.cli.serve_cmd import status_command as serve_status_command
 from hyperforge.cli.autodl_full_cmd import run_autodl_full
 from hyperforge.cli.autorl_full_cmd import run_autorl_full
+from hyperforge.cli.sciai_full_cmd import run_sciai_full
 from hyperforge.cli.sciml_cmd import (
     list_problems as sciml_list,
     solve_problem as sciml_solve,
@@ -416,6 +417,11 @@ def main() raises:
             code = show_joint(".")
         else:
             code = EXIT_USAGE
+    elif parsed.command == "sciai":
+        var seed: UInt64 = 42
+        if len(parsed.args) >= 2:
+            seed = UInt64(Int(parsed.args[1]))
+        code = run_sciai_full(".", seed)
     elif parsed.command == "serve":
         code = serve_status_command(".")
     elif parsed.command == "rsi":

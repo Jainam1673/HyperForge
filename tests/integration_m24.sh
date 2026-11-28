@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# M26 integration checks: MAX serving readiness and portability contract.
+# M27 integration checks: MAX serving readiness and portability contract.
 # Run with: pixi run test-serve
 set -euo pipefail
 
@@ -60,7 +60,7 @@ else
   fail=$((fail + 1))
 fi
 check_status 0 "version" "$BIN" --version
-check_output "hyperforge 0.1.0 (M26)" "version text"
+check_output "hyperforge 0.1.0 (M27)" "version text"
 check_status 2 "bad subcommand" "$BIN" serve nonsense
 
 echo "serve integration: $pass passed, $fail failed"

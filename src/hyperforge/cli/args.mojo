@@ -98,6 +98,7 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             or token == "joint"
             or token == "rsi"
             or token == "serve"
+            or token == "sciai"
         ):
             result.command = token
         elif token.startswith("-"):
@@ -125,6 +126,7 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
             or result.command == "joint"
             or result.command == "rsi"
             or result.command == "serve"
+            or result.command == "sciai"
         ):
             result.args.append(token)
         elif result.command == "init" and result.target == "":
@@ -210,6 +212,13 @@ def parse_tokens(args: List[String]) raises -> CliArgs:
         result.error = "usage: hyperforge benchmark kernel [name] [size] [repetitions]"
     if result.apply and result.command != "rsi":
         result.error = "--apply is only valid with 'rsi run|rollback'"
+    if result.command == "sciai":
+        if len(result.args) == 0:
+            result.error = "sciai requires: full"
+        elif len(result.args) > 2:
+            result.error = "usage: hyperforge sciai full [seed]"
+        elif result.args[0] != "full":
+            result.error = "unknown sciai subcommand: " + result.args[0]
     if result.command == "serve":
         if len(result.args) != 1 or result.args[0] != "status":
             result.error = "usage: hyperforge serve status"

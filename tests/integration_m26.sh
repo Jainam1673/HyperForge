@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# M26 integration: full AutoRL algorithms and held-out evaluation.
+# M27 integration: full AutoRL algorithms and held-out evaluation.
 # Run with: pixi run test-autorl-full
 set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -36,7 +36,7 @@ check_output "holdout wall layout never used for training or selection" "leakage
 check_status 0 "grid_5x5" "$BIN" autorl full sarsa grid_5x5 30 6 42 2
 check_output "environment:       grid_5x5" "second environment"
 check_status 0 "version" "$BIN" --version
-check_output "hyperforge 0.1.0 (M26)" "version text"
+check_output "hyperforge 0.1.0 (M27)" "version text"
 check_status 1 "bad algorithm" "$BIN" autorl full nonsense grid_4x4 10 4 42 1
 count=$(grep -c '|autorl_full|' "$TMPD/workspace/experiments/hf-journal.hfj" || true)
 if [ "$count" -eq 6 ]; then pass=$((pass+1)); else echo "FAIL [journal]: expected 6, got $count"; fail=$((fail+1)); fi

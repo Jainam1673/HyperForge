@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# M26 integration: full AutoDL HPO/NAS breadth.
+# M27 integration: full AutoDL HPO/NAS breadth.
 # Run with: pixi run test-autodl-full
 set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -34,7 +34,7 @@ check_output "distinct_architectures:" "architecture diversity"
 check_output "seeds:               2" "repeated seeds"
 check_output "NAS varies structure; HPO varies validated parameters" "NAS/HPO distinction"
 check_status 0 "version" "$BIN" --version
-check_output "hyperforge 0.1.0 (M26)" "version text"
+check_output "hyperforge 0.1.0 (M27)" "version text"
 check_status 1 "bad policy" "$BIN" autodl full nonsense 4 42 2
 count=$(grep -c '|autodl_full|' "$TMPD/workspace/experiments/hf-journal.hfj" || true)
 if [ "$count" -eq 4 ]; then pass=$((pass+1)); else echo "FAIL [journal]: expected 4, got $count"; fail=$((fail+1)); fi

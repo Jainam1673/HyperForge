@@ -387,6 +387,12 @@ achieved mean return 5.0 and 1.0 success rate; all policies scored -24 on the
 held-out wall layout (negative result retained). Total: 139 unit tests and 446
 integration checks.
 
+## M27 results
+
+`test_m27` 2 tests pass; `test-sciai-full` 17 checks pass. Estimates within
+0.007 of truth; jet and finite-difference gradients agree to 1e-12; bandit
+outperformed random. Total: 141 unit tests and 463 integration checks.
+
 ## Environment limitation
 
 A fresh `pixi install --frozen` into `/tmp/opencode/cleanhf3` failed with

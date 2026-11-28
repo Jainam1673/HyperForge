@@ -43,6 +43,7 @@ from hyperforge.evidence.record import (
     RECORD_SERVE_STATUS,
     RECORD_AUTODL_FULL,
     RECORD_AUTORL_FULL,
+    RECORD_SCIAI_OUTCOME,
     parse_record,
     serialize_record,
 )
@@ -298,6 +299,22 @@ def required_fields_present(record: JournalRecord) raises -> Bool:
         required.append("seed")
         required.append("validation_score")
         required.append("valid")
+    elif record.kind == RECORD_SCIAI_OUTCOME:
+        required.append("schema")
+        required.append("problem")
+        required.append("seed")
+        required.append("true_parameter")
+        required.append("estimated_parameter")
+        required.append("parameter_std")
+        required.append("interval_low")
+        required.append("interval_high")
+        required.append("field_rmse")
+        required.append("linear_rmse")
+        required.append("analytic_gradient_error")
+        required.append("jet_gradient_error")
+        required.append("bandit_return")
+        required.append("random_return")
+        required.append("operator_error")
     elif record.kind == RECORD_AUTORL_FULL:
         required.append("schema")
         required.append("algorithm")
